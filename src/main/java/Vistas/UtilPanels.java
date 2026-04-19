@@ -174,6 +174,18 @@ public final class UtilPanels extends javax.swing.JFrame {
         txt_categoríapro = new javax.swing.JTextField();
         jL_addimg = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jP_reg_cliente = new javax.swing.JPanel();
+        jL_titulo_pcliente = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        txt_nombre_p_cliente = new javax.swing.JTextField();
+        txt_nit_p_cliente = new javax.swing.JTextField();
+        txt_telefono_p_cliente = new javax.swing.JTextField();
+        btn_registrar_p_cliente = new javax.swing.JButton();
+        btn_nuevocliente_p_cliente = new javax.swing.JButton();
+        txt_direccion_p_cliente = new javax.swing.JTextField();
 
         cargando.setBackground(new java.awt.Color(255, 255, 255));
         cargando.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -1297,6 +1309,107 @@ public final class UtilPanels extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
+        jP_reg_cliente.setBackground(new java.awt.Color(250, 250, 250));
+
+        jL_titulo_pcliente.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jL_titulo_pcliente.setText("<html><u>Nuevo Cliente</u></html>");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setText("NIT:");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Nombre:");
+
+        jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel46.setText("Teléfono:");
+
+        jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel47.setText("Dirección:");
+
+        txt_nombre_p_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombre_p_clienteActionPerformed(evt);
+            }
+        });
+
+        btn_registrar_p_cliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_registrar_p_cliente.setText("Registrar");
+
+        btn_nuevocliente_p_cliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_nuevocliente_p_cliente.setText("Nuevo Cliente");
+        btn_nuevocliente_p_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nuevocliente_p_clienteActionPerformed(evt);
+            }
+        });
+
+        txt_direccion_p_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_direccion_p_clienteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jP_reg_clienteLayout = new javax.swing.GroupLayout(jP_reg_cliente);
+        jP_reg_cliente.setLayout(jP_reg_clienteLayout);
+        jP_reg_clienteLayout.setHorizontalGroup(
+            jP_reg_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_reg_clienteLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jP_reg_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jP_reg_clienteLayout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(txt_nit_p_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_reg_clienteLayout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(txt_nombre_p_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jL_titulo_pcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_reg_clienteLayout.createSequentialGroup()
+                        .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(txt_telefono_p_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96)))
+                .addGroup(jP_reg_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jP_reg_clienteLayout.createSequentialGroup()
+                        .addComponent(jLabel47)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_direccion_p_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_reg_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btn_nuevocliente_p_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_registrar_p_cliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+        jP_reg_clienteLayout.setVerticalGroup(
+            jP_reg_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_reg_clienteLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jL_titulo_pcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(jP_reg_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jP_reg_clienteLayout.createSequentialGroup()
+                        .addGroup(jP_reg_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_nombre_p_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jP_reg_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_nit_p_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jP_reg_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                            .addComponent(txt_telefono_p_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jP_reg_clienteLayout.createSequentialGroup()
+                        .addGroup(jP_reg_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_direccion_p_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_nuevocliente_p_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_registrar_p_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1373,6 +1486,18 @@ public final class UtilPanels extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btn_nuevocliente_p_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevocliente_p_clienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_nuevocliente_p_clienteActionPerformed
+
+    private void txt_nombre_p_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre_p_clienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombre_p_clienteActionPerformed
+
+    private void txt_direccion_p_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direccion_p_clienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_direccion_p_clienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1421,8 +1546,10 @@ public final class UtilPanels extends javax.swing.JFrame {
     public volatile javax.swing.JButton btn_guardarMed_inv_;
     public volatile javax.swing.JButton btn_guardarProv_inv;
     public javax.swing.JButton btn_guardar_rp_inv;
+    public javax.swing.JButton btn_nuevocliente_p_cliente;
     public javax.swing.JButton btn_nuevousuario_p_usuario;
     public javax.swing.JButton btn_omitir_rsi;
+    public javax.swing.JButton btn_registrar_p_cliente;
     public javax.swing.JButton btn_registrar_p_usuario;
     public javax.swing.JSpinner cant;
     public javax.swing.JPanel cargando;
@@ -1451,6 +1578,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_stock_hint_pr_inv1;
     public javax.swing.JLabel jL_stock_hint_rsi;
     public javax.swing.JLabel jL_stockpr;
+    public javax.swing.JLabel jL_titulo_pcliente;
     public javax.swing.JLabel jL_titulo_pusuarios;
     public javax.swing.JLabel jL_titulo_rp_inv;
     public javax.swing.JLabel jL_titulo_rp_inv1;
@@ -1485,13 +1613,18 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jP_addLote;
     private javax.swing.JPanel jP_card_addlote;
     public javax.swing.JPanel jP_reg_categoria_inv;
+    public javax.swing.JPanel jP_reg_cliente;
     public javax.swing.JPanel jP_reg_medida_inv;
     public javax.swing.JPanel jP_reg_producto_inv;
     public javax.swing.JPanel jP_reg_proveedor_inv;
@@ -1523,14 +1656,18 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JPasswordField txt_confirmar_p_usuario;
     public javax.swing.JPasswordField txt_contraseña_p_usuario;
     public javax.swing.JTextField txt_descripcion_rp_inv;
+    public javax.swing.JTextField txt_direccion_p_cliente;
+    public javax.swing.JTextField txt_nit_p_cliente;
     public volatile javax.swing.JTextField txt_nombreCat_inv;
     public volatile javax.swing.JTextField txt_nombreMed_inv;
     public volatile javax.swing.JTextField txt_nombreProv_inv;
+    public javax.swing.JTextField txt_nombre_p_cliente;
     public javax.swing.JTextField txt_nombre_p_usuario;
     public javax.swing.JTextField txt_nombrepro;
     public javax.swing.JTextField txt_precioVenta_rp_inv;
     public javax.swing.JTextField txt_preciocompra_rsi;
     public javax.swing.JTextField txt_preciomayor_rp_inv;
+    public javax.swing.JTextField txt_telefono_p_cliente;
     public javax.swing.JTextField txt_telefono_p_usuario;
     public javax.swing.JTextField txt_usuario_p_usuario;
     // End of variables declaration//GEN-END:variables
