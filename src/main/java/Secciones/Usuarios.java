@@ -49,7 +49,7 @@ import javax.swing.SwingUtilities;
 import Clases.X;
 
 public class Usuarios {
-
+    
     private Home home;
     private UtilPanels panel;
     JDialog d_registrar;
@@ -65,41 +65,39 @@ public class Usuarios {
     private static int tamaño_de_pagina = 25;
     private static int pagina_actual = 0;
     private static int total_paginas = 0;
-
+    
     public Usuarios(Home home, UtilPanels panel) {
         this.home = home;
         this.panel = panel;
-
+        
         Tools.btn_animacion_size(home.btn_registrarusuario);
         Tools.buscador(home.txt_buscadorp_usuario, "Buscar usuario..");
-
+        
         listparamUser = new ArrayList<>();
-
+        
         listparamUser.add(panel.txt_nombre_p_usuario);
-
+        
         listparamUser.add(panel.txt_telefono_p_usuario);
         listparamUser.add(panel.txt_usuario_p_usuario);
         listparamUser.add(panel.txt_contraseña_p_usuario);
         listparamUser.add(panel.txt_confirmar_p_usuario);
         Tools.clickwhite_comp((List<JComponent>) (List<?>) listparamUser);
-
+        
         customTable();
         tabledates("");
         Listeners();
-        try{
-        Tools.aplicarMenuEstado(home.tableUsuarios, true,
-            (id) -> editarUsuario((int) id),
-            (id) -> ActoinactivarUsuario((int) id));
+        try {
+            Tools.aplicarMenuEstado(home.tableUsuarios, true,
+                    (id) -> editarUsuario((int) id),
+                    (id) -> ActoinactivarUsuario((int) id));
             
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-
+    
     private void Listeners() {
 
-        
-        
         //le damos funcionalidad al hacer click en las filas de usuario
         /*home.tableUsuarios.addMouseListener(new MouseAdapter() {
             @Override
@@ -133,7 +131,6 @@ public class Usuarios {
                 }
             }
         });*/
-
         //funcionalidad del boton para cambiar el estado de un usuario
         /*home.menu_estado_pusuario.addActionListener(new ActionListener() {
             @Override
@@ -141,7 +138,6 @@ public class Usuarios {
                 ActoinactivarUsuario();
             }
         });*/
-
         //funcionalidad del boton para editar info de los usuarios
         /*home.menu_editar_pusuario.addActionListener(new ActionListener() {
             @Override
@@ -160,7 +156,6 @@ public class Usuarios {
                 d_registrar.setVisible(true);
             }
         });*/
-
         //funcionalidad del boton de registrar o actualizar del panel de usuarios
         panel.btn_registrar_p_usuario.addActionListener(new ActionListener() {
             @Override
@@ -170,7 +165,7 @@ public class Usuarios {
                 } else {
                     modificarUsuario();
                 }
-
+                
             }
         });
 
@@ -193,7 +188,7 @@ public class Usuarios {
                 d_registrar.setLocationRelativeTo(null);
                 d_registrar.setResizable(false);
                 d_registrar.setModal(true);
-
+                
                 panel.jL_titulo_pusuarios.setText("<html><u>Nuevo Usuario</u></html>");
                 panel.btn_registrar_p_usuario.setText("Registrar");
                 registrando = true;
@@ -203,17 +198,17 @@ public class Usuarios {
                 panel.txt_confirmar_p_usuario.setEnabled(true);
                 Tools.clean(listparamUser);
                 Tools.resetOriginalColor((List<JComponent>) (List<?>) listparamUser);
-
+                
                 d_registrar.setVisible(true);
             }
         });
 
         //fracmento de codigo que define en la tabla de usuario el color de letra en celda estado
-        home.tableUsuarios.getColumnModel().getColumn(5).setCellRenderer(new DefaultTableCellRenderer() {
+        home.tableUsuarios.getColumnModel().getColumn(Tools.indexColumnEstado(home.tableUsuarios)).setCellRenderer(new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
+                
                 if ("Activo".equals(value)) {
                     cell.setForeground(Color.GREEN);
                 } else if ("Inactivo".equals(value)) {
@@ -221,99 +216,86 @@ public class Usuarios {
                 } else {
                     cell.setForeground(Color.BLACK);
                 }
-
+                
                 return cell;
             }
         });
 
-        //buscador de tabla usuarios
-        home.txt_buscadorp_usuario.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    Cargando.doSomething(new X(){
-                        @Override
-                        public void execute() {
-                            tabledates(home.txt_buscadorp_usuario.getText());
-                        }
-                    });
+        //buscador de tabla cliente
+        Tools.buscadorTablaValidate(home.txt_buscadorp_usuario, (consulta) -> {
+            Cargando.doSomething(new X() {
+                @Override
+                public void execute() {
+                    tabledates(consulta);
                 }
-            }
+            });
         });
-
+        
     }
-
-    private void editarUsuario(int id_selected_user){
+    
+    private void editarUsuario(int id_selected_user) {
         userSelected = userSelected(id_selected_user);
         
         d_registrar = new JDialog();
-                d_registrar.getContentPane().add(panel.jP_reg_usuario);
-                d_registrar.pack();
-                d_registrar.setLocationRelativeTo(null);
-                d_registrar.setResizable(false);
-                d_registrar.setModal(true);
-
-                registrando = false;
-                obtenerdatoseditar();
-                Tools.resetOriginalColor(((List<JComponent>) (List<?>) listparamUser));
-
-                d_registrar.setVisible(true);
+        d_registrar.getContentPane().add(panel.jP_reg_usuario);
+        d_registrar.pack();
+        d_registrar.setLocationRelativeTo(null);
+        d_registrar.setResizable(false);
+        d_registrar.setModal(true);
+        
+        registrando = false;
+        obtenerdatoseditar();
+        Tools.resetOriginalColor(((List<JComponent>) (List<?>) listparamUser));
+        
+        d_registrar.setVisible(true);
     }
     
     private void customTable() {
         home.tableUsuarios.getTableHeader().setReorderingAllowed(false);
         home.tableUsuarios.setRowHeight(25);
         Tools.headers(home.tableUsuarios);
-
+        
     }
-
+    
     public void tabledates(String busqueda) {
         try {
             boolean buscando = true;
             if (busqueda.trim().equals("")) {
                 buscando = false;
             }
-
+            
             DefaultTableModel modelo = (DefaultTableModel) home.tableUsuarios.getModel();
             /*Eliminar los elementos en la tabla*/
             modelo.setRowCount(0);
-
+            
             List<Object[]> datos = new ArrayList<Object[]>();
             //Conexion a la api
             ValorRecuest valorRecuest = new ValorRecuest(busqueda);
             String jsonBody = gson.toJson(valorRecuest);
             RequestBody body = RequestBody.create(jsonBody, JSON);
-
+            
             Request request = new Request.Builder()
                     .url(properties.getUrl() + "/api/usuarios/ListaUsuarios")
                     .addHeader("Authorization", "Bearer " + userAuth.getToken().trim())
                     .post(body)
                     .build();
-
+            
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException ioe) {
                     UtilMessage.messageError("Error en la conexion " + ioe);
                 }
-
+                
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     String json = response.body().string();
                     int code = response.code();
-
+                    
                     if (response.isSuccessful()) {
                         Type listType = new TypeToken<List<Usuario_Ob>>() {
                         }.getType();
                         List<Usuario_Ob> usuarios = gson.fromJson(json, listType);
-
+                        
                         List<Object[]> datos = new ArrayList<>();
                         for (Usuario_Ob usuario : usuarios) {
                             datos.add(new Object[]{
@@ -325,7 +307,7 @@ public class Usuarios {
                                 usuario.getEstado()
                             });
                         }
-
+                        
                         SwingUtilities.invokeLater(() -> {
                             try {
                                 for (Object[] fila : datos) {
@@ -381,23 +363,23 @@ public class Usuarios {
             JOptionPane.showMessageDialog(null, "Error al cargar datos de usuarios " + e);
         }
     }
-
+    
     public void RegistrarUsuario() {
         boolean valido = true;
-
+        
         for (JTextField fiel : listparamUser) {
             if (fiel.getText().trim().equals("")) {
                 valido = false;
                 fiel.setBackground(Color.red);
             }
         }
-
+        
         String nombre;
         String telefono;
         String username;
         String permisos;
         String contraseña;
-
+        
         if (valido) {
             if (panel.txt_contraseña_p_usuario.getText().trim().equals(
                     panel.txt_confirmar_p_usuario.getText().trim())) {
@@ -411,39 +393,39 @@ public class Usuarios {
                             panel.txt_contraseña_p_usuario.getText(),
                             (String) panel.cbx_permisos_p_usuario.getSelectedItem());
                     String json = gson.toJson(usuarioRegistrar);
-
+                    
                     RequestBody body = RequestBody.create(json, JSON);
-
+                    
                     Request request = new Request.Builder()
                             .url(General.properties.getUrl() + "/api/usuarios/registrar")
                             .post(body)
                             .addHeader("Authorization", "Bearer " + userAuth.getToken().trim())
                             .build();
-
+                    
                     client.newCall(request).enqueue(new Callback() {
                         @Override
                         public void onFailure(Call call, IOException ioe) {
                             UtilMessage.messageError("Error en la conexion " + ioe);
                         }
-
+                        
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
                             String json = response.body().string();
                             int code = response.code();
-
+                            
                             if (response.isSuccessful()) {
-
+                                
                                 RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
                                 if (requestMessage.isSuccess()) {
                                     SwingUtilities.invokeLater(() -> {
-
+                                        
                                         Tools.paintgreen((List<JComponent>) (List<?>) listparamUser);
                                         Tools.clean(listparamUser);
-
+                                        
                                         tabledates("");
                                         UtilMessage.messageAprobation(requestMessage.getMessage());
                                     });
-
+                                    
                                 } else {
                                     UtilMessage.message(requestMessage.getMessage());
                                 }
@@ -492,64 +474,64 @@ public class Usuarios {
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Error " + e);
                 }
-
+                
             } else {
                 JOptionPane.showMessageDialog(null, "¡Las contraseñas no coinciden!");
             }
         } else {
             JOptionPane.showMessageDialog(null, "¡Debes llenar todos los campos!");
         }
-
+        
     }
-
+    
     private void ActoinactivarUsuario(int id_user_seleted) {
-
+        
         userSelected = userSelected(id_user_seleted);
         try {
             //conexion a api
-            if (userSelected.getId() == 0) {
+            if (id_user_seleted == 0) {
                 JOptionPane.showMessageDialog(null, "Selecciona una fila");
             } else {
                 //Conexion a la api
                 userSelected = userSelected(userSelected.getId());
-
+                
                 String pregunta = "Activar";
                 if ("Activo".equals(userSelected.getEstado())) {
                     pregunta = "Inactivar";
                 }
-
+                
                 int resp = JOptionPane.showConfirmDialog(null, "¿Estas seguro de " + pregunta + "  al usuario " + userSelected.getUsername() + " ?",
                         "Confirmar", JOptionPane.YES_NO_OPTION);
                 if (resp == JOptionPane.YES_OPTION) {
-
+                    
                     RequestBody body = RequestBody.create(String.valueOf(userSelected.getId()), MediaType.parse("application/json"));
-
+                    
                     Request request = new Request.Builder()
                             .url(General.properties.getUrl() + "/api/usuarios/inactivar")
                             .post(body)
                             .addHeader("Authorization", "Bearer " + userAuth.getToken().trim())
                             .build();
-
+                    
                     client.newCall(request).enqueue(new Callback() {
                         @Override
                         public void onFailure(Call call, IOException ioe) {
                             UtilMessage.messageError("Error en la conexion " + ioe);
                         }
-
+                        
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
                             String json = response.body().string();
                             int code = response.code();
-
+                            
                             if (response.isSuccessful()) {
-
+                                
                                 RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
                                 if (requestMessage.isSuccess()) {
                                     SwingUtilities.invokeLater(() -> {
                                         tabledates("");
                                         UtilMessage.messageAprobation(requestMessage.getMessage());
                                     });
-
+                                    
                                 } else {
                                     UtilMessage.message(requestMessage.getMessage());
                                 }
@@ -565,43 +547,16 @@ public class Usuarios {
                     });
                 }
             }
-
-            /*Connection c = Conexion.conectar();
-            PreparedStatement p, p2 = c.prepareStatement(
-                    "SELECT estado FROM users WHERE id_user =?");
-            p2.setInt(1, (int) userSelected.getId());
-            ResultSet r = p2.executeQuery();
-
-            if (r.next()) {
-                String estado = "Activo";
-                String pregunta = "Activar";
-                if ("Activo".equals(r.getString(1))) {
-                    estado = "Inactivo";
-                    pregunta = "Inactivar";
-                }
-
-                int resp = JOptionPane.showConfirmDialog(null, "¿Estas seguro de " + pregunta + "  al usuario " + userSelected.getUsername() + " ?",
-                        "Confirmar", JOptionPane.YES_NO_OPTION);
-                if (resp == JOptionPane.YES_OPTION) {
-
-                    p = c.prepareStatement("UPDATE users SET estado=? WHERE id_user=?");
-                    p.setString(1, estado);
-                    p.setInt(2, (int) userSelected.getId());
-                    p.executeUpdate();
-                }
-            }
-
-            c.close();
-            tabledates("");*/
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error " + e);
         }
     }
-
+    
     private void obtenerdatoseditar() {
         try {
             userSelected = userSelected(userSelected.getId());
-
+            
             panel.jL_titulo_pusuarios.setText("<html><u>Editar usuario</u></html>");
             panel.btn_registrar_p_usuario.setText("Actualizar");
             panel.btn_nuevousuario_p_usuario.setVisible(false);
@@ -609,34 +564,34 @@ public class Usuarios {
             panel.txt_contraseña_p_usuario.setEnabled(false);
             panel.cb_modificar_contraseña.setSelected(false);
             panel.cb_modificar_contraseña.setVisible(true);
-
+            
             panel.txt_nombre_p_usuario.setText(userSelected.getNombre());
             panel.txt_telefono_p_usuario.setText(userSelected.getTelefono());
             panel.txt_usuario_p_usuario.setText(userSelected.getUsername());
             panel.cbx_permisos_p_usuario.setSelectedItem(userSelected.getPermisos());
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error " + e);
         }
     }
-
+    
     private void modificarUsuario() {
-
+        
         boolean val = true;
         boolean modificarcontraseña = panel.cb_modificar_contraseña.isSelected();
         int list = listparamUser.size();
-
+        
         if (!modificarcontraseña) {
             list = list - 2;
         }
-
+        
         for (int i = 0; i < list; i++) {
             if (listparamUser.get(i).getText().trim().isEmpty()) {
                 val = false;
                 listparamUser.get(i).setBackground(Color.red);
             }
         }
-
+        
         if (val) {
             if (modificarcontraseña) {
                 if (panel.txt_contraseña_p_usuario.getText().equals(panel.txt_confirmar_p_usuario.getText())) {
@@ -651,11 +606,9 @@ public class Usuarios {
             JOptionPane.showMessageDialog(null, "¡Debes llenar todos los campos!");
         }
     }
-
+    
     private void actualizarusuario(boolean modificarcontraseña) {
         try {
-            //conexion a api
-
             //Conexion a la api
             UsuarioModificar usuarioModificar = new UsuarioModificar(
                     userSelected.getId(),
@@ -666,40 +619,40 @@ public class Usuarios {
                     panel.cbx_permisos_p_usuario.getSelectedItem().toString(),
                     modificarcontraseña
             );
-
+            
             String json = gson.toJson(usuarioModificar);
-
+            
             RequestBody body = RequestBody.create(json, JSON);
-
+            
             Request request = new Request.Builder()
                     .url(General.properties.getUrl() + "/api/usuarios/modificar")
                     .post(body)
                     .addHeader("Authorization", "Bearer " + userAuth.getToken().trim())
                     .build();
-
+            
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException ioe) {
                     UtilMessage.messageError("Error en la conexion " + ioe);
                 }
-
+                
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     String json = response.body().string();
                     int code = response.code();
-
+                    
                     if (response.isSuccessful()) {
-
+                        
                         RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
                         if (requestMessage.isSuccess()) {
                             SwingUtilities.invokeLater(() -> {
-
+                                
                                 d_registrar.dispose();
                                 tabledates("");
-
+                                
                                 UtilMessage.messageAprobation(requestMessage.getMessage());
                             });
-
+                            
                         } else {
                             UtilMessage.message(requestMessage.getMessage());
                         }
@@ -714,57 +667,26 @@ public class Usuarios {
                     }
                 }
             });
-
-            /*Connection c = Conexion.conectar();
-            PreparedStatement p1 = c.prepareStatement("SELECT * FROM users WHERE username=? AND id_user <> ?");
-            p1.setString(1, panel.txt_usuario_p_usuario.getText());
-            p1.setInt(2, (int) userSelected.getId());
-
-            ResultSet r = p1.executeQuery();
-            if (r.next()) {
-                JOptionPane.showMessageDialog(null, "¡El nombre de usuario ya existe!");
-            } else {
-                String sql = modificarcontraseña
-                        ? "UPDATE users SET nombre=?, telefono=?, username=?, permisos=?, password=? WHERE id_user=?"
-                        : "UPDATE users SET nombre=?, telefono=?, username=?, permisos=? WHERE id_user=?";
-                PreparedStatement p2 = c.prepareStatement(sql);
-                p2.setString(1, panel.txt_nombre_p_usuario.getText());
-                p2.setString(2, panel.txt_telefono_p_usuario.getText());
-                p2.setString(3, panel.txt_usuario_p_usuario.getText().trim());
-                p2.setString(4, panel.cbx_permisos_p_usuario.getSelectedItem().toString());
-
-                if (modificarcontraseña) {
-                    p2.setString(5, panel.txt_contraseña_p_usuario.getText());
-                    p2.setInt(6, (int) userSelected.getId());
-                } else {
-                    p2.setInt(5, (int) userSelected.getId());
-                }
-                p2.executeUpdate();
-            }
-            c.close();
-
-            d_registrar.setVisible(false);
-            tabledates("");
-            JOptionPane.showMessageDialog(null, "¡Usuario Actualizado correctamente!", "", JOptionPane.PLAIN_MESSAGE, home.bien);*/
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error en conexion " + e);
         }
     }
-
+    
     private Usuarios_p userSelected(long id) {
         try {
             //Conexion a la api
 
             RequestBody body = RequestBody.create(String.valueOf(id), MediaType.parse("application/json"));
-
+            
             Request request = new Request.Builder()
                     .url(properties.getUrl() + "/api/usuarios/UsuarioSeleccionado")
                     .addHeader("Authorization", "Bearer " + userAuth.getToken().trim())
                     .post(body)
                     .build();
-
+            
             Response response = client.newCall(request).execute();
-
+            
             if (response.isSuccessful()) {
                 String json = response.body().string();
                 Usuarios_p usuario = gson.fromJson(json, Usuarios_p.class);
@@ -788,5 +710,5 @@ public class Usuarios {
         }
         return null;
     }
-
+    
 }

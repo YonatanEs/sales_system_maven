@@ -12,6 +12,8 @@ import java.util.List;
 import java.awt.RenderingHints;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -489,4 +491,33 @@ public class Tools {
         return -1;
     }
 
+    // Definimos una interfaz sencilla para el callback
+    public interface BuscadorCallback {
+        void ejecutar(String consulta);
+    }
+
+    public static void buscadorTablaValidate(JTextField textField, BuscadorCallback callback) {
+        // Inicializamos la propiedad para evitar nulos
+        textField.putClientProperty("ultimaBusqueda", "");
+
+        textField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String textoActual = textField.getText().trim();
+                String ultimaBusqueda = (String) textField.getClientProperty("ultimaBusqueda");
+
+                // 1. Caso: Presiona ENTER y hay texto
+                if (e.getKeyCode() == KeyEvent.VK_ENTER && !textoActual.isEmpty()) {
+                    textField.putClientProperty("ultimaBusqueda", textoActual);
+                    callback.ejecutar(textoActual);
+                }
+                
+                // 2. Caso: Se limpia el campo (solo ejecuta una vez al quedar vacío)
+                else if (textoActual.isEmpty() && !ultimaBusqueda.isEmpty()) {
+                    textField.putClientProperty("ultimaBusqueda", "");
+                    callback.ejecutar("");
+                }
+            }
+        });
+    }
 }

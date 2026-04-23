@@ -1,9 +1,9 @@
 package Objects;
 
-public class productos_inv {
+public class Producto_ob {
     
     
-    private int id_producto;
+    private int id;
     private String codigo;
     private String descripcion;
     private double stock;
@@ -17,8 +17,8 @@ public class productos_inv {
     private String proveedor;
     private String estado;
 
-    public productos_inv(int id_producto, String codigo, String descripcion, double stock, double precio, double precio_por_mayor, int id_categoria, String categoria, int id_medida, String medida, int id_proveedor, String proveedor, String estado) {
-        this.id_producto = id_producto;
+    public Producto_ob(int id, String codigo, String descripcion, double stock, double precio, double precio_por_mayor, int id_categoria, String categoria, int id_medida, String medida, int id_proveedor, String proveedor, String estado) {
+        this.id = id;
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.stock = stock;
@@ -33,12 +33,12 @@ public class productos_inv {
         this.estado = estado;
     }
 
-    public int getId_producto() {
-        return id_producto;
+    public int getId() {
+        return id;
     }
 
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCodigo() {

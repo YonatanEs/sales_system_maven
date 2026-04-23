@@ -9,8 +9,6 @@ import Clases.Conexion;
 import Clases.Tools;
 import Clases.X;
 import Objects.cbx_content;
-import Secciones.Inventario;
-import Secciones.Venta;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
@@ -1431,7 +1429,6 @@ public final class UtilPanels extends javax.swing.JFrame {
     }//GEN-LAST:event_jL_editarinfoproMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Venta.añadirproduct();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btn_nuevousuario_p_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevousuario_p_usuarioActionPerformed

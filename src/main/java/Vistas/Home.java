@@ -97,21 +97,18 @@ public class Home extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jP_inventario = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jSeparator8 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla_inventario = new javax.swing.JTable();
-        jLabel12 = new javax.swing.JLabel();
-        cbx_buspor_inv = new javax.swing.JComboBox<>();
-        cbx_itembuspor_inv = new javax.swing.JComboBox<>();
+        tableInventario = new javax.swing.JTable();
         jP_buscadorusuarios1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        txt_busprod_inv = new javax.swing.JTextField();
+        txt_buscador_inventario = new javax.swing.JTextField();
         btn_addinv_inv = new javax.swing.JLabel();
         btn_nvprod_inv = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
         jPanel6 = new javax.swing.JPanel();
-        btn_pags_inv = new javax.swing.JLabel();
+        jLabel_pags_inv = new javax.swing.JLabel();
         btn_anteriorpag_inv = new javax.swing.JLabel();
         btn_sigpag_inv = new javax.swing.JLabel();
         jP_clientes = new javax.swing.JPanel();
@@ -526,15 +523,7 @@ public class Home extends javax.swing.JFrame {
         jP_inventario.setBackground(new java.awt.Color(248, 248, 248));
         jP_inventario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Elephant", 1, 18)); // NOI18N
-        jLabel5.setText("Inventario");
-        jP_inventario.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 150, 30));
-
-        jSeparator8.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
-        jP_inventario.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 150, 10));
-
-        tabla_inventario.setModel(new javax.swing.table.DefaultTableModel(
+        tableInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -553,18 +542,13 @@ public class Home extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla_inventario.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane1.setViewportView(tabla_inventario);
-        if (tabla_inventario.getColumnModel().getColumnCount() > 0) {
-            tabla_inventario.getColumnModel().getColumn(0).setMinWidth(0);
-            tabla_inventario.getColumnModel().getColumn(0).setPreferredWidth(0);
-            tabla_inventario.getColumnModel().getColumn(0).setMaxWidth(0);
+        tableInventario.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPane1.setViewportView(tableInventario);
+        if (tableInventario.getColumnModel().getColumnCount() > 0) {
+            tableInventario.getColumnModel().getColumn(0).setMinWidth(0);
+            tableInventario.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tableInventario.getColumnModel().getColumn(0).setMaxWidth(0);
         }
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel12.setText("Buscar por:");
-
-        cbx_buspor_inv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categoría", "Proveedor" }));
 
         jP_buscadorusuarios1.setBackground(new java.awt.Color(255, 255, 255));
         jP_buscadorusuarios1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
@@ -574,11 +558,11 @@ public class Home extends javax.swing.JFrame {
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/magnifyingglass_87552_1.png"))); // NOI18N
         jLabel11.setAlignmentX(0.5F);
 
-        txt_busprod_inv.setText("Buscar producto..");
-        txt_busprod_inv.setBorder(null);
-        txt_busprod_inv.addActionListener(new java.awt.event.ActionListener() {
+        txt_buscador_inventario.setText("Buscar producto..");
+        txt_buscador_inventario.setBorder(null);
+        txt_buscador_inventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_busprod_invActionPerformed(evt);
+                txt_buscador_inventarioActionPerformed(evt);
             }
         });
 
@@ -590,12 +574,12 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txt_busprod_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_buscador_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         jP_buscadorusuarios1Layout.setVerticalGroup(
             jP_buscadorusuarios1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt_busprod_inv, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+            .addComponent(txt_buscador_inventario, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -607,19 +591,23 @@ public class Home extends javax.swing.JFrame {
         btn_nvprod_inv.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_nvprod_inv.setText("Nuevo producto");
 
+        jLabel5.setFont(new java.awt.Font("Elephant", 1, 18)); // NOI18N
+        jLabel5.setText("Inventario");
+
+        jSeparator8.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbx_buspor_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbx_itembuspor_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
                 .addComponent(btn_nvprod_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btn_addinv_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -630,32 +618,29 @@ public class Home extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jP_buscadorusuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_addinv_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_nvprod_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbx_buspor_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbx_itembuspor_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jP_buscadorusuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_addinv_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_nvprod_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jP_inventario.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 1170, 610));
+        jP_inventario.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 1170, 610));
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btn_pags_inv.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_pags_inv.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_pags_inv.setText("1 de 35");
-        jPanel6.add(btn_pags_inv, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 8, 215, 27));
+        jLabel_pags_inv.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel_pags_inv.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_pags_inv.setText("1 de 35");
+        jPanel6.add(jLabel_pags_inv, new org.netbeans.lib.awtextra.AbsoluteConstraints(476, 8, 215, 27));
 
         btn_anteriorpag_inv.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_anteriorpag_inv.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -667,7 +652,7 @@ public class Home extends javax.swing.JFrame {
         btn_sigpag_inv.setText("Siguiente");
         jPanel6.add(btn_sigpag_inv, new org.netbeans.lib.awtextra.AbsoluteConstraints(842, 8, 70, 27));
 
-        jP_inventario.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 710, 1170, 40));
+        jP_inventario.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 690, 1170, 40));
 
         jTabbedPane1.addTab("tab2", jP_inventario);
 
@@ -1108,9 +1093,9 @@ public class Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jL_configuracionMouseClicked
 
-    private void txt_busprod_invActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_busprod_invActionPerformed
+    private void txt_buscador_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscador_inventarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_busprod_invActionPerformed
+    }//GEN-LAST:event_txt_buscador_inventarioActionPerformed
 
     private void btn_registrarclienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registrarclienteMouseClicked
         // TODO add your handling code here:
@@ -1166,12 +1151,9 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JLabel btn_anteriorpag_inv;
     private javax.swing.JLabel btn_menu;
     public javax.swing.JLabel btn_nvprod_inv;
-    public javax.swing.JLabel btn_pags_inv;
     public javax.swing.JLabel btn_registrarcliente;
     public javax.swing.JLabel btn_registrarusuario;
     public javax.swing.JLabel btn_sigpag_inv;
-    public javax.swing.JComboBox<String> cbx_buspor_inv;
-    public javax.swing.JComboBox<cbx_content> cbx_itembuspor_inv;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jL_caja;
     private javax.swing.JLabel jL_cerrarsesion;
@@ -1185,7 +1167,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -1195,6 +1176,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    public javax.swing.JLabel jLabel_pags_inv;
     private javax.swing.JMenuItem jMenuItemEliminar;
     private javax.swing.JMenuItem jMenuItemeliminartodo;
     private javax.swing.JPanel jP_HistorialVentas;
@@ -1228,14 +1210,14 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JScrollPane scroll_clientes;
     private javax.swing.JScrollPane scroll_usuarios;
-    public javax.swing.JTable tabla_inventario;
     public javax.swing.JTable tableClientes;
+    public javax.swing.JTable tableInventario;
     public javax.swing.JTable tableNventa;
     public javax.swing.JTable tableUsuarios;
     public javax.swing.JTextField txt_buscador_cliente;
+    public javax.swing.JTextField txt_buscador_inventario;
     public javax.swing.JTextField txt_buscadorp_usuario;
     public javax.swing.JTextField txt_buscadorproductos;
-    public javax.swing.JTextField txt_busprod_inv;
     // End of variables declaration//GEN-END:variables
 
     private void mostrar_menu() {
