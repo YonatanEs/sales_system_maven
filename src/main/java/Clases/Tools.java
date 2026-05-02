@@ -1,13 +1,16 @@
 package Clases;
 
 import General.userAuth;
+import java.awt.AWTKeyStroke;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.KeyboardFocusManager;
 import java.util.List;
 import java.awt.RenderingHints;
 import java.awt.event.FocusAdapter;
@@ -19,11 +22,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import javax.swing.BoxLayout;
@@ -40,11 +46,14 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.Popup;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.AbstractBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -63,22 +72,30 @@ public class Tools {
         label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                label.setFont(new Font("Segoe UI", 1, sizebase + 3));
+                if (label.isEnabled()) {
+                    label.setFont(new Font("Segoe UI", 1, sizebase + 3));
+                }
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                label.setFont(new Font("segoe UI", 1, sizebase));
+                if (label.isEnabled()) {
+                    label.setFont(new Font("segoe UI", 1, sizebase));
+                }
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                label.setFont(new Font("segoe UI", 1, sizebase + 2));
+                if (label.isEnabled()) {
+                    label.setFont(new Font("segoe UI", 1, sizebase + 2));
+                }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                label.setFont(new Font("segoe UI", 1, sizebase + 3));
+                if (label.isEnabled()) {
+                    label.setFont(new Font("segoe UI", 1, sizebase + 3));
+                }
             }
 
         });
@@ -198,18 +215,20 @@ public class Tools {
         }
     }
 
-    public static void clickwhite_comp(List<JComponent> list) {
+    public static void focusWhite_comp(List<JComponent> list) {
         for (JComponent comp : list) {
-
             if (!coloresOriginales.containsKey(comp)) {
                 coloresOriginales.put(comp, comp.getBackground());
             }
 
-            comp.addMouseListener(new MouseAdapter() {
+            comp.addFocusListener(new FocusAdapter() {
                 @Override
-                public void mousePressed(MouseEvent e) {
+                public void focusGained(FocusEvent e) {
                     JComponent com = (JComponent) e.getSource();
-                    com.setBackground(coloresOriginales.get(com));
+
+                    if (coloresOriginales.containsKey(com)) {
+                        com.setBackground(coloresOriginales.get(com));
+                    }
                 }
             });
         }
@@ -411,22 +430,21 @@ public class Tools {
         Icon iconActivar = new ImageIcon(Tools.class.getResource("/Images/activar.png"));
         Icon iconInactivar = new ImageIcon(Tools.class.getResource("/Images/eliminar.png"));
         Dimension dimensionMenu = new Dimension(135, 30);
-        
+
         JPopupMenu popup = new JPopupMenu();
         popup.setLayout(new BoxLayout(popup, BoxLayout.Y_AXIS));
         JMenuItem itemEditar = new JMenuItem("Editar");
         itemEditar.setPreferredSize(dimensionMenu);
         itemEditar.setHorizontalAlignment(SwingConstants.LEFT);
         itemEditar.setIcon(new ImageIcon(Tools.class.getResource("/Images/Edit_icon-icons.com_71853.png")));
-        
+
         JMenuItem itemEstado = new JMenuItem();
         itemEstado.setPreferredSize(dimensionMenu);
         itemEstado.setHorizontalAlignment(SwingConstants.LEFT);
-        
+
         popup.add(itemEditar);
         popup.add(itemEstado);
-             
-        
+
         tabla.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -449,9 +467,9 @@ public class Tools {
                         int idValue = Integer.parseInt(tabla.getValueAt(row, 0).toString());
                         String estado = (String) tabla.getValueAt(row, indexColumnEstado(tabla));
 
-                        if(idValue==userAuth.getIdUser() && tableUser){
-                           itemEstado.setVisible(false);
-                        }else{
+                        if (idValue == userAuth.getIdUser() && tableUser) {
+                            itemEstado.setVisible(false);
+                        } else {
                             itemEstado.setVisible(true);
                         }
 
@@ -493,31 +511,309 @@ public class Tools {
 
     // Definimos una interfaz sencilla para el callback
     public interface BuscadorCallback {
+
         void ejecutar(String consulta);
     }
 
-    public static void buscadorTablaValidate(JTextField textField, BuscadorCallback callback) {
-        // Inicializamos la propiedad para evitar nulos
+    public static void buscadorTablaValidate(JTextField textField, String hint, BuscadorCallback callback) {
         textField.putClientProperty("ultimaBusqueda", "");
 
         textField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                String textoActual = textField.getText().trim();
+                // Usamos el color para saber si es texto real o el hint
+                boolean esHint = textField.getForeground().equals(Color.GRAY);
+                String textoActual = esHint ? "" : textField.getText().trim();
+
                 String ultimaBusqueda = (String) textField.getClientProperty("ultimaBusqueda");
 
-                // 1. Caso: Presiona ENTER y hay texto
+                // Caso 1: Enter con texto real
                 if (e.getKeyCode() == KeyEvent.VK_ENTER && !textoActual.isEmpty()) {
-                    textField.putClientProperty("ultimaBusqueda", textoActual);
-                    callback.ejecutar(textoActual);
-                }
-                
-                // 2. Caso: Se limpia el campo (solo ejecuta una vez al quedar vacío)
+                    if (!textoActual.equals(ultimaBusqueda)) {
+                        textField.putClientProperty("ultimaBusqueda", textoActual);
+                        callback.ejecutar(textoActual);
+                    }
+                } // Caso 2: El usuario borró todo (o regresó el hint)
                 else if (textoActual.isEmpty() && !ultimaBusqueda.isEmpty()) {
                     textField.putClientProperty("ultimaBusqueda", "");
                     callback.ejecutar("");
                 }
             }
         });
+    }
+
+    private static final Map<String, String> diccionario = new HashMap<>();
+
+    static {
+        // Masa
+        diccionario.put("kilogramo", "kg");
+        diccionario.put("gramo", "g");
+        diccionario.put("miligramo", "mg");
+        diccionario.put("libra", "lb");
+        diccionario.put("onza", "oz");
+        diccionario.put("tonelada", "t");
+        // Longitud
+        diccionario.put("metro", "m");
+        diccionario.put("centimetro", "cm");
+        diccionario.put("milimetro", "mm");
+        diccionario.put("pulgada", "in");
+        // Volumen
+        diccionario.put("litro", "L");
+        diccionario.put("mililitro", "mL");
+        diccionario.put("galon", "gal");
+        // Conteo / Logística
+        diccionario.put("unidad", "und");
+        diccionario.put("pieza", "pza");
+        diccionario.put("paquete", "pqt");
+        diccionario.put("caja", "cj");
+        diccionario.put("bolsa", "bls");
+        diccionario.put("frasco", "fco");
+        diccionario.put("botella", "btl");
+        diccionario.put("docena", "doc");
+        diccionario.put("par", "par");
+        diccionario.put("juego", "jgo");
+        diccionario.put("rollo", "rll");
+    }
+
+    /**
+     * Vincula dos JTextField para sugerir abreviaturas en tiempo real.
+     *
+     * @param txtOrigen Campo donde se escribe el nombre (ej. "Kilogramo")
+     * @param txtDestino Campo donde aparecerá la abreviatura (ej. "kg")
+     */
+    public static void txt_sugerir(JTextField txtOrigen, JTextField txtDestino) {
+        txtOrigen.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                procesar();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                procesar();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                procesar();
+            }
+
+            private void procesar() {
+                SwingUtilities.invokeLater(() -> {
+                    String rawText = txtOrigen.getText();
+
+                    if (rawText.trim().isEmpty()) {
+                        txtDestino.setText("");
+                        return;
+                    }
+
+                    String busqueda = limpiarTexto(rawText);
+                    String sugerencia = buscarEnDiccionario(busqueda);
+
+                    if (sugerencia != null) {
+                        txtDestino.setText(sugerencia);
+                    }
+                });
+            }
+        });
+    }
+
+    private static String limpiarTexto(String texto) {
+        return texto.toLowerCase().trim()
+                .replace("á", "a")
+                .replace("é", "e")
+                .replace("í", "i")
+                .replace("ó", "o")
+                .replace("ú", "u");
+    }
+
+    private static String buscarEnDiccionario(String texto) {
+        // 1. Intento de búsqueda exacta
+        if (diccionario.containsKey(texto)) {
+            return diccionario.get(texto);
+        }
+
+        // 2. Intento quitando el plural (si termina en 's')
+        if (texto.endsWith("s")) {
+            String sinPlural = texto.substring(0, texto.length() - 1);
+            if (diccionario.containsKey(sinPlural)) {
+                return diccionario.get(sinPlural);
+            }
+        }
+
+        // 3. Intento de búsqueda parcial (si escribe "kilo..." ya sugiere "kg")
+        // Solo buscamos parcialmente si el usuario ha escrito al menos 3 letras
+        if (texto.length() >= 3) {
+            for (Map.Entry<String, String> entry : diccionario.entrySet()) {
+                if (entry.getKey().startsWith(texto)) {
+                    return entry.getValue();
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static void txt_precio(JTextField textField) {
+        // Alineamos a la derecha para que parezca factura
+        textField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        textField.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                formatear(textField);
+            }
+        });
+
+        // Este evento captura cuando el usuario pega texto con el mouse o teclado
+        textField.addPropertyChangeListener("ancestor", evt -> formatear(textField));
+
+        // Al ganar el foco, nos aseguramos de que tenga la Q
+        textField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (textField.getText().isEmpty()) {
+                    textField.setText("Q 0.00");
+                    textField.selectAll(); // Selecciona todo para que sea fácil borrar
+                }
+            }
+        });
+    }
+
+    private static void formatear(JTextField txt) {
+        String original = txt.getText();
+
+        // 1. Extraemos solo lo que sea número o punto decimal
+        // Esto limpia cualquier símbolo de moneda extraño o letras que se peguen
+        String soloNumeros = original.replaceAll("[^\\d.]", "");
+
+        // 2. Manejamos el caso de múltiples puntos (por si pegan algo como 10.50.20)
+        if (soloNumeros.indexOf('.') != soloNumeros.lastIndexOf('.')) {
+            int primerPunto = soloNumeros.indexOf('.');
+            String parteEntera = soloNumeros.substring(0, primerPunto + 1);
+            String parteDecimal = soloNumeros.substring(primerPunto + 1).replace(".", "");
+            soloNumeros = parteEntera + parteDecimal;
+        }
+
+        // 3. Aplicamos el formato de Guatemala
+        if (soloNumeros.isEmpty()) {
+            txt.setText("Q ");
+        } else {
+            txt.setText("Q " + soloNumeros);
+        }
+    }
+
+    public static void txt_cantidad(JTextField textField) {
+        textField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        // Inicializamos con 0 si está vacío
+        if (textField.getText().trim().isEmpty()) {
+            textField.setText("0");
+        }
+
+        textField.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                formatearCantidadDecimal(textField);
+            }
+        });
+
+        textField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                // Selecciona todo para que al presionar cualquier número, el 0 desaparezca
+                textField.selectAll();
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                // Si al salir el usuario borró todo, ponemos el 0 de seguridad
+                if (textField.getText().trim().isEmpty() || textField.getText().equals(".")) {
+                    textField.setText("0");
+                }
+            }
+        });
+    }
+
+    private static void formatearCantidadDecimal(JTextField txt) {
+        String original = txt.getText();
+
+        // 1. Extraemos números y punto
+        String soloNumeros = original.replaceAll("[^\\d.]", "");
+
+        // 2. Si el usuario borra todo, ponemos un 0 temporal
+        if (soloNumeros.isEmpty()) {
+            txt.setText("0");
+            txt.selectAll(); // Seleccionamos para que el próximo número reemplace
+            return;
+        }
+
+        // 3. Control de puntos decimales
+        if (soloNumeros.contains(".")) {
+            int primerPunto = soloNumeros.indexOf('.');
+            String parteEntera = soloNumeros.substring(0, primerPunto + 1);
+            String parteDecimal = soloNumeros.substring(primerPunto + 1).replace(".", "");
+
+            if (parteDecimal.length() > 3) {
+                parteDecimal = parteDecimal.substring(0, 3);
+            }
+            soloNumeros = parteEntera + parteDecimal;
+        }
+
+        // 4. ELIMINAR CEROS A LA IZQUIERDA (Evita que diga "08")
+        // Pero solo si no es un decimal como "0.5"
+        if (soloNumeros.length() > 1 && soloNumeros.startsWith("0") && !soloNumeros.startsWith("0.")) {
+            soloNumeros = soloNumeros.substring(1);
+        }
+
+        // Para evitar bucles infinitos de eventos, solo seteamos si cambió
+        if (!txt.getText().equals(soloNumeros)) {
+            txt.setText(soloNumeros);
+        }
+    }
+
+    public static double getPrecioLimpio(JTextField txt) {
+        String texto = txt.getText().replace("Q ", "").trim();
+        try {
+            return texto.isEmpty() ? 0.0 : Double.parseDouble(texto);
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
+    }
+
+    public static String formatearStock(double valor) {
+        DecimalFormat df = new DecimalFormat("#.###");
+        return df.format(valor);
+    }
+
+    public static void configurarNavegacionFlechas(Container contenedor) {
+        // Definimos las teclas que queremos usar para avanzar (ABAJO y TAB)
+        Set<AWTKeyStroke> forwardKeys = new HashSet<>(
+                contenedor.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS)
+        );
+        forwardKeys.add(KeyStroke.getKeyStroke("DOWN"));
+        contenedor.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, forwardKeys);
+
+        // Definimos las teclas que queremos usar para retroceder (ARRIBA y SHIFT+TAB)
+        Set<AWTKeyStroke> backwardKeys = new HashSet<>(
+                contenedor.getFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS)
+        );
+        backwardKeys.add(KeyStroke.getKeyStroke("UP"));
+        contenedor.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, backwardKeys);
+    }
+
+    public static ImageIcon escalarIcono(ImageIcon iconoOriginal, int ancho, int alto) {
+        // Extraemos la imagen del icono
+        Image img = iconoOriginal.getImage();
+
+        // Redimensionamos con suavizado (SCALE_SMOOTH es clave para que no se vea pixelado)
+        Image imgEscalada = img.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+
+        // Devolvemos el nuevo icono listo para usar
+        return new ImageIcon(imgEscalada);
+    }
+    
+    public static void buscador_sugerencias(){
+        
     }
 }

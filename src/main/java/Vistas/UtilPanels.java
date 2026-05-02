@@ -6,11 +6,18 @@ package Vistas;
 
 import Clases.Cargando;
 import Clases.Conexion;
+import Clases.OrdenPersonalizado;
 import Clases.Tools;
 import Clases.X;
+import Objects.Categoria_ob;
+import Objects.Medida_ob;
+import Objects.Proveedor_ob;
 import Objects.cbx_content;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -36,7 +43,12 @@ public final class UtilPanels extends javax.swing.JFrame {
         jL_editarinfopro.setIcon(new ImageIcon(
                 icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
         jL_addimg.setIcon(img4);
+        cbx_categoria_rp_inv.addItem(new Categoria_ob(0, "Seleccione una opcion"));
+        cbx_medida_rp_inv.addItem(new Medida_ob(0, "Seleccine una opcion", ""));
+        cbx_proveedor_rp_inv.addItem(new Proveedor_ob(0, "Seleccione una opcion"));
+
         
+
     }
 
     /**
@@ -110,7 +122,7 @@ public final class UtilPanels extends javax.swing.JFrame {
         txt_precioVenta_rp_inv = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        txt_preciomayor_rp_inv = new javax.swing.JTextField();
+        txt_preciocompra_rp_inv = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
@@ -184,6 +196,16 @@ public final class UtilPanels extends javax.swing.JFrame {
         btn_registrar_p_cliente = new javax.swing.JButton();
         btn_nuevocliente_p_cliente = new javax.swing.JButton();
         txt_direccion_p_cliente = new javax.swing.JTextField();
+        jP_addStock = new javax.swing.JPanel();
+        jL_titulo_pcliente1 = new javax.swing.JLabel();
+        jL_titulo_pcliente2 = new javax.swing.JLabel();
+        jL_descripcion_addstock = new javax.swing.JLabel();
+        jL_stock_addstock = new javax.swing.JLabel();
+        jL_titulo_pcliente3 = new javax.swing.JLabel();
+        jL_titulo_pcliente4 = new javax.swing.JLabel();
+        txt_addstock_addstock = new javax.swing.JTextField();
+        btn_añadir_addstock = new javax.swing.JButton();
+        jL_medida_addstock = new javax.swing.JLabel();
 
         cargando.setBackground(new java.awt.Color(255, 255, 255));
         cargando.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -654,12 +676,12 @@ public final class UtilPanels extends javax.swing.JFrame {
         jLabel35.setText("<html>Precio de venta</html>");
 
         jLabel36.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel36.setText("<html><p>Precio al por mayor:</p></html>");
+        jLabel36.setText("<html><p>Precio de compra:</p></html>");
 
-        txt_preciomayor_rp_inv.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        txt_preciomayor_rp_inv.addActionListener(new java.awt.event.ActionListener() {
+        txt_preciocompra_rp_inv.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txt_preciocompra_rp_inv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_preciomayor_rp_invActionPerformed(evt);
+                txt_preciocompra_rp_invActionPerformed(evt);
             }
         });
 
@@ -700,7 +722,7 @@ public final class UtilPanels extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jP_reg_producto_invLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(jL_titulo_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(386, Short.MAX_VALUE))
+                        .addContainerGap(460, Short.MAX_VALUE))
                     .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
                         .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
@@ -708,33 +730,40 @@ public final class UtilPanels extends javax.swing.JFrame {
                                 .addComponent(jL_stock_hint_pr_inv1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
                                 .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel34)
-                                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_codigo_rp_inv, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                                    .addComponent(txt_descripcion_rp_inv)))
-                            .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jP_reg_producto_invLayout.createSequentialGroup()
-                                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txt_preciomayor_rp_inv))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jP_reg_producto_invLayout.createSequentialGroup()
-                                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(txt_precioVenta_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)
+                                    .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
+                                        .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel34)
+                                            .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txt_codigo_rp_inv, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                                            .addComponent(txt_descripcion_rp_inv)))
+                                    .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jP_reg_producto_invLayout.createSequentialGroup()
+                                            .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txt_preciocompra_rp_inv))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jP_reg_producto_invLayout.createSequentialGroup()
+                                            .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(27, 27, 27)
+                                            .addComponent(txt_precioVenta_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addComponent(jLabel40))))
                         .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel39, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jLabel40))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_guardar_rp_inv, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                            .addComponent(cbx_proveedor_rp_inv, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbx_medida_rp_inv, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbx_categoria_rp_inv, 0, 172, Short.MAX_VALUE))
+                            .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbx_medida_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cbx_proveedor_rp_inv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cbx_categoria_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(btn_guardar_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(10, 10, 10)
                         .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btn_addmedida_inv, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
@@ -755,14 +784,19 @@ public final class UtilPanels extends javax.swing.JFrame {
                         .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
                                 .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbx_medida_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(15, 15, 15)
-                                .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbx_proveedor_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(15, 15, 15)
-                                .addComponent(cbx_categoria_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
+                                        .addComponent(cbx_medida_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(15, 15, 15)
+                                        .addComponent(cbx_proveedor_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(15, 15, 15)
+                                        .addComponent(cbx_categoria_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
+                                        .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(15, 15, 15)
+                                        .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
+                                        .addGap(100, 100, 100)
+                                        .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(26, 26, 26)
                                 .addComponent(btn_guardar_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
@@ -779,12 +813,10 @@ public final class UtilPanels extends javax.swing.JFrame {
                                     .addGroup(jP_reg_producto_invLayout.createSequentialGroup()
                                         .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(txt_precioVenta_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txt_precioVenta_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(15, 15, 15)
                                         .addGroup(jP_reg_producto_invLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txt_preciomayor_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txt_preciocompra_rp_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(20, 20, 20)
                                         .addComponent(jL_stock_hint_pr_inv1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1408,6 +1440,83 @@ public final class UtilPanels extends javax.swing.JFrame {
                 .addGap(50, 50, 50))
         );
 
+        jP_addStock.setBackground(new java.awt.Color(250, 250, 250));
+
+        jL_titulo_pcliente1.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jL_titulo_pcliente1.setText("<html><u>Añadir stock</u></html>");
+
+        jL_titulo_pcliente2.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jL_titulo_pcliente2.setText("Descripcion:");
+
+        jL_descripcion_addstock.setText("producto");
+
+        jL_stock_addstock.setText("producto");
+
+        jL_titulo_pcliente3.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jL_titulo_pcliente3.setText("Stock:");
+
+        jL_titulo_pcliente4.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jL_titulo_pcliente4.setText("añadir stock:");
+
+        txt_addstock_addstock.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+
+        btn_añadir_addstock.setText("Añadir");
+
+        jL_medida_addstock.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jL_medida_addstock.setText("lb");
+
+        javax.swing.GroupLayout jP_addStockLayout = new javax.swing.GroupLayout(jP_addStock);
+        jP_addStock.setLayout(jP_addStockLayout);
+        jP_addStockLayout.setHorizontalGroup(
+            jP_addStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_addStockLayout.createSequentialGroup()
+                .addGroup(jP_addStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jP_addStockLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jP_addStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jP_addStockLayout.createSequentialGroup()
+                                .addComponent(jL_titulo_pcliente4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jL_medida_addstock, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txt_addstock_addstock, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jL_titulo_pcliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_addStockLayout.createSequentialGroup()
+                                .addComponent(jL_titulo_pcliente3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jL_stock_addstock, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_addStockLayout.createSequentialGroup()
+                                .addComponent(jL_titulo_pcliente2)
+                                .addGap(26, 26, 26)
+                                .addComponent(jL_descripcion_addstock, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jP_addStockLayout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(btn_añadir_addstock, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        jP_addStockLayout.setVerticalGroup(
+            jP_addStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_addStockLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jL_titulo_pcliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jP_addStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jL_descripcion_addstock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jL_titulo_pcliente2, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jP_addStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jL_stock_addstock, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_titulo_pcliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(jP_addStockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_addstock_addstock, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jL_titulo_pcliente4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jL_medida_addstock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btn_añadir_addstock, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1436,10 +1545,10 @@ public final class UtilPanels extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_nuevousuario_p_usuarioActionPerformed
 
     private void cb_modificar_contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_modificar_contraseñaActionPerformed
-        if(cb_modificar_contraseña.isSelected()){
+        if (cb_modificar_contraseña.isSelected()) {
             txt_contraseña_p_usuario.setEnabled(true);
             txt_confirmar_p_usuario.setEnabled(true);
-        }else{
+        } else {
             txt_contraseña_p_usuario.setEnabled(false);
             txt_confirmar_p_usuario.setEnabled(false);
         }
@@ -1449,9 +1558,9 @@ public final class UtilPanels extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_precioVenta_rp_invActionPerformed
 
-    private void txt_preciomayor_rp_invActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_preciomayor_rp_invActionPerformed
+    private void txt_preciocompra_rp_invActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_preciocompra_rp_invActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_preciomayor_rp_invActionPerformed
+    }//GEN-LAST:event_txt_preciocompra_rp_invActionPerformed
 
     private void btn_addcategoria_invActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addcategoria_invActionPerformed
         // TODO add your handling code here:
@@ -1535,6 +1644,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JButton btn_addcategoria_inv;
     public javax.swing.JButton btn_addmedida_inv;
     public javax.swing.JButton btn_addproveedor_inv;
+    public javax.swing.JButton btn_añadir_addstock;
     public volatile javax.swing.JButton btn_cancelarCat_inv;
     public volatile javax.swing.JButton btn_cancelarMed_inv;
     public volatile javax.swing.JButton btn_cancelarProv_inv;
@@ -1551,10 +1661,10 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JSpinner cant;
     public javax.swing.JPanel cargando;
     public javax.swing.JCheckBox cb_modificar_contraseña;
-    public javax.swing.JComboBox<cbx_content> cbx_categoria_rp_inv;
-    public javax.swing.JComboBox<cbx_content> cbx_medida_rp_inv;
+    public javax.swing.JComboBox<Categoria_ob> cbx_categoria_rp_inv;
+    public javax.swing.JComboBox<Medida_ob> cbx_medida_rp_inv;
     public javax.swing.JComboBox<String> cbx_permisos_p_usuario;
-    public javax.swing.JComboBox<cbx_content> cbx_proveedor_rp_inv;
+    public javax.swing.JComboBox<Proveedor_ob> cbx_proveedor_rp_inv;
     private javax.swing.JLabel fcar;
     private javax.swing.JLabel fcar1;
     private javax.swing.JButton jButton1;
@@ -1564,18 +1674,25 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_catpro;
     public javax.swing.JLabel jL_codepr;
     public javax.swing.JLabel jL_codpro;
+    public javax.swing.JLabel jL_descripcion_addstock;
     private javax.swing.JLabel jL_editarinfopro;
     public javax.swing.JLabel jL_estadopro;
     public javax.swing.JLabel jL_fotopr;
     public javax.swing.JLabel jL_imgpro;
+    public javax.swing.JLabel jL_medida_addstock;
     public javax.swing.JLabel jL_namepr;
     public javax.swing.JLabel jL_nombrepro;
     public javax.swing.JLabel jL_preciopr;
     public javax.swing.JLabel jL_preciototal;
+    public javax.swing.JLabel jL_stock_addstock;
     public javax.swing.JLabel jL_stock_hint_pr_inv1;
     public javax.swing.JLabel jL_stock_hint_rsi;
     public javax.swing.JLabel jL_stockpr;
     public javax.swing.JLabel jL_titulo_pcliente;
+    public javax.swing.JLabel jL_titulo_pcliente1;
+    public javax.swing.JLabel jL_titulo_pcliente2;
+    public javax.swing.JLabel jL_titulo_pcliente3;
+    public javax.swing.JLabel jL_titulo_pcliente4;
     public javax.swing.JLabel jL_titulo_pusuarios;
     public javax.swing.JLabel jL_titulo_rp_inv;
     public javax.swing.JLabel jL_titulo_rp_inv1;
@@ -1619,6 +1736,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jP_addLote;
+    public javax.swing.JPanel jP_addStock;
     private javax.swing.JPanel jP_card_addlote;
     public javax.swing.JPanel jP_reg_categoria_inv;
     public javax.swing.JPanel jP_reg_cliente;
@@ -1647,6 +1765,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public volatile javax.swing.JTable tabla_proveedor_inv;
     public javax.swing.JTable tableLotepro;
     public volatile javax.swing.JTextField txt_abrevMed_inv;
+    public javax.swing.JTextField txt_addstock_addstock;
     public javax.swing.JTextField txt_categoríapro;
     public javax.swing.JTextField txt_codigo_rp_inv;
     public javax.swing.JTextField txt_codigopro;
@@ -1662,8 +1781,8 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JTextField txt_nombre_p_usuario;
     public javax.swing.JTextField txt_nombrepro;
     public javax.swing.JTextField txt_precioVenta_rp_inv;
+    public javax.swing.JTextField txt_preciocompra_rp_inv;
     public javax.swing.JTextField txt_preciocompra_rsi;
-    public javax.swing.JTextField txt_preciomayor_rp_inv;
     public javax.swing.JTextField txt_telefono_p_cliente;
     public javax.swing.JTextField txt_telefono_p_usuario;
     public javax.swing.JTextField txt_usuario_p_usuario;

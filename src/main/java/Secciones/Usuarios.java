@@ -81,7 +81,7 @@ public class Usuarios {
         listparamUser.add(panel.txt_usuario_p_usuario);
         listparamUser.add(panel.txt_contraseña_p_usuario);
         listparamUser.add(panel.txt_confirmar_p_usuario);
-        Tools.clickwhite_comp((List<JComponent>) (List<?>) listparamUser);
+        Tools.focusWhite_comp((List<JComponent>) (List<?>) listparamUser);
         
         customTable();
         tabledates("");
@@ -222,7 +222,7 @@ public class Usuarios {
         });
 
         //buscador de tabla cliente
-        Tools.buscadorTablaValidate(home.txt_buscadorp_usuario, (consulta) -> {
+        Tools.buscadorTablaValidate(home.txt_buscadorp_usuario,"Buscar usuario..", (consulta) -> {
             Cargando.doSomething(new X() {
                 @Override
                 public void execute() {

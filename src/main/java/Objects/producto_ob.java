@@ -7,8 +7,8 @@ public class Producto_ob {
     private String codigo;
     private String descripcion;
     private double stock;
-    private double precio;
-    private double precio_por_mayor;
+    private double precio_venta;
+    private double precio_compra;
     private int id_categoria;
     private String categoria;
     private int id_medida;
@@ -17,13 +17,13 @@ public class Producto_ob {
     private String proveedor;
     private String estado;
 
-    public Producto_ob(int id, String codigo, String descripcion, double stock, double precio, double precio_por_mayor, int id_categoria, String categoria, int id_medida, String medida, int id_proveedor, String proveedor, String estado) {
+    public Producto_ob(int id, String codigo, String descripcion, double stock, double precio_venta, double precio_compra, int id_categoria, String categoria, int id_medida, String medida, int id_proveedor, String proveedor, String estado) {
         this.id = id;
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.stock = stock;
-        this.precio = precio;
-        this.precio_por_mayor = precio_por_mayor;
+        this.precio_venta = precio_venta;
+        this.precio_compra = precio_compra;
         this.id_categoria = id_categoria;
         this.categoria = categoria;
         this.id_medida = id_medida;
@@ -65,20 +65,20 @@ public class Producto_ob {
         this.stock = stock;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPrecioVentas() {
+        return precio_venta;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPrecioVenta(double precio_venta) {
+        this.precio_compra = precio_venta;
     }
 
-    public double getPrecio_por_mayor() {
-        return precio_por_mayor;
+    public double getPrecioCompra() {
+        return precio_compra;
     }
 
-    public void setPrecio_por_mayor(double precio_por_mayor) {
-        this.precio_por_mayor = precio_por_mayor;
+    public void setPrecioCompra(double precio_compra) {
+        this.precio_compra = precio_compra;
     }
 
     public int getId_categoria() {

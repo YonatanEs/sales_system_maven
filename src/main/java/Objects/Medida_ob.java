@@ -35,5 +35,11 @@ public class Medida_ob {
     public void setAbreviatura(String abreviatura) {
         this.abreviatura = abreviatura;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
     
 }

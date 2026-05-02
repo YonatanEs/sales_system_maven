@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.UIManager;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -284,6 +285,9 @@ public class Login extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         //</editor-fold>
+
+        // Configura el Enter para todos los botones de la aplicación
+        UIManager.put("Button.defaultButtonFollowsFocus", Boolean.TRUE);
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

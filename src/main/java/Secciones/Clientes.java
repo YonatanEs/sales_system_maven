@@ -72,7 +72,7 @@ public class Clientes {
         Tools.btn_animacion_size(home.btn_registrarcliente);
         Tools.buscador(home.txt_buscador_cliente, "Buscar cliente..");
 
-        Tools.clickwhite_comp(listVariables);
+        Tools.focusWhite_comp(listVariables);
         customTable();
         Listeners();
 
@@ -124,7 +124,7 @@ public class Clientes {
         });
 
         //buscador de tabla clientes
-        Tools.buscadorTablaValidate(home.txt_buscador_cliente, (consulta) -> {
+        Tools.buscadorTablaValidate(home.txt_buscador_cliente,"Buscar cliente..", (consulta) -> {
             Cargando.doSomething(new X() {
                 @Override
                 public void execute() {

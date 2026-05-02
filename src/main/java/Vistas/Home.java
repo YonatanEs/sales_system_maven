@@ -32,6 +32,7 @@ public class Home extends javax.swing.JFrame {
 
     private Usuarios usuarios;
     private Clientes clientes;
+    private Inventario inventario;
 
     public Home() {
         initComponents();
@@ -46,7 +47,7 @@ public class Home extends javax.swing.JFrame {
         Tools.addButtonEffects(btn_menu, () -> this.menu);
 
         UtilPanels p = new UtilPanels();
-        Inventario i = new Inventario(this, p);
+        inventario = new Inventario(this, p);
         usuarios = new Usuarios(this, p);
         clientes = new Clientes(this, p);
 
@@ -69,6 +70,10 @@ public class Home extends javax.swing.JFrame {
         jPopupNventa = new javax.swing.JPopupMenu();
         jMenuItemEliminar = new javax.swing.JMenuItem();
         jMenuItemeliminartodo = new javax.swing.JMenuItem();
+        jPopupInventario = new javax.swing.JPopupMenu();
+        item_addStock_inv = new javax.swing.JMenuItem();
+        item_editar_inv = new javax.swing.JMenuItem();
+        item_estado_inv = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jP_menuprincipal = new javax.swing.JPanel();
         jL_ventas = new javax.swing.JLabel();
@@ -103,7 +108,6 @@ public class Home extends javax.swing.JFrame {
         jP_buscadorusuarios1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         txt_buscador_inventario = new javax.swing.JTextField();
-        btn_addinv_inv = new javax.swing.JLabel();
         btn_nvprod_inv = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator8 = new javax.swing.JSeparator();
@@ -155,6 +159,32 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jPopupNventa.add(jMenuItemeliminartodo);
+
+        ImageIcon iconAddStock = Tools.escalarIcono(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png")), 22, 22);
+        item_addStock_inv.setIcon(iconAddStock);
+        item_addStock_inv.setText("agregar stock");
+        item_addStock_inv.setToolTipText("");
+        item_addStock_inv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_addStock_invActionPerformed(evt);
+            }
+        });
+        jPopupInventario.add(item_addStock_inv);
+
+        ImageIcon iconEdit = Tools.escalarIcono(new javax.swing.ImageIcon(getClass().getResource("/Images/Edit_icon-icons.com_71853.png")), 32, 32);
+        item_editar_inv.setIcon(iconEdit);
+        item_editar_inv.setText("Editar");
+        item_editar_inv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_editar_invActionPerformed(evt);
+            }
+        });
+        jPopupInventario.add(item_editar_inv);
+
+        ImageIcon iconEstado = Tools.escalarIcono(new javax.swing.ImageIcon(getClass().getResource("/Images/eliminar.png")), 17, 17);
+        item_estado_inv.setIcon(iconEstado);
+        item_estado_inv.setText("Inactivar");
+        jPopupInventario.add(item_estado_inv);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -531,7 +561,7 @@ public class Home extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Código", "Descripción", "Stock", "Precio", "<html><p>Precio por mayor</p></html>", "Categoria", "Proveedor", "Estado"
+                "id", "Código", "Descripción", "Stock", "Precio de venta", "<html><p>Precio de Compra</p></html>", "Categoria", "Proveedor", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -583,10 +613,6 @@ public class Home extends javax.swing.JFrame {
             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        btn_addinv_inv.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_addinv_inv.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_addinv_inv.setText("Ingresar inventario");
-
         btn_nvprod_inv.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btn_nvprod_inv.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btn_nvprod_inv.setText("Nuevo producto");
@@ -607,28 +633,28 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 474, Short.MAX_VALUE)
                 .addComponent(btn_nvprod_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btn_addinv_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(82, 82, 82)
                 .addComponent(jP_buscadorusuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jP_buscadorusuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_addinv_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_nvprod_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jP_buscadorusuarios1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_nvprod_inv, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
@@ -1012,7 +1038,7 @@ public class Home extends javax.swing.JFrame {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                //Inventario.llenarlistainventario();
+                inventario.tabledates("", 0);
             }
         };
         Thread th = new Thread(r);
@@ -1105,6 +1131,14 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_buscador_clienteActionPerformed
 
+    private void item_addStock_invActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_addStock_invActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_item_addStock_invActionPerformed
+
+    private void item_editar_invActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_editar_invActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_item_editar_invActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1147,13 +1181,15 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JLabel btn_addinv_inv;
     public javax.swing.JLabel btn_anteriorpag_inv;
     private javax.swing.JLabel btn_menu;
     public javax.swing.JLabel btn_nvprod_inv;
     public javax.swing.JLabel btn_registrarcliente;
     public javax.swing.JLabel btn_registrarusuario;
     public javax.swing.JLabel btn_sigpag_inv;
+    public javax.swing.JMenuItem item_addStock_inv;
+    public javax.swing.JMenuItem item_editar_inv;
+    public javax.swing.JMenuItem item_estado_inv;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jL_caja;
     private javax.swing.JLabel jL_cerrarsesion;
@@ -1196,6 +1232,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
+    public javax.swing.JPopupMenu jPopupInventario;
     private javax.swing.JPopupMenu jPopupNventa;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
