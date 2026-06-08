@@ -1,28 +1,28 @@
 package Objects;
 
-public class Usuarios_p {
+public class Usuario_Ob {
     
-    private long id;
+    private int id;
     private String nombre;
     private String telefono;
     private String username;
     private String permisos;
     private String estado;
-    
-    public Usuarios_p(long id,String nombre, String telefono, String username, String permisos, String estado){
-        this.id=id;
-        this.nombre=nombre;
-        this.telefono=telefono;
-        this.username=username;
-        this.permisos=permisos;
-        this.estado=estado;
+
+    public Usuario_Ob(int id, String nombre, String telefono, String username, String permisos, String estado) {
+        this.id = id;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.username = username;
+        this.permisos = permisos;
+        this.estado = estado;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -65,6 +65,5 @@ public class Usuarios_p {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
     
 }

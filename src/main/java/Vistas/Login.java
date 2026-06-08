@@ -9,6 +9,7 @@ package Vistas;
 import Clases.Cargando;
 import Clases.Conexion;
 import Clases.X;
+import Dto.DtoAuthResponse;
 import Dto.LoginRequest;
 import Dto.RequestMessage;
 import General.UtilMessage;
@@ -16,9 +17,11 @@ import General.userAuth;
 import Objects.Logged_user;
 import com.google.gson.Gson;
 import java.awt.Color;
+import java.awt.Image;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -45,6 +48,18 @@ public class Login extends javax.swing.JFrame {
         //System.out.println("Name: " + info.getName());
         //System.out.println("Class: " + info.getClassName());
         //}
+    }
+    
+    @Override
+    public Image getIconImage() {
+        ImageIcon logo = General.properties.getlogoSistema();
+        
+        if(logo!=null){
+            return logo.getImage();
+        }
+
+        // Si por alguna razón no encuentra la imagen, recurre al comportamiento por defecto
+        return super.getIconImage();
     }
 
     /**
@@ -73,6 +88,7 @@ public class Login extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -344,7 +360,8 @@ public class Login extends javax.swing.JFrame {
 
         if (val == 0) {
             OkHttpClient client = new OkHttpClient();
-
+            Gson gson = new Gson();
+            
             LoginRequest loginRequest = new LoginRequest(user, pass);
             String json = new Gson().toJson(loginRequest);
 
@@ -369,16 +386,11 @@ public class Login extends javax.swing.JFrame {
 
                     if (response.isSuccessful()) {
 
-                        System.out.println(json);
-                        JSONObject json1 = new JSONObject(json);
-                        String token = json1.getString("token");
-                        String permisos = json1.getString("permisos");
-                        String id = json1.getString("id");
+                        DtoAuthResponse resp = gson.fromJson(json, DtoAuthResponse.class);
+                        
+                        userAuth.setUsuario(resp.getUserAuth());
+                        userAuth.setToken(resp.getToken());
 
-                        userAuth.setIdUser(Integer.parseInt(id));
-                        userAuth.setUsername(user);
-                        userAuth.setRoll(permisos);
-                        userAuth.setToken(token);
                         dispose();
                         new Home().setVisible(true);
 

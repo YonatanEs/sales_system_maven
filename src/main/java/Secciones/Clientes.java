@@ -1,7 +1,9 @@
 package Secciones;
 
 import Clases.Cargando;
+import Clases.MenuEditarYEstado;
 import Clases.Tools;
+import Clases.Txt_buscador;
 import Clases.X;
 import Dto.RequestMessage;
 import Dto.ValorRecuest;
@@ -15,6 +17,7 @@ import Vistas.Home;
 import Vistas.UtilPanels;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.mxrck.autocompleter.TextAutoCompleter;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Panel;
@@ -57,8 +60,12 @@ public class Clientes {
     private boolean registrando;
 
     private Cliente_ob clienteSelected = null;
-
+    
+    private Txt_buscador txt_buscador_clientes;
+    private TextAutoCompleter autoCompleterClientes;
+    
     private List listVariables;
+    private MenuEditarYEstado menuTabla;
 
     public Clientes(Home home, UtilPanels panel) {
         this.home = home;
@@ -76,6 +83,8 @@ public class Clientes {
         customTable();
         Listeners();
 
+        txt_buscador_clientes = new Txt_buscador("Buscar cliente..", home.txt_buscador_cliente);
+        
         tabledates("");
     }
 
@@ -151,6 +160,9 @@ public class Clientes {
             }
         });
 
+        autoCompleterClientes = new TextAutoCompleter(home.txt_buscador_cliente);
+        
+        sugerenciasBuscadorClientes();
     }
 
     /*------Metodos para controlar objetos visuales y no visuales en la interfaz grafica */
@@ -199,7 +211,7 @@ public class Clientes {
         home.tableClientes.setRowHeight(25);
         Tools.headers(home.tableClientes);
 
-        Tools.aplicarMenuEstado(home.tableClientes, false,
+        menuTabla = new MenuEditarYEstado(home.tableClientes, false,
                 (id) -> editarCliente((int) id),
                 (id) -> ActoinactivarCliente((int) id));
 
@@ -560,6 +572,45 @@ public class Clientes {
             JOptionPane.showMessageDialog(null, "Error en conexion " + e);
         }
         return null;
+    }
+    
+    //llena las sugerencias del buscador de clientes
+    private void sugerenciasBuscadorClientes(){
+        try {
+            //conexion a api
+            Request request = new Request.Builder()
+                    .url(General.properties.getUrl() + "/api/clientes/listarSugerencias")
+                    .addHeader("Authorization", "Bearer " + userAuth.getToken().trim())
+                    .get()
+                    .build();
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException ioe) {
+                    UtilMessage.messageError("Error en la conexion " + ioe);
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String json = response.body().string();
+
+                    Type type = new TypeToken<List<String>>() {
+                    }.getType();
+                    List<String> sugerencias = gson.fromJson(json, type);
+
+                    SwingUtilities.invokeLater(() -> {
+                        autoCompleterClientes.removeAllItems();
+
+                        for (String string : sugerencias) {
+                            autoCompleterClientes.addItem(string);
+                        }
+                    });
+
+                }
+            });
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e);
+        }
     }
 
 }

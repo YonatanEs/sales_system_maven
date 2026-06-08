@@ -1,12 +1,15 @@
 package Objects;
 
-public class Categoria_ob {
+public class Cajas_ob {
+    
     private int id;
     private String nombre;
+    private String estado;
 
-    public Categoria_ob(int id, String nombre) {
+    public Cajas_ob(int id, String nombre, String estado) {
         this.id = id;
         this.nombre = nombre;
+        this.estado = estado;
     }
 
     public int getId() {
@@ -25,6 +28,14 @@ public class Categoria_ob {
         this.nombre = nombre;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
         return nombre;
@@ -33,7 +44,7 @@ public class Categoria_ob {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + this.id;
+        hash = 47 * hash + this.id;
         return hash;
     }
 
@@ -48,8 +59,9 @@ public class Categoria_ob {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Categoria_ob other = (Categoria_ob) obj;
+        final Cajas_ob other = (Cajas_ob) obj;
         return this.id == other.id;
     }
+    
     
 }

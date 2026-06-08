@@ -1,10 +1,12 @@
 package Clases;
+
 import java.awt.Color;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JTextField;
 
 public class Txt_buscador {
+
     private String hint;
     private JTextField textField;
     private Color colorOriginal;
@@ -14,7 +16,7 @@ public class Txt_buscador {
         this.hint = hint;
         this.textField = textField;
         this.colorOriginal = textField.getForeground();
-        
+
         iniciar();
     }
 
@@ -47,5 +49,14 @@ public class Txt_buscador {
         }
         return textField.getText();
     }
-}
 
+    public void setTextoManual(String texto) {
+        if (texto == null || texto.trim().isEmpty()) {
+            textField.setText(hint);
+            textField.setForeground(colorHint);
+        } else {
+            textField.setText(texto);
+            textField.setForeground(colorOriginal);
+        }
+    }
+}

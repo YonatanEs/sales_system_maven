@@ -7,12 +7,14 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.KeyboardFocusManager;
 import java.util.List;
 import java.awt.RenderingHints;
+import java.awt.Window;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
@@ -24,10 +26,13 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -35,6 +40,8 @@ import java.util.function.Supplier;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -68,33 +75,34 @@ public class Tools {
     public static void btn_animacion_size(JLabel label) {
         Font labelFont = label.getFont();
         int sizebase = labelFont.getSize();
+        String fontName = labelFont.getName();
 
         label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 if (label.isEnabled()) {
-                    label.setFont(new Font("Segoe UI", 1, sizebase + 3));
+                    label.setFont(new Font(fontName, 1, sizebase + 3));
                 }
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 if (label.isEnabled()) {
-                    label.setFont(new Font("segoe UI", 1, sizebase));
+                    label.setFont(new Font(fontName, 1, sizebase));
                 }
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
                 if (label.isEnabled()) {
-                    label.setFont(new Font("segoe UI", 1, sizebase + 2));
+                    label.setFont(new Font(fontName, 1, sizebase + 2));
                 }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 if (label.isEnabled()) {
-                    label.setFont(new Font("segoe UI", 1, sizebase + 3));
+                    label.setFont(new Font(fontName, 1, sizebase + 3));
                 }
             }
 
@@ -190,7 +198,11 @@ public class Tools {
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                label.setBackground(color2);
+                if (label.contains(e.getPoint())) {
+                    label.setBackground(color2);
+                } else {
+                    label.setBackground(color1);
+                }
             }
         });
     }
@@ -354,6 +366,12 @@ public class Tools {
                     cell.setForeground(Color.GREEN);
                 } else if ("Inactivo".equals(value)) {
                     cell.setForeground(Color.RED);
+                } else if ("Abierto".equals(value)) {
+                    cell.setForeground(Color.GREEN);
+                } else if ("Cerrado".equals(value)) {
+                    cell.setForeground(Color.RED);
+                } else if ("Forzado".equals(value)) {
+                    cell.setForeground(Color.RED);
                 } else {
                     cell.setForeground(Color.BLACK);
                 }
@@ -369,8 +387,18 @@ public class Tools {
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
+    /*public static JDialog newWindow(JPanel panel) {
+        JDialog window = new JDialog();
+        window.getContentPane().add(panel);
+        window.pack();
+        window.setLocationRelativeTo(null);
+        window.setResizable(false);
+        window.setModal(true);
+        return window;
+    }*/
     public static JDialog newWindow(JPanel panel) {
         JDialog window = new JDialog();
+        window.setIconImage(General.properties.getlogoSistema().getImage());
         window.getContentPane().add(panel);
         window.pack();
         window.setLocationRelativeTo(null);
@@ -467,7 +495,7 @@ public class Tools {
                         int idValue = Integer.parseInt(tabla.getValueAt(row, 0).toString());
                         String estado = (String) tabla.getValueAt(row, indexColumnEstado(tabla));
 
-                        if (idValue == userAuth.getIdUser() && tableUser) {
+                        if (idValue == userAuth.getUsuario().getId() && tableUser) {
                             itemEstado.setVisible(false);
                         } else {
                             itemEstado.setVisible(true);
@@ -772,6 +800,69 @@ public class Tools {
         }
     }
 
+    public static void txt_cantidad_int(JTextField textField) {
+        textField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        // Inicializamos con 0 si está vacío
+        if (textField.getText().trim().isEmpty()) {
+            textField.setText("0");
+        }
+
+        textField.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                formatearCantidadEntera(textField);
+            }
+        });
+
+        textField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                // Selecciona todo para que al presionar cualquier número, el 0 desaparezca
+                textField.selectAll();
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                // Si al salir el usuario borró todo, ponemos el 0 de seguridad
+                if (textField.getText().trim().isEmpty()) {
+                    textField.setText("0");
+                }
+            }
+        });
+    }
+
+    private static void formatearCantidadEntera(JTextField txt) {
+        String original = txt.getText();
+
+        // 1. Extraemos ÚNICAMENTE números (eliminamos letras, puntos, comas, etc.)
+        String soloNumeros = original.replaceAll("[^\\d]", ""); // 🟢 Eliminamos el punto de la Regex
+
+        // 2. Si el usuario borra todo, ponemos un 0 temporal
+        if (soloNumeros.isEmpty()) {
+            txt.setText("0");
+            txt.selectAll();
+            return;
+        }
+
+        // 3. ELIMINAR CEROS A LA IZQUIERDA (Evita "08" o "0005")
+        // Al ser solo enteros, si tiene más de un dígito y empieza con 0, lo limpiamos de golpe
+        if (soloNumeros.length() > 1 && soloNumeros.startsWith("0")) {
+            // Convirtiéndolo temporalmente a Long/Integer se limpian los ceros a la izquierda automáticamente
+            try {
+                soloNumeros = String.valueOf(Long.parseLong(soloNumeros));
+            } catch (NumberFormatException e) {
+                // Por si escriben un número absurdamente gigantesco
+                soloNumeros = soloNumeros.replaceFirst("^0+", "");
+            }
+        }
+
+        // Para evitar bucles infinitos de eventos, solo seteamos si cambió
+        if (!txt.getText().equals(soloNumeros)) {
+            txt.setText(soloNumeros);
+        }
+    }
+
     public static double getPrecioLimpio(JTextField txt) {
         String texto = txt.getText().replace("Q ", "").trim();
         try {
@@ -812,8 +903,177 @@ public class Tools {
         // Devolvemos el nuevo icono listo para usar
         return new ImageIcon(imgEscalada);
     }
-    
-    public static void buscador_sugerencias(){
-        
+
+    public static void cbxSelectedItemToId(JComboBox combo, int id) {
+        for (int i = 0; i < combo.getItemCount(); i++) {
+            Object item = combo.getItemAt(i);
+
+            if (item != null) {
+                try {
+                    // Buscamos dinámicamente el método "getId" en la clase del objeto actual
+                    java.lang.reflect.Method method = item.getClass().getMethod("getId");
+
+                    // Ejecutamos el método para obtener el ID (lo casteamos a Number para manejar int, Integer, Long, etc.)
+                    Number idValue = (Number) method.invoke(item);
+
+                    // Si el ID del objeto coincide con el que buscamos, lo seleccionamos
+                    if (idValue != null && idValue.intValue() == id) {
+                        combo.setSelectedIndex(i);
+                        return; // Encontrado y asignado
+                    }
+
+                } catch (Exception e) {
+                    // Si el objeto no tiene un método "getId()", capturamos el error silenciosamente 
+                    // para que continúe buscando en el combo sin romper la aplicación.
+                    System.out.println("El objeto de tipo " + item.getClass().getName() + " no tiene un método getId().");
+                }
+            }
+        }
+    }
+
+    public static String formateadorFechaGuatemala(LocalDateTime fecha) {
+        DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a", Locale.ENGLISH);
+        return fecha.format(formateador);
+    }
+
+    public void setLogoProporcional(JLabel labelDestino, String rutaRecurso) {
+        // 1. Cargar la imagen original
+        ImageIcon iconoOriginal = new ImageIcon(ClassLoader.getSystemResource(rutaRecurso));
+        Image imgOriginal = iconoOriginal.getImage();
+
+        // 2. Obtener las dimensiones reales de la imagen que subieron
+        int anchoOriginal = iconoOriginal.getIconWidth();
+        int altoOriginal = iconoOriginal.getIconHeight();
+
+        // 3. Definir los límites máximos que tú quieres permitir en tu header
+        int maxAncho = 150; // El ancho máximo permitido para el logo
+        int maxAlto = 80;   // El alto máximo permitido para el logo
+
+        // 4. Calcular la escala proporcional (Regla de tres basada en el aspecto)
+        int nuevoAncho = anchoOriginal;
+        int nuevoAlto = altoOriginal;
+
+        // Si es más ancho que el límite, ajustamos el ancho y recalculamos el alto
+        if (nuevoAncho > maxAncho) {
+            nuevoAncho = maxAncho;
+            nuevoAlto = (nuevoAncho * altoOriginal) / anchoOriginal;
+        }
+
+        // Si después de eso (o desde el inicio) el alto supera el límite, ajustamos el alto
+        if (nuevoAlto > maxAlto) {
+            nuevoAlto = maxAlto;
+            nuevoAncho = (nuevoAlto * anchoOriginal) / altoOriginal;
+        }
+
+        // 5. Escalar la imagen de forma suave con las nuevas medidas perfectas
+        Image imgEscalada = imgOriginal.getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+
+        // 6. Asignarla al JLabel
+        labelDestino.setIcon(new ImageIcon(imgEscalada));
+    }
+
+    public static void adaptarIconoJLabel(JLabel labelTarget, ImageIcon iconoOriginal) {
+        // 1. Validaciones de seguridad por si viene vacío
+        if (iconoOriginal == null || labelTarget == null) {
+            if (labelTarget != null) {
+                labelTarget.setIcon(null);
+            }
+            return;
+        }
+
+        // 2. Extraer la Image interna del ImageIcon original
+        Image imgOriginal = iconoOriginal.getImage();
+
+        // 3. Obtener dimensiones de la imagen y del JLabel
+        int imgWidth = imgOriginal.getWidth(null);
+        int imgHeight = imgOriginal.getHeight(null);
+        int labelWidth = labelTarget.getWidth();
+        int labelHeight = labelTarget.getHeight();
+
+        // Evitar problemas o divisiones por cero si el JLabel aún no se dibuja en pantalla
+        if (labelWidth == 0 || labelHeight == 0) {
+            labelWidth = 150; // Tamaños estándar por defecto sugeridos
+            labelHeight = 150;
+        }
+
+        // 4. Calcular el factor de escala manteniendo el Aspect Ratio (Proporción)
+        double scaleX = (double) labelWidth / imgWidth;
+        double scaleY = (double) labelHeight / imgHeight;
+
+        // Usamos el menor factor para garantizar que toda la imagen quepa dentro del JLabel
+        double scale = Math.min(scaleX, scaleY);
+
+        // 5. Calcular el nuevo tamaño proporcional
+        int newWidth = (int) (imgWidth * scale);
+        int newHeight = (int) (imgHeight * scale);
+
+        // 6. Escalar la imagen con algoritmo suavizado de alta calidad
+        Image imgEscalada = imgOriginal.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // 7. Crear el nuevo ImageIcon escalado y asignarlo centrado
+        ImageIcon iconoFinal = new ImageIcon(imgEscalada);
+        labelTarget.setIcon(iconoFinal);
+
+        // Centramos el icono dentro del JLabel por si quedan márgenes vacíos
+        labelTarget.setHorizontalAlignment(JLabel.CENTER);
+        labelTarget.setVerticalAlignment(JLabel.CENTER);
+    }
+
+    public static void adaptarIconoJButton(JButton botonTarget, ImageIcon iconoOriginal) {
+        // 1. Validaciones de seguridad por si viene vacío
+        if (iconoOriginal == null || botonTarget == null) {
+            if (botonTarget != null) {
+                botonTarget.setIcon(null);
+            }
+            return;
+        }
+
+        // 2. Extraer la Image interna del ImageIcon original
+        Image imgOriginal = iconoOriginal.getImage();
+
+        // 3. Obtener dimensiones de la imagen y del JButton
+        int imgWidth = imgOriginal.getWidth(null);
+        int imgHeight = imgOriginal.getHeight(null);
+        int botonWidth = botonTarget.getWidth();
+        int botonHeight = botonTarget.getHeight();
+
+        // Evitar problemas si el JButton aún no se ha renderizado en pantalla (tamaño temporal)
+        if (botonWidth == 0 || botonHeight == 0) {
+            botonWidth = botonTarget.getPreferredSize().width;
+            botonHeight = botonTarget.getPreferredSize().height;
+
+            // Si aun así da cero, asignamos un tamaño estándar por defecto
+            if (botonWidth == 0 || botonHeight == 0) {
+                botonWidth = 40;
+                botonHeight = 40;
+            }
+        }
+
+        // 4. Calcular el factor de escala manteniendo el Aspect Ratio (Proporción)
+        double scaleX = (double) botonWidth / imgWidth;
+        double scaleY = (double) botonHeight / imgHeight;
+
+        // Usamos el menor factor para garantizar que toda la imagen quepa dentro del botón
+        double scale = Math.min(scaleX, scaleY);
+
+        // 5. Calcular el nuevo tamaño proporcional
+        int newWidth = (int) (imgWidth * scale);
+        int newHeight = (int) (imgHeight * scale);
+
+        // 6. Escalar la imagen con algoritmo suavizado de alta calidad
+        Image imgEscalada = imgOriginal.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // 7. Crear el nuevo ImageIcon escalado y asignarlo al botón
+        ImageIcon iconoFinal = new ImageIcon(imgEscalada);
+        botonTarget.setIcon(iconoFinal);
+
+        // 8. Alineación y estética dentro del JButton
+        botonTarget.setHorizontalAlignment(JButton.CENTER);
+        botonTarget.setVerticalAlignment(JButton.CENTER);
+
+        // Propiedades opcionales para que luzca perfecto si es un botón de solo icono:
+        botonTarget.setFocusPainted(false); // Quita el molesto cuadro de líneas punteadas al hacer clic
+        // botonTarget.setContentAreaFilled(false); // Descomenta esta línea si quieres que el fondo sea transparente
+        // botonTarget.setBorderPainted(false);      // Descomenta esta línea si quieres quitarle el borde gris de Windows
     }
 }

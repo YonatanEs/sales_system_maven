@@ -1,43 +1,46 @@
 package General;
 
+import Objects.Usuario_Ob;
+
 public class userAuth {
 
-    private static int idUser;
-    private static int idCaja;
-    private static String username;
-    private static String roll;
+    private static Usuario_Ob usuario;
     private static String token;
-
-    public static int getIdUser() {
-        return idUser;
+    private static int idTurnoActivo = 0;
+    private static boolean isMasterCaja;
+    
+    public static void iniciarSesion(Usuario_Ob usuarios, String token){
+        userAuth.usuario=usuarios;
+        userAuth.token=token;
+    }
+    
+    public static void validarTurno(int idTurno, boolean isMasterCaja){
+        userAuth.idTurnoActivo=idTurno;
+        userAuth.isMasterCaja=isMasterCaja;
     }
 
-    public static void setIdUser(int idUser) {
-        userAuth.idUser = idUser;
+    public static int getIdTurnoActivo() {
+        return idTurnoActivo;
     }
 
-    public static int getIdCaja() {
-        return idCaja;
+    public static void setIdTurnoActivo(int idTurnoActivo) {
+        userAuth.idTurnoActivo = idTurnoActivo;
     }
 
-    public static void setIdCaja(int idCaja) {
-        userAuth.idCaja = idCaja;
+    public static boolean isIsMasterCaja() {
+        return isMasterCaja;
     }
 
-    public static String getUsername() {
-        return username;
+    public static void setIsMasterCaja(boolean isMasterCaja) {
+        userAuth.isMasterCaja = isMasterCaja;
+    }
+    
+    public static Usuario_Ob getUsuario() {
+        return usuario;
     }
 
-    public static void setUsername(String username) {
-        userAuth.username = username;
-    }
-
-    public static String getRoll() {
-        return roll;
-    }
-
-    public static void setRoll(String roll) {
-        userAuth.roll = roll;
+    public static void setUsuario(Usuario_Ob usuario) {
+        userAuth.usuario = usuario;
     }
 
     public static String getToken() {
@@ -47,9 +50,5 @@ public class userAuth {
     public static void setToken(String token) {
         userAuth.token = token;
     }
-
-    
-    
-    
     
 }

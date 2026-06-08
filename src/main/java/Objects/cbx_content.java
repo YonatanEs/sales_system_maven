@@ -1,7 +1,9 @@
 package Objects;
 
+import javax.swing.JOptionPane;
+
 public class cbx_content {
-    
+
     private int id;
     private String name;
 
@@ -30,6 +32,45 @@ public class cbx_content {
     public String toString() {
         return name;
     }
-    
-    
+
+    /*@Override
+    public int hashCode() {
+        return java.util.Objects.hash(id);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        cbx_content other = (cbx_content) obj;
+        JOptionPane.showMessageDialog(null, "Se esta ejecutando el equals");
+        // Si tu ID es int o Long, se comparan así:
+        return this.id == other.id;
+    }*/
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        cbx_content other = (cbx_content) obj;
+
+        // Convertimos ambos a String para asegurarnos de que compare el número puro
+        // sin importar si uno es Integer, int, o Long por detrás.
+        return String.valueOf(this.id).equals(String.valueOf(other.id));
+    }
+
 }
