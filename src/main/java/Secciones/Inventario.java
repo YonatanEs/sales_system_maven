@@ -776,7 +776,7 @@ public class Inventario {
                             }
                         } else {
                             if (code == 400) {
-                                DtoResponseOb<Producto> dto = gson.fromJson(json, DtoResponseOb.class);
+                                DtoResponseOb<Producto_ob> dto = gson.fromJson(json, DtoResponseOb.class);
                                 UtilMessage.messageWarning(dto.getMessage());
                             } else {
                                 String error = General.Error.parseJsonError(json);
@@ -878,7 +878,7 @@ public class Inventario {
                             }
                         } else {
                             if (code == 400) {
-                                DtoResponseOb<Producto> dto = gson.fromJson(json, DtoResponseOb.class);
+                                DtoResponseOb<Producto_ob> dto = gson.fromJson(json, DtoResponseOb.class);
                                 UtilMessage.messageWarning(dto.getMessage());
                             } else {
                                 String error = General.Error.parseJsonError(json);
@@ -1146,7 +1146,7 @@ public class Inventario {
                             }
                         } else {
                             if (code == 400) {
-                                DtoResponseOb<Producto> dto = gson.fromJson(json, DtoResponseOb.class);
+                                DtoResponseOb<Producto_ob> dto = gson.fromJson(json, DtoResponseOb.class);
                                 UtilMessage.messageWarning(dto.getMessage());
                             } else {
                                 String error = General.Error.parseJsonError(json);
@@ -1265,7 +1265,7 @@ public class Inventario {
                             }
                         } else {
                             if (code == 400) {
-                                DtoResponseOb<Producto> dto = gson.fromJson(json, DtoResponseOb.class);
+                                DtoResponseOb<Producto_ob> dto = gson.fromJson(json, DtoResponseOb.class);
                                 UtilMessage.messageWarning(dto.getMessage());
                             } else {
                                 String error = General.Error.parseJsonError(json);

@@ -339,8 +339,6 @@ public final class UtilPanels extends javax.swing.JFrame {
         tableMoviemtosTurno = new javax.swing.JTable();
         jP_cambiarcontraseña = new javax.swing.JPanel();
         jLabel125 = new javax.swing.JLabel();
-        jLabel126 = new javax.swing.JLabel();
-        jLabel127 = new javax.swing.JLabel();
         jLabel128 = new javax.swing.JLabel();
         jLabel129 = new javax.swing.JLabel();
         jLabel130 = new javax.swing.JLabel();
@@ -2922,11 +2920,6 @@ public final class UtilPanels extends javax.swing.JFrame {
         jLabel125.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel125.setText("<html><u>Cambiar contraseña</u></html>");
 
-        jLabel126.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel126.setText("Nombre de usuario:");
-
-        jLabel127.setText("user1225");
-
         jLabel128.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel128.setText("Contraseña:");
 
@@ -2955,12 +2948,7 @@ public final class UtilPanels extends javax.swing.JFrame {
                             .addComponent(txt_passActual, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txt_passConfirmar)))
                     .addComponent(jLabel128)
-                    .addGroup(jP_cambiarcontraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel125, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jP_cambiarcontraseñaLayout.createSequentialGroup()
-                            .addComponent(jLabel126)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel127, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))))
+                    .addComponent(jLabel125, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_cambiarcontraseñaLayout.createSequentialGroup()
                 .addContainerGap(146, Short.MAX_VALUE)
@@ -2972,11 +2960,7 @@ public final class UtilPanels extends javax.swing.JFrame {
             .addGroup(jP_cambiarcontraseñaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel125, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jP_cambiarcontraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel126, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel127, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
                 .addGroup(jP_cambiarcontraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel128, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_passActual, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2990,7 +2974,7 @@ public final class UtilPanels extends javax.swing.JFrame {
                     .addComponent(txt_passConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(btn_cambiarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jP_editarinforEmpresa.setBackground(new java.awt.Color(250, 250, 250));
@@ -3740,8 +3724,6 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel123;
     private javax.swing.JLabel jLabel124;
     private javax.swing.JLabel jLabel125;
-    private javax.swing.JLabel jLabel126;
-    private javax.swing.JLabel jLabel127;
     private javax.swing.JLabel jLabel128;
     private javax.swing.JLabel jLabel129;
     private javax.swing.JLabel jLabel13;
