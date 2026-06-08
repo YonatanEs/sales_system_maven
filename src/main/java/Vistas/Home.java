@@ -11,6 +11,7 @@ import Secciones.Configuracion;
 import Secciones.Inventario;
 import Secciones.Turnos;
 import Secciones.Usuarios;
+import Secciones.Ventas;
 import com.mxrck.autocompleter.TextAutoCompleter;
 import java.awt.Color;
 import java.awt.Image;
@@ -33,6 +34,7 @@ public class Home extends javax.swing.JFrame {
 
     public TextAutoCompleter buscadorcod, sugerenciasventas;
 
+    private Ventas ventas;
     private Turnos turnos;
     private Usuarios usuarios;
     private Clientes clientes;
@@ -44,10 +46,11 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         setTitle("Ventas");
         setLocationRelativeTo(null);
-        jPanel1.setComponentZOrder(jP_popupConfiguracion, 0);
-        jPanel1.setComponentZOrder(jP_menuprincipal, 1);
-        jPanel1.setComponentZOrder(jP_sombreado, 2);
-        jPanel1.setComponentZOrder(jPanel3, 3);
+        jPanel1.setComponentZOrder(jP_popupVentas, 0);
+        jPanel1.setComponentZOrder(jP_popupConfiguracion, 1);
+        jPanel1.setComponentZOrder(jP_menuprincipal, 2);
+        jPanel1.setComponentZOrder(jP_sombreado, 3);
+        jPanel1.setComponentZOrder(jPanel3, 4);
         jPanel1.repaint();
 
         Tools.anim_icon_button(btn_menu, () -> this.menu);
@@ -55,6 +58,7 @@ public class Home extends javax.swing.JFrame {
 
         UtilPanels p = new UtilPanels();
 
+        ventas =  new Ventas(this, p);
         turnos = new Turnos(this, p);
         inventario = new Inventario(this, p);
         usuarios = new Usuarios(this, p);
@@ -107,10 +111,10 @@ public class Home extends javax.swing.JFrame {
         jM_editarInfoEmpresa = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jP_popupVentas = new javax.swing.JPanel();
-        jL_cambiarcontrase_menuItem1 = new javax.swing.JLabel();
-        jL_editarinfoempresa_menuItem1 = new javax.swing.JLabel();
-        jL_editarinfoempresa_menuItem2 = new javax.swing.JLabel();
-        jL_editarinfoempresa_menuItem3 = new javax.swing.JLabel();
+        jL_nuevaventa_menuItem = new javax.swing.JLabel();
+        jL_historialventas_menuItem = new javax.swing.JLabel();
+        jL_gestioncredito_menuItem = new javax.swing.JLabel();
+        jL_gestiondevoluciones_menuItem = new javax.swing.JLabel();
         jP_popupConfiguracion = new javax.swing.JPanel();
         jL_cambiarcontrase_menuItem = new javax.swing.JLabel();
         jL_editarinfoempresa_menuItem = new javax.swing.JLabel();
@@ -131,7 +135,7 @@ public class Home extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jP_nuevaventas = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        TableNV = new javax.swing.JTable();
+        tableNuevaVenta = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jP_buscadorcliente3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -296,67 +300,68 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
-        setPreferredSize(new java.awt.Dimension(1270, 773));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jP_popupVentas.setBackground(new java.awt.Color(43, 55, 72));
         jP_popupVentas.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), null));
+        jP_popupVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jP_popupVentasMouseClicked(evt);
+            }
+        });
 
-        jL_cambiarcontrase_menuItem1.setBackground(new java.awt.Color(43, 55, 72));
-        jL_cambiarcontrase_menuItem1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jL_cambiarcontrase_menuItem1.setForeground(new java.awt.Color(255, 255, 255));
-        jL_cambiarcontrase_menuItem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jL_cambiarcontrase_menuItem1.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/Images/password_icon.png")).getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
-        jL_cambiarcontrase_menuItem1.setText("Nueva venta");
-        jL_cambiarcontrase_menuItem1.setOpaque(true);
+        jL_nuevaventa_menuItem.setBackground(new java.awt.Color(43, 55, 72));
+        jL_nuevaventa_menuItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jL_nuevaventa_menuItem.setForeground(new java.awt.Color(255, 255, 255));
+        jL_nuevaventa_menuItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jL_nuevaventa_menuItem.setText("Nueva venta");
+        jL_nuevaventa_menuItem.setOpaque(true);
 
-        jL_editarinfoempresa_menuItem1.setBackground(new java.awt.Color(43, 55, 72));
-        jL_editarinfoempresa_menuItem1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jL_editarinfoempresa_menuItem1.setForeground(new java.awt.Color(255, 255, 255));
-        jL_editarinfoempresa_menuItem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jL_editarinfoempresa_menuItem1.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/Images/setting_icon.png")).getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
-        jL_editarinfoempresa_menuItem1.setText("Historial  de ventas");
-        jL_editarinfoempresa_menuItem1.setOpaque(true);
+        jL_historialventas_menuItem.setBackground(new java.awt.Color(43, 55, 72));
+        jL_historialventas_menuItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jL_historialventas_menuItem.setForeground(new java.awt.Color(255, 255, 255));
+        jL_historialventas_menuItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jL_historialventas_menuItem.setText("Historial  de ventas");
+        jL_historialventas_menuItem.setOpaque(true);
 
-        jL_editarinfoempresa_menuItem2.setBackground(new java.awt.Color(43, 55, 72));
-        jL_editarinfoempresa_menuItem2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jL_editarinfoempresa_menuItem2.setForeground(new java.awt.Color(255, 255, 255));
-        jL_editarinfoempresa_menuItem2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jL_editarinfoempresa_menuItem2.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/Images/setting_icon.png")).getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
-        jL_editarinfoempresa_menuItem2.setText("Gestión de crédito");
-        jL_editarinfoempresa_menuItem2.setOpaque(true);
+        jL_gestioncredito_menuItem.setBackground(new java.awt.Color(43, 55, 72));
+        jL_gestioncredito_menuItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jL_gestioncredito_menuItem.setForeground(new java.awt.Color(255, 255, 255));
+        jL_gestioncredito_menuItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jL_gestioncredito_menuItem.setText("Gestión de crédito");
+        jL_gestioncredito_menuItem.setOpaque(true);
 
-        jL_editarinfoempresa_menuItem3.setBackground(new java.awt.Color(43, 55, 72));
-        jL_editarinfoempresa_menuItem3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jL_editarinfoempresa_menuItem3.setForeground(new java.awt.Color(255, 255, 255));
-        jL_editarinfoempresa_menuItem3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jL_editarinfoempresa_menuItem3.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/Images/setting_icon.png")).getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
-        jL_editarinfoempresa_menuItem3.setText("Gestión de devoluciones");
-        jL_editarinfoempresa_menuItem3.setOpaque(true);
+        jL_gestiondevoluciones_menuItem.setBackground(new java.awt.Color(43, 55, 72));
+        jL_gestiondevoluciones_menuItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jL_gestiondevoluciones_menuItem.setForeground(new java.awt.Color(255, 255, 255));
+        jL_gestiondevoluciones_menuItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jL_gestiondevoluciones_menuItem.setText("Gestión de devoluciones");
+        jL_gestiondevoluciones_menuItem.setOpaque(true);
 
         javax.swing.GroupLayout jP_popupVentasLayout = new javax.swing.GroupLayout(jP_popupVentas);
         jP_popupVentas.setLayout(jP_popupVentasLayout);
         jP_popupVentasLayout.setHorizontalGroup(
             jP_popupVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jL_cambiarcontrase_menuItem1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jL_editarinfoempresa_menuItem1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-            .addComponent(jL_editarinfoempresa_menuItem2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jL_editarinfoempresa_menuItem3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jL_nuevaventa_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jL_historialventas_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+            .addComponent(jL_gestioncredito_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jL_gestiondevoluciones_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jP_popupVentasLayout.setVerticalGroup(
             jP_popupVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_popupVentasLayout.createSequentialGroup()
-                .addComponent(jL_cambiarcontrase_menuItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jL_nuevaventa_menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jL_editarinfoempresa_menuItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jL_historialventas_menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jL_editarinfoempresa_menuItem2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jL_gestioncredito_menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jL_editarinfoempresa_menuItem3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jL_gestiondevoluciones_menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jP_popupVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(-200, 314, 200, 80));
+        jPanel1.add(jP_popupVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(-200, 68, 200, 162));
 
         jP_popupConfiguracion.setBackground(new java.awt.Color(43, 55, 72));
         jP_popupConfiguracion.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), null));
@@ -603,7 +608,7 @@ public class Home extends javax.swing.JFrame {
         jP_nuevaventas.setBackground(new java.awt.Color(250, 250, 250));
         jP_nuevaventas.setPreferredSize(new java.awt.Dimension(1300, 773));
 
-        TableNV.setModel(new javax.swing.table.DefaultTableModel(
+        tableNuevaVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -619,11 +624,11 @@ public class Home extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(TableNV);
-        if (TableNV.getColumnModel().getColumnCount() > 0) {
-            TableNV.getColumnModel().getColumn(0).setMinWidth(0);
-            TableNV.getColumnModel().getColumn(0).setPreferredWidth(0);
-            TableNV.getColumnModel().getColumn(0).setMaxWidth(0);
+        jScrollPane6.setViewportView(tableNuevaVenta);
+        if (tableNuevaVenta.getColumnModel().getColumnCount() > 0) {
+            tableNuevaVenta.getColumnModel().getColumn(0).setMinWidth(0);
+            tableNuevaVenta.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tableNuevaVenta.getColumnModel().getColumn(0).setMaxWidth(0);
         }
 
         jButton1.setBackground(new java.awt.Color(250, 250, 250));
@@ -829,7 +834,7 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jP_buscadorcliente1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(scroll_clientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab2", jP_cajas);
@@ -1103,7 +1108,7 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jP_buscadorcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)))
                 .addComponent(scroll_clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab2", jP_clientes);
@@ -1229,7 +1234,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(scroll_usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab2", jP_usuarios);
@@ -1737,6 +1742,10 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_buscador_cliente1ActionPerformed
 
+    private void jP_popupVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jP_popupVentasMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jP_popupVentasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1779,7 +1788,6 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTable TableNV;
     public javax.swing.JLabel btn_anteriorpag_inv;
     public javax.swing.JLabel btn_anteriorpag_turno;
     private javax.swing.JLabel btn_menu;
@@ -1801,16 +1809,16 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jL_caja;
     public javax.swing.JLabel jL_caja_turno;
     public javax.swing.JLabel jL_cambiarcontrase_menuItem;
-    public javax.swing.JLabel jL_cambiarcontrase_menuItem1;
     private javax.swing.JLabel jL_cerrarsesion;
     private javax.swing.JLabel jL_clientes;
     private javax.swing.JLabel jL_configuracion;
     public javax.swing.JLabel jL_depositrar_turno;
     public javax.swing.JLabel jL_editarinfoempresa_menuItem;
-    public javax.swing.JLabel jL_editarinfoempresa_menuItem1;
-    public javax.swing.JLabel jL_editarinfoempresa_menuItem2;
-    public javax.swing.JLabel jL_editarinfoempresa_menuItem3;
+    public javax.swing.JLabel jL_gestioncredito_menuItem;
+    public javax.swing.JLabel jL_gestiondevoluciones_menuItem;
+    public javax.swing.JLabel jL_historialventas_menuItem;
     private javax.swing.JLabel jL_inventarios;
+    public javax.swing.JLabel jL_nuevaventa_menuItem;
     public javax.swing.JLabel jL_retirar_turno;
     public javax.swing.JLabel jL_saldoactual_turno;
     public javax.swing.JLabel jL_t_abiertopor_turno;
@@ -1860,7 +1868,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jP_historialVentas;
     private javax.swing.JPanel jP_inventario;
     private javax.swing.JPanel jP_menuprincipal;
-    private javax.swing.JPanel jP_nuevaventas;
+    public javax.swing.JPanel jP_nuevaventas;
     public javax.swing.JPanel jP_popupConfiguracion;
     public javax.swing.JPanel jP_popupVentas;
     private javax.swing.JPanel jP_sombreado;
@@ -1889,13 +1897,14 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JScrollPane scroll_clientes;
     private javax.swing.JScrollPane scroll_clientes1;
     private javax.swing.JScrollPane scroll_usuarios;
     public javax.swing.JTable tableCajas;
     public javax.swing.JTable tableClientes;
     public javax.swing.JTable tableInventario;
+    public javax.swing.JTable tableNuevaVenta;
     public javax.swing.JTable tableTurno;
     public javax.swing.JTable tableUsuarios;
     public javax.swing.JTextField txt_buscador_caja;
@@ -1943,6 +1952,11 @@ public class Home extends javax.swing.JFrame {
 
         Tools.btns(jL_cambiarcontrase_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
         Tools.btns(jL_editarinfoempresa_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
+        
+        Tools.btns(jL_nuevaventa_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
+        Tools.btns(jL_historialventas_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
+        Tools.btns(jL_gestioncredito_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
+        Tools.btns(jL_gestiondevoluciones_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
 
         jL_cerrarsesion.addMouseListener(new MouseAdapter() {
             @Override
@@ -2009,6 +2023,9 @@ public class Home extends javax.swing.JFrame {
             jP_popupConfiguracion.setBounds(jP_popupConfiguracion.getX(), jL_configuracion.getY() + jL_configuracion.getHeight(),
                     jP_popupConfiguracion.getWidth(), jL_cambiarcontrase_menuItem.getHeight());
         }
+        if(jP_popupVentas.getX()>=0){
+            OcultarJPopupVentas();
+        }
         Animacion.Animacion.mover_derecha(-200, 0, 1, 1, jP_popupConfiguracion);
     }
 
@@ -2017,6 +2034,9 @@ public class Home extends javax.swing.JFrame {
     }
     
     private void MostrarJPopupVentas(){
+        if(jP_popupConfiguracion.getX()>=0){
+            OcultarJPopupConfiguracion();
+        }
         Animacion.Animacion.mover_derecha(-200, 0, 1, 1,jP_popupVentas);
         
     }
