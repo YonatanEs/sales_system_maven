@@ -514,6 +514,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Venta"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
                 <Property name="disabledIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="0" name="null"/>
                 </Property>
@@ -541,6 +544,9 @@
                   <Image iconType="3" name="/Images/turno.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Turno"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
@@ -563,6 +569,9 @@
                   <Image iconType="3" name="/Images/cash_register_icon_192649.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Caja"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
@@ -585,6 +594,9 @@
                   <Image iconType="3" name="/Images/travel_package_transport_shipping_box_delivery_icon_227300.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Inventario"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
@@ -607,6 +619,9 @@
                   <Image iconType="3" name="/Images/Users_40957 (1).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Clientes"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
@@ -629,6 +644,9 @@
                   <Image iconType="3" name="/Images/1495573745-jd06_84493.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usuarios"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
@@ -654,6 +672,9 @@
                   <Image iconType="3" name="/Images/configuration2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Configuraci&#xf3;n"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
@@ -676,6 +697,9 @@
                   <Image iconType="3" name="/Images/logout (2).png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cerrar sesi&#xf3;n"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
@@ -796,26 +820,22 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="842" max="-2" attributes="0"/>
-                                      <Component id="jLabel2" min="-2" pref="301" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                      <Component id="jP_buscadorcliente3" min="-2" pref="283" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btn_generar_nuevaventa" min="-2" pref="165" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jScrollPane6" min="-2" pref="1100" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                              <Component id="jP_buscadorcliente3" min="-2" pref="283" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="jButton1" min="-2" pref="165" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jL_info_nuevaventa" min="-2" pref="572" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="jL_totalapagar_nuevaventa" min="-2" pref="301" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jScrollPane6" alignment="1" min="-2" pref="1100" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="130" max="32767" attributes="0"/>
+                              <EmptySpace pref="190" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -824,16 +844,19 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButton1" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="btn_generar_nuevaventa" min="-2" pref="38" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jP_buscadorcliente3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jScrollPane6" min="-2" pref="500" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" pref="26" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jL_info_nuevaventa" max="32767" attributes="0"/>
+                                  <Component id="jL_totalapagar_nuevaventa" pref="33" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="191" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -903,7 +926,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JButton" name="jButton1">
+                    <Component class="javax.swing.JButton" name="btn_generar_nuevaventa">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="fa" green="fa" red="fa" type="rgb"/>
@@ -914,6 +937,9 @@
                         <Property name="text" type="java.lang.String" value="Generar venta"/>
                         <Property name="horizontalTextPosition" type="int" value="2"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                     <Container class="javax.swing.JPanel" name="jP_buscadorcliente3">
                       <Properties>
@@ -936,14 +962,14 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel8" min="-2" pref="42" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txt_buscador_cliente1" min="-2" pref="225" max="-2" attributes="0"/>
+                                  <Component id="txt_buscador_nuevaventa" min="-2" pref="225" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txt_buscador_cliente1" alignment="0" pref="41" max="32767" attributes="0"/>
+                              <Component id="txt_buscador_nuevaventa" alignment="0" pref="41" max="32767" attributes="0"/>
                               <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
@@ -961,14 +987,14 @@
                             <Property name="alignmentX" type="float" value="0.5"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txt_buscador_cliente1">
+                        <Component class="javax.swing.JTextField" name="txt_buscador_nuevaventa">
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="null"/>
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_buscador_cliente1ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_buscador_nuevaventaActionPerformed"/>
                           </Events>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -976,7 +1002,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JLabel" name="jLabel2">
+                    <Component class="javax.swing.JLabel" name="jL_totalapagar_nuevaventa">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="14" style="1"/>
@@ -984,6 +1010,19 @@
                         <Property name="horizontalAlignment" type="int" value="4"/>
                         <Property name="text" type="java.lang.String" value="Total a pagar Q. 0.00"/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jL_info_nuevaventa">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="12" style="1"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1843,7 +1882,7 @@
                                   </Group>
                                   <Component id="scroll_usuarios" min="-2" pref="1100" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="130" max="32767" attributes="0"/>
+                              <EmptySpace pref="190" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2084,7 +2123,7 @@
                                   <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jSeparator7" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="1080" max="32767" attributes="0"/>
+                              <EmptySpace pref="1140" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2130,6 +2169,9 @@
                       <Dimension value="[1300, 735]"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                       <JTabbedPaneConstraints tabName="tab2">
@@ -2165,10 +2207,10 @@
                                               <Group type="102" attributes="0">
                                                   <Component id="jL_abiertopor_turno" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="jL_abrir_turno" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <Component id="jL_abrir_turno" min="-2" pref="107" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="jL_depositrar_turno" min="-2" pref="104" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" max="-2" attributes="0"/>
                                           <Component id="jL_retirar_turno" min="-2" pref="90" max="-2" attributes="0"/>
@@ -2195,32 +2237,36 @@
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jL_t_apertura_turno" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                                      <Component id="jL_t_abiertopor_turno" min="-2" pref="20" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jL_apertura_turno" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="jL_abiertopor_turno" min="-2" pref="20" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jL_depositrar_turno" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
-                                          <Component id="jP_buscadorcliente2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jL_retirar_turno" min="-2" pref="38" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jL_t_apertura_turno" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                                              <Component id="jL_t_abiertopor_turno" min="-2" pref="20" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jL_apertura_turno" min="-2" pref="20" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                              <Component id="jL_abiertopor_turno" min="-2" pref="20" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jL_depositrar_turno" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
+                                                  <Component id="jP_buscadorcliente2" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jL_retirar_turno" min="-2" pref="38" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
+                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                      <Component id="jScrollPane2" min="-2" pref="510" max="-2" attributes="0"/>
+                                      <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
+                                      <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Component id="jL_abrir_turno" min="-2" pref="31" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" min="-2" pref="510" max="-2" attributes="0"/>
-                              <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
-                              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2606,7 +2652,7 @@
                                   <Component id="jLabel9" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jSeparator9" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="1080" max="32767" attributes="0"/>
+                              <EmptySpace pref="1140" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2666,7 +2712,7 @@
                                   <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jSeparator13" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="1080" max="32767" attributes="0"/>
+                              <EmptySpace pref="1140" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2726,7 +2772,7 @@
                                   <Component id="jLabel16" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jSeparator14" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="1080" max="32767" attributes="0"/>
+                              <EmptySpace pref="1140" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

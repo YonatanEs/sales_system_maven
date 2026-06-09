@@ -35,10 +35,10 @@ public class Home extends javax.swing.JFrame {
     public TextAutoCompleter buscadorcod, sugerenciasventas;
 
     private Ventas ventas;
-    private Turnos turnos;
+    public Turnos turnos;
     private Usuarios usuarios;
     private Clientes clientes;
-    private Inventario inventario;
+    public Inventario inventario;
     private Cajas cajas;
     public Configuracion configuracion;
 
@@ -58,7 +58,7 @@ public class Home extends javax.swing.JFrame {
 
         UtilPanels p = new UtilPanels();
 
-        ventas =  new Ventas(this, p);
+        
         turnos = new Turnos(this, p);
         inventario = new Inventario(this, p);
         usuarios = new Usuarios(this, p);
@@ -66,6 +66,8 @@ public class Home extends javax.swing.JFrame {
         cajas = new Cajas(this, p);
         configuracion = new Configuracion(this, p);
 
+        ventas =  new Ventas(this, p);
+        
         jP_sombreado.setVisible(false);
 
         repaint();
@@ -136,11 +138,12 @@ public class Home extends javax.swing.JFrame {
         jP_nuevaventas = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tableNuevaVenta = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btn_generar_nuevaventa = new javax.swing.JButton();
         jP_buscadorcliente3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txt_buscador_cliente1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        txt_buscador_nuevaventa = new javax.swing.JTextField();
+        jL_totalapagar_nuevaventa = new javax.swing.JLabel();
+        jL_info_nuevaventa = new javax.swing.JLabel();
         jP_cajas = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jSeparator12 = new javax.swing.JSeparator();
@@ -409,6 +412,7 @@ public class Home extends javax.swing.JFrame {
         jL_ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/shopping_cart_icon_156961.png"))); // NOI18N
         jL_ventas.setText("Venta");
         jL_ventas.setToolTipText("");
+        jL_ventas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jL_ventas.setDisabledIcon(null);
         jL_ventas.setFocusable(false);
         jL_ventas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -425,6 +429,7 @@ public class Home extends javax.swing.JFrame {
         jL_turno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jL_turno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/turno.png"))); // NOI18N
         jL_turno.setText("Turno");
+        jL_turno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jL_turno.setOpaque(true);
         jL_turno.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -438,6 +443,7 @@ public class Home extends javax.swing.JFrame {
         jL_caja.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jL_caja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cash_register_icon_192649.png"))); // NOI18N
         jL_caja.setText("Caja");
+        jL_caja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jL_caja.setOpaque(true);
         jL_caja.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -451,6 +457,7 @@ public class Home extends javax.swing.JFrame {
         jL_inventarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jL_inventarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/travel_package_transport_shipping_box_delivery_icon_227300.png"))); // NOI18N
         jL_inventarios.setText("Inventario");
+        jL_inventarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jL_inventarios.setOpaque(true);
         jL_inventarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -464,6 +471,7 @@ public class Home extends javax.swing.JFrame {
         jL_clientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jL_clientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Users_40957 (1).png"))); // NOI18N
         jL_clientes.setText("Clientes");
+        jL_clientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jL_clientes.setOpaque(true);
         jL_clientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -477,6 +485,7 @@ public class Home extends javax.swing.JFrame {
         jL_usuarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jL_usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1495573745-jd06_84493.png"))); // NOI18N
         jL_usuarios.setText("Usuarios");
+        jL_usuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jL_usuarios.setOpaque(true);
         jL_usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -490,6 +499,7 @@ public class Home extends javax.swing.JFrame {
         jL_configuracion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jL_configuracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/configuration2.png"))); // NOI18N
         jL_configuracion.setText("Configuración");
+        jL_configuracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jL_configuracion.setOpaque(true);
         jL_configuracion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -503,6 +513,7 @@ public class Home extends javax.swing.JFrame {
         jL_cerrarsesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jL_cerrarsesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logout (2).png"))); // NOI18N
         jL_cerrarsesion.setText("Cerrar sesión");
+        jL_cerrarsesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jL_cerrarsesion.setOpaque(true);
         jL_cerrarsesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -631,10 +642,10 @@ public class Home extends javax.swing.JFrame {
             tableNuevaVenta.getColumnModel().getColumn(0).setMaxWidth(0);
         }
 
-        jButton1.setBackground(new java.awt.Color(250, 250, 250));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sale_icon.png"))); // NOI18N
-        jButton1.setText("Generar venta");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btn_generar_nuevaventa.setBackground(new java.awt.Color(250, 250, 250));
+        btn_generar_nuevaventa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/sale_icon.png"))); // NOI18N
+        btn_generar_nuevaventa.setText("Generar venta");
+        btn_generar_nuevaventa.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jP_buscadorcliente3.setBackground(new java.awt.Color(255, 255, 255));
         jP_buscadorcliente3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
@@ -644,10 +655,10 @@ public class Home extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/magnifyingglass_87552_1.png"))); // NOI18N
         jLabel8.setAlignmentX(0.5F);
 
-        txt_buscador_cliente1.setBorder(null);
-        txt_buscador_cliente1.addActionListener(new java.awt.event.ActionListener() {
+        txt_buscador_nuevaventa.setBorder(null);
+        txt_buscador_nuevaventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_buscador_cliente1ActionPerformed(evt);
+                txt_buscador_nuevaventaActionPerformed(evt);
             }
         });
 
@@ -659,53 +670,55 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txt_buscador_cliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_buscador_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         jP_buscadorcliente3Layout.setVerticalGroup(
             jP_buscadorcliente3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt_buscador_cliente1, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+            .addComponent(txt_buscador_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Total a pagar Q. 0.00");
+        jL_totalapagar_nuevaventa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jL_totalapagar_nuevaventa.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jL_totalapagar_nuevaventa.setText("Total a pagar Q. 0.00");
+
+        jL_info_nuevaventa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jP_nuevaventasLayout = new javax.swing.GroupLayout(jP_nuevaventas);
         jP_nuevaventas.setLayout(jP_nuevaventasLayout);
         jP_nuevaventasLayout.setHorizontalGroup(
             jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_nuevaventasLayout.createSequentialGroup()
-                .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(70, 70, 70)
+                .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jP_nuevaventasLayout.createSequentialGroup()
-                        .addGap(842, 842, 842)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jP_nuevaventasLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jP_nuevaventasLayout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jP_buscadorcliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)))))
-                .addContainerGap(130, Short.MAX_VALUE))
+                        .addGap(7, 7, 7)
+                        .addComponent(jP_buscadorcliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_generar_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_nuevaventasLayout.createSequentialGroup()
+                        .addComponent(jL_info_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jL_totalapagar_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         jP_nuevaventasLayout.setVerticalGroup(
             jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_nuevaventasLayout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_generar_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jP_nuevaventasLayout.createSequentialGroup()
                         .addComponent(jP_buscadorcliente3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jL_info_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jL_totalapagar_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab2", jP_nuevaventas);
@@ -1213,7 +1226,7 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jP_buscadorusuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scroll_usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         jP_usuariosLayout.setVerticalGroup(
             jP_usuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1256,7 +1269,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jP_confiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(1080, Short.MAX_VALUE))
+                .addContainerGap(1140, Short.MAX_VALUE))
         );
         jP_confiLayout.setVerticalGroup(
             jP_confiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1428,7 +1441,7 @@ public class Home extends javax.swing.JFrame {
                                 .addGroup(jP_turnoLayout.createSequentialGroup()
                                     .addComponent(jL_abiertopor_turno)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jL_abrir_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jL_abrir_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jL_depositrar_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1450,26 +1463,28 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jL_saldoactual_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jP_turnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jP_turnoLayout.createSequentialGroup()
-                        .addComponent(jL_t_apertura_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(jL_t_abiertopor_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jP_turnoLayout.createSequentialGroup()
-                        .addComponent(jL_apertura_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jL_abiertopor_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jP_turnoLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jP_turnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jL_depositrar_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jP_buscadorcliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jL_retirar_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jP_turnoLayout.createSequentialGroup()
+                                .addComponent(jL_t_apertura_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(jL_t_abiertopor_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jP_turnoLayout.createSequentialGroup()
+                                .addComponent(jL_apertura_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(jL_abiertopor_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jP_turnoLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jP_turnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jL_depositrar_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jP_buscadorcliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jL_retirar_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(13, 13, 13)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jP_turnoLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jL_abrir_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jL_abrir_turno, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         jL_abiertopor_turno.setVisible(false);
@@ -1500,7 +1515,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jP_historialVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(1080, Short.MAX_VALUE))
+                .addContainerGap(1140, Short.MAX_VALUE))
         );
         jP_historialVentasLayout.setVerticalGroup(
             jP_historialVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1531,7 +1546,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jP_gestionCreditosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(1080, Short.MAX_VALUE))
+                .addContainerGap(1140, Short.MAX_VALUE))
         );
         jP_gestionCreditosLayout.setVerticalGroup(
             jP_gestionCreditosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1562,7 +1577,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jP_gestionDevolucionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator14, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(1080, Short.MAX_VALUE))
+                .addContainerGap(1140, Short.MAX_VALUE))
         );
         jP_gestionDevolucionesLayout.setVerticalGroup(
             jP_gestionDevolucionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1738,9 +1753,9 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jL_wpaperMouseClicked
 
-    private void txt_buscador_cliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscador_cliente1ActionPerformed
+    private void txt_buscador_nuevaventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscador_nuevaventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_buscador_cliente1ActionPerformed
+    }//GEN-LAST:event_txt_buscador_nuevaventaActionPerformed
 
     private void jP_popupVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jP_popupVentasMouseClicked
         // TODO add your handling code here:
@@ -1781,8 +1796,6 @@ public class Home extends javax.swing.JFrame {
                 Home home = new Home();
                 home.setVisible(true);
 
-                JLayeredPane layered = home.getLayeredPane();
-
             }
         });
     }
@@ -1790,6 +1803,7 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel btn_anteriorpag_inv;
     public javax.swing.JLabel btn_anteriorpag_turno;
+    public javax.swing.JButton btn_generar_nuevaventa;
     private javax.swing.JLabel btn_menu;
     public javax.swing.JLabel btn_nvprod_inv;
     public javax.swing.JLabel btn_registrarcaja;
@@ -1801,7 +1815,6 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JMenuItem item_editar_inv;
     public javax.swing.JMenuItem item_estado_inv;
     public javax.swing.JMenuItem item_removeStock;
-    private javax.swing.JButton jButton1;
     public com.toedter.calendar.JDateChooser jD_selectFecha_turno;
     public javax.swing.JLabel jL_abiertopor_turno;
     public javax.swing.JLabel jL_abrir_turno;
@@ -1817,6 +1830,7 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JLabel jL_gestioncredito_menuItem;
     public javax.swing.JLabel jL_gestiondevoluciones_menuItem;
     public javax.swing.JLabel jL_historialventas_menuItem;
+    public javax.swing.JLabel jL_info_nuevaventa;
     private javax.swing.JLabel jL_inventarios;
     public javax.swing.JLabel jL_nuevaventa_menuItem;
     public javax.swing.JLabel jL_retirar_turno;
@@ -1825,6 +1839,7 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JLabel jL_t_apertura_turno;
     public javax.swing.JLabel jL_t_caja_turno;
     public javax.swing.JLabel jL_t_saldo_actual;
+    public javax.swing.JLabel jL_totalapagar_nuevaventa;
     private javax.swing.JLabel jL_turno;
     public javax.swing.JLabel jL_usuarios;
     private javax.swing.JLabel jL_ventas;
@@ -1837,7 +1852,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1872,7 +1886,7 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JPanel jP_popupConfiguracion;
     public javax.swing.JPanel jP_popupVentas;
     private javax.swing.JPanel jP_sombreado;
-    private javax.swing.JPanel jP_turno;
+    public javax.swing.JPanel jP_turno;
     private javax.swing.JPanel jP_usuarios;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1909,8 +1923,8 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JTable tableUsuarios;
     public javax.swing.JTextField txt_buscador_caja;
     public javax.swing.JTextField txt_buscador_cliente;
-    public javax.swing.JTextField txt_buscador_cliente1;
     public javax.swing.JTextField txt_buscador_inventario;
+    public javax.swing.JTextField txt_buscador_nuevaventa;
     public javax.swing.JTextField txt_buscadorfecha_turno;
     public javax.swing.JTextField txt_buscadorp_usuario;
     // End of variables declaration//GEN-END:variables

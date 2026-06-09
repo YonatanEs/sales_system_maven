@@ -406,6 +406,16 @@ public final class UtilPanels extends javax.swing.JFrame {
         jLabel123 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jP_infoproducto_nuevaventa = new javax.swing.JPanel();
+        jL_titulo_pcliente14 = new javax.swing.JLabel();
+        jL_titulo_pcliente17 = new javax.swing.JLabel();
+        jL_descripcion_nuevaventa = new javax.swing.JLabel();
+        jL_stock_nuevaventa = new javax.swing.JLabel();
+        jL_titulo_pcliente18 = new javax.swing.JLabel();
+        jL_titulo_pcliente19 = new javax.swing.JLabel();
+        txt_addstock_nuevaventa = new javax.swing.JTextField();
+        btn_añadir_nuevaventa = new javax.swing.JButton();
+        jL_medida_nuevaventa = new javax.swing.JLabel();
 
         cargando.setBackground(new java.awt.Color(255, 255, 255));
         cargando.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -862,10 +872,13 @@ public final class UtilPanels extends javax.swing.JFrame {
         jLabel34.setText("Descripcion:");
 
         txt_codigo_rp_inv.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txt_codigo_rp_inv.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         txt_descripcion_rp_inv.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txt_descripcion_rp_inv.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         txt_precioVenta_rp_inv.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txt_precioVenta_rp_inv.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txt_precioVenta_rp_inv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_precioVenta_rp_invActionPerformed(evt);
@@ -1439,11 +1452,16 @@ public final class UtilPanels extends javax.swing.JFrame {
         jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel44.setText("Categoría:");
 
+        txt_codigopro.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txt_codigopro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_codigoproKeyTyped(evt);
             }
         });
+
+        txt_nombrepro.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+
+        txt_categoríapro.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jL_addimg.setToolTipText("click para cargar imagen");
         jL_addimg.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3433,6 +3451,86 @@ public final class UtilPanels extends javax.swing.JFrame {
 
         jP_reporte_cierre_de_turno.add(jP_hoja_reporteCierre);
 
+        jP_infoproducto_nuevaventa.setBackground(new java.awt.Color(250, 250, 250));
+
+        jL_titulo_pcliente14.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        jL_titulo_pcliente14.setText("<html><u>Informacion de producto</u></html>");
+
+        jL_titulo_pcliente17.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jL_titulo_pcliente17.setText("Descripcion:");
+
+        jL_descripcion_nuevaventa.setText("producto");
+
+        jL_stock_nuevaventa.setText("producto");
+
+        jL_titulo_pcliente18.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jL_titulo_pcliente18.setText("Stock :");
+
+        jL_titulo_pcliente19.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jL_titulo_pcliente19.setText("Cantidad:");
+
+        txt_addstock_nuevaventa.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+
+        btn_añadir_nuevaventa.setText("Añadir");
+
+        jL_medida_nuevaventa.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jL_medida_nuevaventa.setText("lb");
+
+        javax.swing.GroupLayout jP_infoproducto_nuevaventaLayout = new javax.swing.GroupLayout(jP_infoproducto_nuevaventa);
+        jP_infoproducto_nuevaventa.setLayout(jP_infoproducto_nuevaventaLayout);
+        jP_infoproducto_nuevaventaLayout.setHorizontalGroup(
+            jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
+                .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(btn_añadir_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jL_titulo_pcliente14, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
+                                    .addComponent(jL_titulo_pcliente17)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jL_descripcion_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
+                                    .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jL_titulo_pcliente18)
+                                        .addComponent(jL_titulo_pcliente19))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jL_stock_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
+                                            .addComponent(jL_medida_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txt_addstock_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(0, 0, Short.MAX_VALUE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jP_infoproducto_nuevaventaLayout.setVerticalGroup(
+            jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jL_titulo_pcliente14, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jL_titulo_pcliente17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_descripcion_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jL_stock_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_titulo_pcliente18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jL_titulo_pcliente19, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_addstock_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_medida_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(btn_añadir_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -3579,6 +3677,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JButton btn_addmedida_inv;
     public javax.swing.JButton btn_addproveedor_inv;
     public javax.swing.JButton btn_añadir_addstock;
+    public javax.swing.JButton btn_añadir_nuevaventa;
     public javax.swing.JButton btn_calculadoraBilletes_turno;
     public javax.swing.JButton btn_cambiarContraseña;
     public volatile javax.swing.JButton btn_cancelarCat_inv;
@@ -3634,6 +3733,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_depositosventas_turno;
     public javax.swing.JLabel jL_depositoventa_reporteCierre;
     public javax.swing.JLabel jL_descripcion_addstock;
+    public javax.swing.JLabel jL_descripcion_nuevaventa;
     public javax.swing.JLabel jL_descripcion_removeStock;
     private javax.swing.JLabel jL_editarinfopro;
     public javax.swing.JLabel jL_efectivoCC_turno;
@@ -3652,6 +3752,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_logo_infoEmpresa;
     public javax.swing.JLabel jL_logo_reporteCierre;
     public javax.swing.JLabel jL_medida_addstock;
+    public javax.swing.JLabel jL_medida_nuevaventa;
     public javax.swing.JLabel jL_medida_removeStock;
     public javax.swing.JLabel jL_namepr;
     public javax.swing.JLabel jL_noCierre_reporteCierre;
@@ -3672,6 +3773,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_stock_addstock;
     public javax.swing.JLabel jL_stock_hint_pr_inv1;
     public javax.swing.JLabel jL_stock_hint_rsi;
+    public javax.swing.JLabel jL_stock_nuevaventa;
     public javax.swing.JLabel jL_stock_removeStock;
     public javax.swing.JLabel jL_stockpr;
     public javax.swing.JLabel jL_tituloEfectivo_turno;
@@ -3685,8 +3787,12 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_titulo_pcliente11;
     public javax.swing.JLabel jL_titulo_pcliente12;
     public javax.swing.JLabel jL_titulo_pcliente13;
+    public javax.swing.JLabel jL_titulo_pcliente14;
     public javax.swing.JLabel jL_titulo_pcliente15;
     public javax.swing.JLabel jL_titulo_pcliente16;
+    public javax.swing.JLabel jL_titulo_pcliente17;
+    public javax.swing.JLabel jL_titulo_pcliente18;
+    public javax.swing.JLabel jL_titulo_pcliente19;
     public javax.swing.JLabel jL_titulo_pcliente2;
     public javax.swing.JLabel jL_titulo_pcliente3;
     public javax.swing.JLabel jL_titulo_pcliente4;
@@ -3830,6 +3936,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JPanel jP_historial_movimientosStock;
     public javax.swing.JPanel jP_historial_movimientos_turno;
     public javax.swing.JPanel jP_hoja_reporteCierre;
+    public javax.swing.JPanel jP_infoproducto_nuevaventa;
     public javax.swing.JPanel jP_ingresoInventario;
     private javax.swing.JPanel jP_ingresos;
     private javax.swing.JPanel jP_margenes;
@@ -3895,6 +4002,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JTextField txt_50;
     public volatile javax.swing.JTextField txt_abrevMed_inv;
     public javax.swing.JTextField txt_addstock_addstock;
+    public javax.swing.JTextField txt_addstock_nuevaventa;
     public javax.swing.JTextField txt_buscadorfechaMT_turno;
     public javax.swing.JTextField txt_categoríapro;
     public javax.swing.JTextField txt_codigo_rp_inv;
