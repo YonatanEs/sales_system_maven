@@ -97,8 +97,8 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupNventa = new javax.swing.JPopupMenu();
-        jMenuItemEliminar = new javax.swing.JMenuItem();
-        jMenuItemeliminartodo = new javax.swing.JMenuItem();
+        jM_eliminar_nuevaventa = new javax.swing.JMenuItem();
+        jM_eliminartodo_nuevaventa = new javax.swing.JMenuItem();
         jPopupInventario = new javax.swing.JPopupMenu();
         item_addStock_inv = new javax.swing.JMenuItem();
         item_removeStock = new javax.swing.JMenuItem();
@@ -224,23 +224,23 @@ public class Home extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jSeparator14 = new javax.swing.JSeparator();
 
-        jMenuItemEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eliminar.png"))); // NOI18N
-        jMenuItemEliminar.setText("Eliminar producto");
-        jMenuItemEliminar.addActionListener(new java.awt.event.ActionListener() {
+        jM_eliminar_nuevaventa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eliminar.png"))); // NOI18N
+        jM_eliminar_nuevaventa.setText("Eliminar producto");
+        jM_eliminar_nuevaventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemEliminarActionPerformed(evt);
+                jM_eliminar_nuevaventaActionPerformed(evt);
             }
         });
-        jPopupNventa.add(jMenuItemEliminar);
+        jPopupNventa.add(jM_eliminar_nuevaventa);
 
-        jMenuItemeliminartodo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eliminartodo.png"))); // NOI18N
-        jMenuItemeliminartodo.setText("Eliminar todo");
-        jMenuItemeliminartodo.addActionListener(new java.awt.event.ActionListener() {
+        jM_eliminartodo_nuevaventa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eliminartodo.png"))); // NOI18N
+        jM_eliminartodo_nuevaventa.setText("Eliminar todo");
+        jM_eliminartodo_nuevaventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemeliminartodoActionPerformed(evt);
+                jM_eliminartodo_nuevaventaActionPerformed(evt);
             }
         });
-        jPopupNventa.add(jMenuItemeliminartodo);
+        jPopupNventa.add(jM_eliminartodo_nuevaventa);
 
         ImageIcon iconAddStock = Tools.escalarIcono(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png")), 22, 22);
         item_addStock_inv.setIcon(iconAddStock);
@@ -636,6 +636,8 @@ public class Home extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableNuevaVenta.setComponentPopupMenu(jPopupNventa);
+        tableNuevaVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPanenuevaventa.setViewportView(tableNuevaVenta);
         if (tableNuevaVenta.getColumnModel().getColumnCount() > 0) {
             tableNuevaVenta.getColumnModel().getColumn(0).setMinWidth(0);
@@ -727,7 +729,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jL_info_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jL_totalapagar_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab2", jP_nuevaventas);
@@ -1677,11 +1679,11 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jL_ventasMouseClicked
 
-    private void jMenuItemEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEliminarActionPerformed
-    }//GEN-LAST:event_jMenuItemEliminarActionPerformed
+    private void jM_eliminar_nuevaventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jM_eliminar_nuevaventaActionPerformed
+    }//GEN-LAST:event_jM_eliminar_nuevaventaActionPerformed
 
-    private void jMenuItemeliminartodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemeliminartodoActionPerformed
-    }//GEN-LAST:event_jMenuItemeliminartodoActionPerformed
+    private void jM_eliminartodo_nuevaventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jM_eliminartodo_nuevaventaActionPerformed
+    }//GEN-LAST:event_jM_eliminartodo_nuevaventaActionPerformed
 
     private void jL_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jL_usuariosMouseClicked
         ocultar_menu();
@@ -1873,11 +1875,11 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel_pags_turno;
     private javax.swing.JMenuItem jM_cambiarContraseña;
     private javax.swing.JMenuItem jM_editarInfoEmpresa;
+    public javax.swing.JMenuItem jM_eliminar_nuevaventa;
+    public javax.swing.JMenuItem jM_eliminartodo_nuevaventa;
     public javax.swing.JMenuItem jM_forzarcierredecaja;
     public javax.swing.JMenuItem jM_reportecierredecaja;
     public javax.swing.JMenuItem jM_vermovimientos;
-    private javax.swing.JMenuItem jMenuItemEliminar;
-    private javax.swing.JMenuItem jMenuItemeliminartodo;
     private javax.swing.JPanel jP_buscadorcliente;
     private javax.swing.JPanel jP_buscadorcliente1;
     private javax.swing.JPanel jP_buscadorcliente2;
