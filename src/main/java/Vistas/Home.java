@@ -136,7 +136,7 @@ public class Home extends javax.swing.JFrame {
         btn_menu = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jP_nuevaventas = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        jScrollPanenuevaventa = new javax.swing.JScrollPane();
         tableNuevaVenta = new javax.swing.JTable();
         btn_generar_nuevaventa = new javax.swing.JButton();
         jP_buscadorcliente3 = new javax.swing.JPanel();
@@ -144,6 +144,7 @@ public class Home extends javax.swing.JFrame {
         txt_buscador_nuevaventa = new javax.swing.JTextField();
         jL_totalapagar_nuevaventa = new javax.swing.JLabel();
         jL_info_nuevaventa = new javax.swing.JLabel();
+        jL_error_nuevaventa = new javax.swing.JLabel();
         jP_cajas = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jSeparator12 = new javax.swing.JSeparator();
@@ -635,11 +636,12 @@ public class Home extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(tableNuevaVenta);
+        jScrollPanenuevaventa.setViewportView(tableNuevaVenta);
         if (tableNuevaVenta.getColumnModel().getColumnCount() > 0) {
             tableNuevaVenta.getColumnModel().getColumn(0).setMinWidth(0);
             tableNuevaVenta.getColumnModel().getColumn(0).setPreferredWidth(0);
             tableNuevaVenta.getColumnModel().getColumn(0).setMaxWidth(0);
+            tableNuevaVenta.getColumnModel().getColumn(2).setPreferredWidth(250);
         }
 
         btn_generar_nuevaventa.setBackground(new java.awt.Color(250, 250, 250));
@@ -685,6 +687,9 @@ public class Home extends javax.swing.JFrame {
 
         jL_info_nuevaventa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
+        jL_error_nuevaventa.setForeground(new java.awt.Color(204, 0, 0));
+        jL_error_nuevaventa.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout jP_nuevaventasLayout = new javax.swing.GroupLayout(jP_nuevaventas);
         jP_nuevaventas.setLayout(jP_nuevaventasLayout);
         jP_nuevaventasLayout.setHorizontalGroup(
@@ -692,33 +697,37 @@ public class Home extends javax.swing.JFrame {
             .addGroup(jP_nuevaventasLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jP_nuevaventasLayout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jP_buscadorcliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_generar_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_nuevaventasLayout.createSequentialGroup()
                         .addComponent(jL_info_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jL_totalapagar_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPanenuevaventa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jP_nuevaventasLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jL_error_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jP_buscadorcliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_generar_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(190, Short.MAX_VALUE))
         );
         jP_nuevaventasLayout.setVerticalGroup(
             jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_nuevaventasLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(38, 38, 38)
+                .addComponent(jL_error_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_generar_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jP_nuevaventasLayout.createSequentialGroup()
                         .addComponent(jP_buscadorcliente3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPanenuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jL_info_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jL_totalapagar_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab2", jP_nuevaventas);
@@ -1827,6 +1836,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jL_configuracion;
     public javax.swing.JLabel jL_depositrar_turno;
     public javax.swing.JLabel jL_editarinfoempresa_menuItem;
+    public javax.swing.JLabel jL_error_nuevaventa;
     public javax.swing.JLabel jL_gestioncredito_menuItem;
     public javax.swing.JLabel jL_gestiondevoluciones_menuItem;
     public javax.swing.JLabel jL_historialventas_menuItem;
@@ -1899,7 +1909,7 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JPopupMenu jPopupTurno;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JScrollPane jScrollPane6;
+    public javax.swing.JScrollPane jScrollPanenuevaventa;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;

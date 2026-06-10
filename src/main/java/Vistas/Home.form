@@ -819,21 +819,24 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                      <Component id="jP_buscadorcliente3" min="-2" pref="283" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="btn_generar_nuevaventa" min="-2" pref="165" max="-2" attributes="0"/>
-                                  </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jL_info_nuevaventa" min="-2" pref="572" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="jL_totalapagar_nuevaventa" min="-2" pref="301" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jScrollPane6" alignment="1" min="-2" pref="1100" max="-2" attributes="0"/>
+                                  <Component id="jScrollPanenuevaventa" alignment="1" min="-2" pref="1100" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jL_error_nuevaventa" max="32767" attributes="0"/>
+                                          <Component id="jP_buscadorcliente3" min="-2" pref="283" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btn_generar_nuevaventa" min="-2" pref="165" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace pref="190" max="32767" attributes="0"/>
                           </Group>
@@ -842,13 +845,15 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Component id="jL_error_nuevaventa" min="-2" pref="26" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btn_generar_nuevaventa" min="-2" pref="38" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jP_buscadorcliente3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane6" min="-2" pref="500" max="-2" attributes="0"/>
+                                      <Component id="jScrollPanenuevaventa" min="-2" pref="500" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -856,13 +861,13 @@
                                   <Component id="jL_info_nuevaventa" max="32767" attributes="0"/>
                                   <Component id="jL_totalapagar_nuevaventa" pref="33" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="191" max="32767" attributes="0"/>
+                              <EmptySpace pref="207" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+                    <Container class="javax.swing.JScrollPane" name="jScrollPanenuevaventa">
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -894,7 +899,7 @@
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
-                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="true">
                                   <Title/>
                                   <Editor/>
                                   <Renderer/>
@@ -1019,6 +1024,17 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="12" style="1"/>
                         </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jL_error_nuevaventa">
+                      <Properties>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="0" red="cc" type="rgb"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="4"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

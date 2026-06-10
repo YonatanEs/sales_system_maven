@@ -416,6 +416,8 @@ public final class UtilPanels extends javax.swing.JFrame {
         txt_addstock_nuevaventa = new javax.swing.JTextField();
         btn_añadir_nuevaventa = new javax.swing.JButton();
         jL_medida_nuevaventa = new javax.swing.JLabel();
+        jL_precio_nuevaventa = new javax.swing.JLabel();
+        jL_titulo_pcliente20 = new javax.swing.JLabel();
 
         cargando.setBackground(new java.awt.Color(255, 255, 255));
         cargando.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -3464,7 +3466,7 @@ public final class UtilPanels extends javax.swing.JFrame {
         jL_stock_nuevaventa.setText("producto");
 
         jL_titulo_pcliente18.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
-        jL_titulo_pcliente18.setText("Stock :");
+        jL_titulo_pcliente18.setText("Stock:");
 
         jL_titulo_pcliente19.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jL_titulo_pcliente19.setText("Cantidad:");
@@ -3476,37 +3478,42 @@ public final class UtilPanels extends javax.swing.JFrame {
         jL_medida_nuevaventa.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jL_medida_nuevaventa.setText("lb");
 
+        jL_precio_nuevaventa.setText("producto");
+
+        jL_titulo_pcliente20.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jL_titulo_pcliente20.setText("Precio:");
+
         javax.swing.GroupLayout jP_infoproducto_nuevaventaLayout = new javax.swing.GroupLayout(jP_infoproducto_nuevaventa);
         jP_infoproducto_nuevaventa.setLayout(jP_infoproducto_nuevaventaLayout);
         jP_infoproducto_nuevaventaLayout.setHorizontalGroup(
             jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jL_titulo_pcliente14, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(btn_añadir_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jL_titulo_pcliente17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jL_descripcion_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jL_titulo_pcliente14, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
-                                    .addComponent(jL_titulo_pcliente17)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jL_descripcion_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
-                                    .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jL_titulo_pcliente18)
-                                        .addComponent(jL_titulo_pcliente19))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jL_stock_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
-                                            .addComponent(jL_medida_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txt_addstock_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(0, 0, Short.MAX_VALUE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jL_titulo_pcliente18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jL_stock_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
+                        .addComponent(jL_titulo_pcliente19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jL_medida_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_addstock_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_infoproducto_nuevaventaLayout.createSequentialGroup()
+                        .addComponent(jL_titulo_pcliente20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jL_precio_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_infoproducto_nuevaventaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_añadir_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
         );
         jP_infoproducto_nuevaventaLayout.setVerticalGroup(
             jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3517,7 +3524,11 @@ public final class UtilPanels extends javax.swing.JFrame {
                 .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jL_titulo_pcliente17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jL_descripcion_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jL_precio_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_titulo_pcliente20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jP_infoproducto_nuevaventaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jL_stock_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jL_titulo_pcliente18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -3526,9 +3537,9 @@ public final class UtilPanels extends javax.swing.JFrame {
                     .addComponent(jL_titulo_pcliente19, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_addstock_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jL_medida_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(29, 29, 29)
                 .addComponent(btn_añadir_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -3758,6 +3769,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_noCierre_reporteCierre;
     public javax.swing.JLabel jL_nombrecajaSI_turno;
     public javax.swing.JLabel jL_nombrepro;
+    public javax.swing.JLabel jL_precio_nuevaventa;
     public javax.swing.JLabel jL_preciopr;
     public javax.swing.JLabel jL_preciototal;
     public javax.swing.JLabel jL_retirosCC_turno;
@@ -3794,6 +3806,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_titulo_pcliente18;
     public javax.swing.JLabel jL_titulo_pcliente19;
     public javax.swing.JLabel jL_titulo_pcliente2;
+    public javax.swing.JLabel jL_titulo_pcliente20;
     public javax.swing.JLabel jL_titulo_pcliente3;
     public javax.swing.JLabel jL_titulo_pcliente4;
     public javax.swing.JLabel jL_titulo_pcliente5;

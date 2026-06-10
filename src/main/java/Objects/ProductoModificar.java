@@ -7,16 +7,16 @@ public class ProductoModificar {
     private int id;
     private String codigo;
     private String descripcion;
-    private BigDecimal precio_venta;
+    private BigDecimal precioVenta;
     private int id_proveedor;
     private int id_medida;
     private int id_categoria;
 
-    public ProductoModificar(int id, String codigo, String descripcion, BigDecimal precio_venta, int id_proveedor, int id_medida, int id_categoria) {
+    public ProductoModificar(int id, String codigo, String descripcion, BigDecimal precioVenta, int id_proveedor, int id_medida, int id_categoria) {
         this.id = id;
         this.codigo = codigo;
         this.descripcion = descripcion;
-        this.precio_venta = precio_venta;
+        this.precioVenta = precioVenta;
         this.id_proveedor = id_proveedor;
         this.id_medida = id_medida;
         this.id_categoria = id_categoria;
@@ -46,12 +46,12 @@ public class ProductoModificar {
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getPrecio_venta() {
-        return precio_venta;
+    public BigDecimal getPrecioVenta() {
+        return precioVenta;
     }
 
-    public void setPrecio_venta(BigDecimal precio_venta) {
-        this.precio_venta = precio_venta;
+    public void setPrecioVenta(BigDecimal precioVenta) {
+        this.precioVenta = precioVenta;
     }
 
     public int getId_proveedor() {
@@ -77,6 +77,5 @@ public class ProductoModificar {
     public void setId_categoria(int id_categoria) {
         this.id_categoria = id_categoria;
     }
-    
-    
+
 }

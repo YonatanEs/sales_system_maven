@@ -37,6 +37,7 @@ public class Ventas {
                 home.ocultar_menu();
                 home.jTabbedPane1.setSelectedComponent(home.jP_nuevaventas);
                 nv.initNuevaVenta();
+                nv.sugerenciasBuscadorInventario();
             }
         });
         home.jL_historialventas_menuItem.addMouseListener(new MouseAdapter() {

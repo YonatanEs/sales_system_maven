@@ -551,6 +551,10 @@ public class Inventario {
     }
 
     public void winIngresoInventario(Producto_ob producto) {
+        if(productoSelected==null){
+            JOptionPane.showMessageDialog(null, "Selecciona un producto");
+            return;
+        }
         panel.jL_descripcion_addstock.setText(producto.getDescripcion());
         panel.jL_stock_addstock.setText(Tools.formatearStock(producto.getStock()));
         panel.jL_medida_addstock.setText(producto.getMedida_ob().getNombre());
@@ -827,6 +831,12 @@ public class Inventario {
             panel.txt_precioVenta_rp_inv.setBackground(Color.red);
             val = false;
         }
+        
+        if(precio_venta<=productoSelected.getPrecio_compra()){
+            val=false;
+            JOptionPane.showMessageDialog(null, "El precio de venta no puede ser igual o menor al precio de compra");
+            return;
+        }
 
         if (val) {
 
@@ -836,7 +846,7 @@ public class Inventario {
                         codigo, descripcion, BigDecimal.valueOf(precio_venta),
                         id_proveedor, id_medida, id_categoria);
                 String json = gson.toJson(productoModificar);
-
+                
                 RequestBody body = RequestBody.create(json, JSON);
 
                 Request request = new Request.Builder()
@@ -1030,6 +1040,7 @@ public class Inventario {
 
     /* ---------------------Conexion a api añadir y retirar stock ------------*/
     public void añadirStock() {
+        
         boolean val = true;
 
         Date fechaSeleccionada = panel.jD_fechaIngreso_addStock.getDate();
