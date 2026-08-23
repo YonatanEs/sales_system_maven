@@ -1,5 +1,6 @@
 package Clases;
 
+import Dto.RespuestaPaginada;
 import General.userAuth;
 import java.awt.AWTKeyStroke;
 import java.awt.Color;
@@ -7,14 +8,12 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.KeyboardFocusManager;
 import java.util.List;
 import java.awt.RenderingHints;
-import java.awt.Window;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
@@ -55,7 +54,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
-import javax.swing.Popup;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.AbstractBorder;
@@ -63,6 +61,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 
 public class Tools {
 
@@ -71,6 +72,18 @@ public class Tools {
 
     private static BufferedImage roundedBorderImage;
     private static int cachedRadius = -1;
+
+    public static KeyEvent enterEvent(JTextField txtfield) {
+        return new KeyEvent(
+                txtfield, // componente destino
+                KeyEvent.KEY_PRESSED, // tipo de evento
+                System.currentTimeMillis(), // timestamp
+                0, // modifiers (ninguno)
+                KeyEvent.VK_ENTER, // tecla Enter
+                '\n' // carácter asociado
+        );
+
+    }
 
     public static void btn_animacion_size(JLabel label) {
         Font labelFont = label.getFont();
@@ -362,18 +375,34 @@ public class Tools {
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-                if ("Activo".equals(value)) {
-                    cell.setForeground(Color.GREEN);
-                } else if ("Inactivo".equals(value)) {
-                    cell.setForeground(Color.RED);
-                } else if ("Abierto".equals(value)) {
-                    cell.setForeground(Color.GREEN);
-                } else if ("Cerrado".equals(value)) {
-                    cell.setForeground(Color.RED);
-                } else if ("Forzado".equals(value)) {
-                    cell.setForeground(Color.RED);
+                if (isSelected) {
+                    cell.setForeground(Color.WHITE);
                 } else {
-                    cell.setForeground(Color.BLACK);
+                    if ("Activo".equals(value)) {
+                        cell.setForeground(Color.GREEN);
+                    } else if ("Anulado".equals(value)) {
+                        cell.setForeground(Color.RED);
+                    } else if ("Inactivo".equals(value)) {
+                        cell.setForeground(Color.RED);
+                    } else if ("Abierto".equals(value)) {
+                        cell.setForeground(Color.GREEN);
+                    } else if ("Cerrado".equals(value)) {
+                        cell.setForeground(Color.RED);
+                    } else if ("Forzado".equals(value)) {
+                        cell.setForeground(Color.RED);
+                    } else if ("Anulada".equals(value)) {
+                        cell.setForeground(Color.RED);
+                    } else if ("VENCIDO".equals(value)) {
+                        cell.setForeground(Color.RED);
+                    } else if ("PENDIENTE".equals(value)) {
+                        cell.setForeground(new Color(255, 140, 0));
+                    } else if ("PAGADO".equals(value)) {
+                        cell.setForeground(new Color(0, 128, 0));
+                    } else if ("AL DIA".equals(value)) {
+                        cell.setForeground(new Color(0, 128, 0));
+                    } else {
+                        cell.setForeground(Color.BLACK);
+                    }
                 }
 
                 return cell;
@@ -731,6 +760,64 @@ public class Tools {
         }
     }
 
+    public static void txt_porcentaje(JTextField textField) {
+        // Alineamos a la derecha para que parezca factura
+        textField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        textField.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                formatearPorcentaje(textField);
+            }
+        });
+
+        // Este evento captura cuando el usuario pega texto con el mouse o teclado
+        textField.addPropertyChangeListener("ancestor", evt -> formatearPorcentaje(textField));
+
+        // Al ganar el foco, nos aseguramos de que tenga la Q
+        textField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (textField.getText().isEmpty()) {
+                    textField.setText("% 0.00");
+                    textField.selectAll(); // Selecciona todo para que sea fácil borrar
+                }
+            }
+        });
+    }
+
+    private static void formatearPorcentaje(JTextField txt) {
+        String original = txt.getText();
+
+        // 1. Extraemos solo lo que sea número o punto decimal
+        // Esto limpia cualquier símbolo de moneda extraño o letras que se peguen
+        String soloNumeros = original.replaceAll("[^\\d.]", "");
+
+        // 2. Manejamos el caso de múltiples puntos (por si pegan algo como 10.50.20)
+        if (soloNumeros.indexOf('.') != soloNumeros.lastIndexOf('.')) {
+            int primerPunto = soloNumeros.indexOf('.');
+            String parteEntera = soloNumeros.substring(0, primerPunto + 1);
+            String parteDecimal = soloNumeros.substring(primerPunto + 1).replace(".", "");
+            soloNumeros = parteEntera + parteDecimal;
+        }
+
+        // 3. Aplicamos el formato de Guatemala
+        if (soloNumeros.isEmpty()) {
+            txt.setText("% ");
+        } else {
+            txt.setText("% " + soloNumeros);
+        }
+    }
+
+    public static double getPorcentajeLimpio(JTextField txt) {
+        String texto = txt.getText().replace("% ", "").trim();
+        try {
+            return texto.isEmpty() ? 0.0 : Double.parseDouble(texto);
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
+    }
+
     public static void txt_cantidad(JTextField textField) {
         textField.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
 
@@ -1076,4 +1163,10 @@ public class Tools {
         // botonTarget.setContentAreaFilled(false); // Descomenta esta línea si quieres que el fondo sea transparente
         // botonTarget.setBorderPainted(false);      // Descomenta esta línea si quieres quitarle el borde gris de Windows
     }
+
+    public static <T> Type typeRespuestaPaginada(Class<T> clazz) {
+        return new TypeToken<RespuestaPaginada<T>>() {
+        }.getType();
+    }
+
 }

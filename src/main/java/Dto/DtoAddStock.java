@@ -1,17 +1,17 @@
 package Dto;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class DtoAddStock {
     private int id;
-    private LocalDate fechaEntrada;
+    private LocalDateTime fechaEntrada;
     private BigDecimal stock;
     private BigDecimal precioCompra;
     private String concepto;
    
 
-    public DtoAddStock(int id, LocalDate fechaEntrada, BigDecimal stock, BigDecimal precioCompra, String concepto) {
+    public DtoAddStock(int id, LocalDateTime fechaEntrada, BigDecimal stock, BigDecimal precioCompra, String concepto) {
         this.id = id;
         this.fechaEntrada = fechaEntrada;
         this.stock = stock;
@@ -27,11 +27,11 @@ public class DtoAddStock {
         this.id = id;
     }
 
-    public LocalDate getFechaEntrada() {
+    public LocalDateTime getFechaEntrada() {
         return fechaEntrada;
     }
 
-    public void setFechaEntrada(LocalDate fechaEntrada) {
+    public void setFechaEntrada(LocalDateTime fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
 

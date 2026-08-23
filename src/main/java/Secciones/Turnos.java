@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -176,6 +177,10 @@ public class Turnos {
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione una fila");
             }
+        });
+        
+        home.jM_vercomprobantes.addActionListener(e->{
+            home.ventas.hv.winHistorialTurno(turnoSelected.getId());
         });
 
         home.jM_reportecierredecaja.addActionListener((e) -> {
@@ -1145,6 +1150,7 @@ public class Turnos {
 
     private void imprimirReportePreview() {
         String nroCierre = String.format("%08d", turnoSelected.getId());
+        String fecha = turnoSelected.getFechaCierre().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
         String rutaPdfTemporal = System.getProperty("java.io.tmpdir")
                 + File.separator + "Temp_Cierre_" + nroCierre + ".pdf";
@@ -1160,7 +1166,7 @@ public class Turnos {
                 @Override
                 public void onSuccess(DatosEmpresaOb empresaOb) {
                     SwingUtilities.invokeLater(() -> {
-                        Clases.VentanaImpresionWord preview = new Clases.VentanaImpresionWord(home, rutaPdfTemporal, nroCierre,
+                        Clases.VentanaImpresionWord preview = new Clases.VentanaImpresionWord(home, rutaPdfTemporal, "Cierre_Caja_" + nroCierre + "_" + fecha,
                                 empresaOb.getNombre(), empresaOb.getLogo());
                         preview.setVisible(true);
                     });

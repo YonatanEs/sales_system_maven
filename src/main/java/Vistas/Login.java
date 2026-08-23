@@ -247,11 +247,8 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_userActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        Cargando.doSomething(new X() {
-            @Override
-            public void execute() {
-                Ingresar();
-            }
+        Cargando.doSomething(()->{
+            Ingresar();
         });
     }//GEN-LAST:event_btnIngresarActionPerformed
 

@@ -7,14 +7,17 @@ public class Cliente_ob {
     private String nit;
     private String telefono;
     private String direccion;
+    private String credito;
     private String estado;
 
-    public Cliente_ob(int id, String nombre, String nit, String telefono, String direccion, String estado) {
+    public Cliente_ob(int id, String nombre, String nit, String telefono,
+            String direccion,String credito, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.nit = nit;
         this.telefono = telefono;
         this.direccion = direccion;
+        this.credito = credito;
         this.estado = estado;
     }
 
@@ -66,4 +69,18 @@ public class Cliente_ob {
         this.estado = estado;
     }
 
+    public String getCredito() {
+        return credito;
+    }
+
+    public void setCredito(String credito) {
+        this.credito = credito;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
+    
 }

@@ -9,6 +9,7 @@ import Secciones.Cajas;
 import Secciones.Clientes;
 import Secciones.Configuracion;
 import Secciones.Inventario;
+import Secciones.Reportes;
 import Secciones.Turnos;
 import Secciones.Usuarios;
 import Secciones.Ventas;
@@ -34,13 +35,14 @@ public class Home extends javax.swing.JFrame {
 
     public TextAutoCompleter buscadorcod, sugerenciasventas;
 
-    private Ventas ventas;
+    public Ventas ventas;
     public Turnos turnos;
     private Usuarios usuarios;
-    private Clientes clientes;
+    public Clientes clientes;
     public Inventario inventario;
     private Cajas cajas;
     public Configuracion configuracion;
+    public Reportes reportes;
 
     public Home() {
         initComponents();
@@ -58,7 +60,6 @@ public class Home extends javax.swing.JFrame {
 
         UtilPanels p = new UtilPanels();
 
-        
         turnos = new Turnos(this, p);
         inventario = new Inventario(this, p);
         usuarios = new Usuarios(this, p);
@@ -66,8 +67,9 @@ public class Home extends javax.swing.JFrame {
         cajas = new Cajas(this, p);
         configuracion = new Configuracion(this, p);
 
-        ventas =  new Ventas(this, p);
-        
+        ventas = new Ventas(this, p);
+        reportes = new Reportes(this);
+
         jP_sombreado.setVisible(false);
 
         repaint();
@@ -78,8 +80,8 @@ public class Home extends javax.swing.JFrame {
     @Override
     public Image getIconImage() {
         ImageIcon logo = General.properties.getlogoSistema();
-        
-        if(logo!=null){
+
+        if (logo != null) {
             return logo.getImage();
         }
 
@@ -97,6 +99,7 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupNventa = new javax.swing.JPopupMenu();
+        jM_descuento_nuevaventa = new javax.swing.JMenuItem();
         jM_eliminar_nuevaventa = new javax.swing.JMenuItem();
         jM_eliminartodo_nuevaventa = new javax.swing.JMenuItem();
         jPopupInventario = new javax.swing.JPopupMenu();
@@ -106,15 +109,20 @@ public class Home extends javax.swing.JFrame {
         item_estado_inv = new javax.swing.JMenuItem();
         jPopupTurno = new javax.swing.JPopupMenu();
         jM_vermovimientos = new javax.swing.JMenuItem();
+        jM_vercomprobantes = new javax.swing.JMenuItem();
         jM_reportecierredecaja = new javax.swing.JMenuItem();
         jM_forzarcierredecaja = new javax.swing.JMenuItem();
         jPopupConfiguracion = new javax.swing.JPopupMenu();
         jM_cambiarContraseña = new javax.swing.JMenuItem();
         jM_editarInfoEmpresa = new javax.swing.JMenuItem();
+        jPopupClientes = new javax.swing.JPopupMenu();
+        item_verfacturas_cli = new javax.swing.JMenuItem();
+        item_credito = new javax.swing.JMenuItem();
+        item_editar_cli = new javax.swing.JMenuItem();
+        item_estado_cli = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jP_popupVentas = new javax.swing.JPanel();
         jL_nuevaventa_menuItem = new javax.swing.JLabel();
-        jL_historialventas_menuItem = new javax.swing.JLabel();
         jL_gestioncredito_menuItem = new javax.swing.JLabel();
         jL_gestiondevoluciones_menuItem = new javax.swing.JLabel();
         jP_popupConfiguracion = new javax.swing.JPanel();
@@ -141,10 +149,11 @@ public class Home extends javax.swing.JFrame {
         btn_generar_nuevaventa = new javax.swing.JButton();
         jP_buscadorcliente3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txt_buscador_nuevaventa = new javax.swing.JTextField();
+        txt_buscador_historialventa = new javax.swing.JTextField();
         jL_totalapagar_nuevaventa = new javax.swing.JLabel();
         jL_info_nuevaventa = new javax.swing.JLabel();
         jL_error_nuevaventa = new javax.swing.JLabel();
+        btn_historialventas = new javax.swing.JButton();
         jP_cajas = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jSeparator12 = new javax.swing.JSeparator();
@@ -214,15 +223,16 @@ public class Home extends javax.swing.JFrame {
         jL_t_saldo_actual = new javax.swing.JLabel();
         jL_retirar_turno = new javax.swing.JLabel();
         jL_abrir_turno = new javax.swing.JLabel();
-        jP_historialVentas = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jSeparator9 = new javax.swing.JSeparator();
         jP_gestionCreditos = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jSeparator13 = new javax.swing.JSeparator();
         jP_gestionDevoluciones = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jSeparator14 = new javax.swing.JSeparator();
+
+        jM_descuento_nuevaventa.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/Images/descuento_icon.png")).getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
+        jM_descuento_nuevaventa.setText("Aplicar descuento");
+        jPopupNventa.add(jM_descuento_nuevaventa);
 
         jM_eliminar_nuevaventa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eliminar.png"))); // NOI18N
         jM_eliminar_nuevaventa.setText("Eliminar producto");
@@ -286,8 +296,22 @@ public class Home extends javax.swing.JFrame {
         });
         jPopupTurno.add(jM_vermovimientos);
 
+        jM_vercomprobantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recibo_icon.png"))); // NOI18N
+        jM_vercomprobantes.setText("Ver comprobantes del turno");
+        jM_vercomprobantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jM_vercomprobantesActionPerformed(evt);
+            }
+        });
+        jPopupTurno.add(jM_vercomprobantes);
+
         jM_reportecierredecaja.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/Images/reporte_icon.png")).getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
         jM_reportecierredecaja.setText("Reporte de cierre de caja");
+        jM_reportecierredecaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jM_reportecierredecajaActionPerformed(evt);
+            }
+        });
         jPopupTurno.add(jM_reportecierredecaja);
 
         jM_forzarcierredecaja.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/Images/cerrar_icon.png")).getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
@@ -301,6 +325,38 @@ public class Home extends javax.swing.JFrame {
         jM_editarInfoEmpresa.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/Images/setting_icon.png")).getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
         jM_editarInfoEmpresa.setText("Editar informacion de la empresa");
         jPopupConfiguracion.add(jM_editarInfoEmpresa);
+
+        item_verfacturas_cli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recibo_icon.png"))); // NOI18N
+        item_verfacturas_cli.setText("Ver Recibos");
+        item_verfacturas_cli.setToolTipText("");
+        item_verfacturas_cli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_verfacturas_cliActionPerformed(evt);
+            }
+        });
+        jPopupClientes.add(item_verfacturas_cli);
+
+        item_credito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/credito_icon.png"))); // NOI18N
+        item_credito.setText("Ver Credito");
+        jPopupClientes.add(item_credito);
+
+        item_editar_cli.setIcon(iconEdit);
+        item_editar_cli.setText("Editar");
+        item_editar_cli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_editar_cliActionPerformed(evt);
+            }
+        });
+        jPopupClientes.add(item_editar_cli);
+
+        item_estado_cli.setIcon(iconEstado);
+        item_estado_cli.setText("Inactivar");
+        item_estado_cli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_estado_cliActionPerformed(evt);
+            }
+        });
+        jPopupClientes.add(item_estado_cli);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
@@ -322,13 +378,6 @@ public class Home extends javax.swing.JFrame {
         jL_nuevaventa_menuItem.setText("Nueva venta");
         jL_nuevaventa_menuItem.setOpaque(true);
 
-        jL_historialventas_menuItem.setBackground(new java.awt.Color(43, 55, 72));
-        jL_historialventas_menuItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jL_historialventas_menuItem.setForeground(new java.awt.Color(255, 255, 255));
-        jL_historialventas_menuItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jL_historialventas_menuItem.setText("Historial  de ventas");
-        jL_historialventas_menuItem.setOpaque(true);
-
         jL_gestioncredito_menuItem.setBackground(new java.awt.Color(43, 55, 72));
         jL_gestioncredito_menuItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jL_gestioncredito_menuItem.setForeground(new java.awt.Color(255, 255, 255));
@@ -348,21 +397,18 @@ public class Home extends javax.swing.JFrame {
         jP_popupVentasLayout.setHorizontalGroup(
             jP_popupVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jL_nuevaventa_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jL_historialventas_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
             .addComponent(jL_gestioncredito_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jL_gestiondevoluciones_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jL_gestiondevoluciones_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
         );
         jP_popupVentasLayout.setVerticalGroup(
             jP_popupVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_popupVentasLayout.createSequentialGroup()
                 .addComponent(jL_nuevaventa_menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jL_historialventas_menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(jL_gestioncredito_menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jL_gestiondevoluciones_menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jP_popupVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(-200, 68, 200, 162));
@@ -625,11 +671,11 @@ public class Home extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Codigo", "Descripción", "Cant.", "Precio", "Subtotal"
+                "Id", "Codigo", "Descripción", "Cant.", "Precio", "Descuento", "Precio final", "Subtotal"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -644,6 +690,12 @@ public class Home extends javax.swing.JFrame {
             tableNuevaVenta.getColumnModel().getColumn(0).setPreferredWidth(0);
             tableNuevaVenta.getColumnModel().getColumn(0).setMaxWidth(0);
             tableNuevaVenta.getColumnModel().getColumn(2).setPreferredWidth(250);
+            tableNuevaVenta.getColumnModel().getColumn(5).setMinWidth(0);
+            tableNuevaVenta.getColumnModel().getColumn(5).setPreferredWidth(0);
+            tableNuevaVenta.getColumnModel().getColumn(5).setMaxWidth(0);
+            tableNuevaVenta.getColumnModel().getColumn(6).setMinWidth(0);
+            tableNuevaVenta.getColumnModel().getColumn(6).setPreferredWidth(0);
+            tableNuevaVenta.getColumnModel().getColumn(6).setMaxWidth(0);
         }
 
         btn_generar_nuevaventa.setBackground(new java.awt.Color(250, 250, 250));
@@ -659,10 +711,10 @@ public class Home extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/magnifyingglass_87552_1.png"))); // NOI18N
         jLabel8.setAlignmentX(0.5F);
 
-        txt_buscador_nuevaventa.setBorder(null);
-        txt_buscador_nuevaventa.addActionListener(new java.awt.event.ActionListener() {
+        txt_buscador_historialventa.setBorder(null);
+        txt_buscador_historialventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_buscador_nuevaventaActionPerformed(evt);
+                txt_buscador_historialventaActionPerformed(evt);
             }
         });
 
@@ -674,12 +726,12 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txt_buscador_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_buscador_historialventa, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         jP_buscadorcliente3Layout.setVerticalGroup(
             jP_buscadorcliente3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txt_buscador_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+            .addComponent(txt_buscador_historialventa, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -691,6 +743,9 @@ public class Home extends javax.swing.JFrame {
 
         jL_error_nuevaventa.setForeground(new java.awt.Color(204, 0, 0));
         jL_error_nuevaventa.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        btn_historialventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/history_icon.png"))); // NOI18N
+        btn_historialventas.setToolTipText("historial de ventas");
 
         javax.swing.GroupLayout jP_nuevaventasLayout = new javax.swing.GroupLayout(jP_nuevaventas);
         jP_nuevaventas.setLayout(jP_nuevaventasLayout);
@@ -710,6 +765,8 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(jL_error_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jP_buscadorcliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_historialventas, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_generar_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(190, Short.MAX_VALUE))
         );
@@ -719,17 +776,17 @@ public class Home extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jL_error_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_generar_nuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jP_nuevaventasLayout.createSequentialGroup()
-                        .addComponent(jP_buscadorcliente3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPanenuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jP_buscadorcliente3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_historialventas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_generar_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPanenuevaventa, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jP_nuevaventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jL_info_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jL_totalapagar_nuevaventa, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab2", jP_nuevaventas);
@@ -1018,17 +1075,17 @@ public class Home extends javax.swing.JFrame {
 
         tableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "No.", "Nombre", "NIT", "Telefono", "Dirección", "Estado"
+                "No.", "Nombre", "NIT", "Telefono", "Dirección", "Estado", "Crédito"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -1289,7 +1346,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(738, Short.MAX_VALUE))
+                .addContainerGap(728, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab2", jP_confi);
@@ -1509,41 +1566,11 @@ public class Home extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab2", jP_turno);
 
-        jP_historialVentas.setPreferredSize(new java.awt.Dimension(1300, 855));
-
-        jLabel9.setFont(new java.awt.Font("Elephant", 1, 18)); // NOI18N
-        jLabel9.setText("Configuración");
-
-        jSeparator9.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jP_historialVentasLayout = new javax.swing.GroupLayout(jP_historialVentas);
-        jP_historialVentas.setLayout(jP_historialVentasLayout);
-        jP_historialVentasLayout.setHorizontalGroup(
-            jP_historialVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_historialVentasLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(jP_historialVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(1140, Short.MAX_VALUE))
-        );
-        jP_historialVentasLayout.setVerticalGroup(
-            jP_historialVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_historialVentasLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(738, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("tab2", jP_historialVentas);
-
+        jP_gestionCreditos.setBackground(new java.awt.Color(250, 250, 250));
         jP_gestionCreditos.setPreferredSize(new java.awt.Dimension(1300, 855));
 
         jLabel10.setFont(new java.awt.Font("Elephant", 1, 18)); // NOI18N
-        jLabel10.setText("Configuración");
+        jLabel10.setText("Historial de ventas");
 
         jSeparator13.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator13.setForeground(new java.awt.Color(0, 0, 0));
@@ -1557,7 +1584,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jP_gestionCreditosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(1140, Short.MAX_VALUE))
+                .addContainerGap(1111, Short.MAX_VALUE))
         );
         jP_gestionCreditosLayout.setVerticalGroup(
             jP_gestionCreditosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1566,7 +1593,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(738, Short.MAX_VALUE))
+                .addContainerGap(728, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab2", jP_gestionCreditos);
@@ -1638,11 +1665,8 @@ public class Home extends javax.swing.JFrame {
         ocultar_menu();
         jTabbedPane1.setSelectedComponent(jP_cajas);
 
-        Cargando.doSomething(new X() {
-            @Override
-            public void execute() {
-                cajas.tabledates("");
-            }
+        Cargando.doSomething(() -> {
+            cajas.tabledates("");
         });
 
     }//GEN-LAST:event_jL_cajaMouseClicked
@@ -1651,11 +1675,8 @@ public class Home extends javax.swing.JFrame {
         ocultar_menu();
         jTabbedPane1.setSelectedComponent(jP_inventario);
 
-        Cargando.doSomething(new X() {
-            @Override
-            public void execute() {
+        Cargando.doSomething(() -> {
                 inventario.tabledates("", 0);
-            }
         });
 
     }//GEN-LAST:event_jL_inventariosMouseClicked
@@ -1734,13 +1755,10 @@ public class Home extends javax.swing.JFrame {
     private void jL_turnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jL_turnoMouseClicked
         ocultar_menu();
         jTabbedPane1.setSelectedComponent(jP_turno);
-        Cargando.doSomething(new X() {
-            @Override
-            public void execute() {
+        Cargando.doSomething(()->{
                 turnos.ValidarTurnoUserAuth();
                 turnos.llenarInfoTurno();
                 turnos.tabledates("", 0);
-            }
         });
     }//GEN-LAST:event_jL_turnoMouseClicked
 
@@ -1764,13 +1782,33 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jL_wpaperMouseClicked
 
-    private void txt_buscador_nuevaventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscador_nuevaventaActionPerformed
+    private void txt_buscador_historialventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscador_historialventaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_buscador_nuevaventaActionPerformed
+    }//GEN-LAST:event_txt_buscador_historialventaActionPerformed
 
     private void jP_popupVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jP_popupVentasMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jP_popupVentasMouseClicked
+
+    private void item_verfacturas_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_verfacturas_cliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_item_verfacturas_cliActionPerformed
+
+    private void item_editar_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_editar_cliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_item_editar_cliActionPerformed
+
+    private void item_estado_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_estado_cliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_item_estado_cliActionPerformed
+
+    private void jM_reportecierredecajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jM_reportecierredecajaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jM_reportecierredecajaActionPerformed
+
+    private void jM_vercomprobantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jM_vercomprobantesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jM_vercomprobantesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1815,6 +1853,7 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JLabel btn_anteriorpag_inv;
     public javax.swing.JLabel btn_anteriorpag_turno;
     public javax.swing.JButton btn_generar_nuevaventa;
+    public javax.swing.JButton btn_historialventas;
     private javax.swing.JLabel btn_menu;
     public javax.swing.JLabel btn_nvprod_inv;
     public javax.swing.JLabel btn_registrarcaja;
@@ -1823,9 +1862,13 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JLabel btn_sigpag_inv;
     public javax.swing.JLabel btn_sigpag_turno;
     public javax.swing.JMenuItem item_addStock_inv;
+    public javax.swing.JMenuItem item_credito;
+    public javax.swing.JMenuItem item_editar_cli;
     public javax.swing.JMenuItem item_editar_inv;
+    public javax.swing.JMenuItem item_estado_cli;
     public javax.swing.JMenuItem item_estado_inv;
     public javax.swing.JMenuItem item_removeStock;
+    public javax.swing.JMenuItem item_verfacturas_cli;
     public com.toedter.calendar.JDateChooser jD_selectFecha_turno;
     public javax.swing.JLabel jL_abiertopor_turno;
     public javax.swing.JLabel jL_abrir_turno;
@@ -1841,7 +1884,6 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JLabel jL_error_nuevaventa;
     public javax.swing.JLabel jL_gestioncredito_menuItem;
     public javax.swing.JLabel jL_gestiondevoluciones_menuItem;
-    public javax.swing.JLabel jL_historialventas_menuItem;
     public javax.swing.JLabel jL_info_nuevaventa;
     private javax.swing.JLabel jL_inventarios;
     public javax.swing.JLabel jL_nuevaventa_menuItem;
@@ -1870,15 +1912,16 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     public javax.swing.JLabel jLabel_pags_inv;
     public javax.swing.JLabel jLabel_pags_turno;
     private javax.swing.JMenuItem jM_cambiarContraseña;
+    public javax.swing.JMenuItem jM_descuento_nuevaventa;
     private javax.swing.JMenuItem jM_editarInfoEmpresa;
     public javax.swing.JMenuItem jM_eliminar_nuevaventa;
     public javax.swing.JMenuItem jM_eliminartodo_nuevaventa;
     public javax.swing.JMenuItem jM_forzarcierredecaja;
     public javax.swing.JMenuItem jM_reportecierredecaja;
+    public javax.swing.JMenuItem jM_vercomprobantes;
     public javax.swing.JMenuItem jM_vermovimientos;
     private javax.swing.JPanel jP_buscadorcliente;
     private javax.swing.JPanel jP_buscadorcliente1;
@@ -1891,7 +1934,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jP_confi;
     private javax.swing.JPanel jP_gestionCreditos;
     private javax.swing.JPanel jP_gestionDevoluciones;
-    private javax.swing.JPanel jP_historialVentas;
     private javax.swing.JPanel jP_inventario;
     private javax.swing.JPanel jP_menuprincipal;
     public javax.swing.JPanel jP_nuevaventas;
@@ -1905,6 +1947,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    public javax.swing.JPopupMenu jPopupClientes;
     private javax.swing.JPopupMenu jPopupConfiguracion;
     public javax.swing.JPopupMenu jPopupInventario;
     private javax.swing.JPopupMenu jPopupNventa;
@@ -1922,7 +1965,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JSeparator jSeparator9;
     public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JScrollPane scroll_clientes;
     private javax.swing.JScrollPane scroll_clientes1;
@@ -1935,8 +1977,8 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JTable tableUsuarios;
     public javax.swing.JTextField txt_buscador_caja;
     public javax.swing.JTextField txt_buscador_cliente;
+    public javax.swing.JTextField txt_buscador_historialventa;
     public javax.swing.JTextField txt_buscador_inventario;
-    public javax.swing.JTextField txt_buscador_nuevaventa;
     public javax.swing.JTextField txt_buscadorfecha_turno;
     public javax.swing.JTextField txt_buscadorp_usuario;
     // End of variables declaration//GEN-END:variables
@@ -1978,9 +2020,8 @@ public class Home extends javax.swing.JFrame {
 
         Tools.btns(jL_cambiarcontrase_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
         Tools.btns(jL_editarinfoempresa_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
-        
+
         Tools.btns(jL_nuevaventa_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
-        Tools.btns(jL_historialventas_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
         Tools.btns(jL_gestioncredito_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
         Tools.btns(jL_gestiondevoluciones_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
 
@@ -2049,7 +2090,7 @@ public class Home extends javax.swing.JFrame {
             jP_popupConfiguracion.setBounds(jP_popupConfiguracion.getX(), jL_configuracion.getY() + jL_configuracion.getHeight(),
                     jP_popupConfiguracion.getWidth(), jL_cambiarcontrase_menuItem.getHeight());
         }
-        if(jP_popupVentas.getX()>=0){
+        if (jP_popupVentas.getX() >= 0) {
             OcultarJPopupVentas();
         }
         Animacion.Animacion.mover_derecha(-200, 0, 1, 1, jP_popupConfiguracion);
@@ -2058,16 +2099,16 @@ public class Home extends javax.swing.JFrame {
     private void OcultarJPopupConfiguracion() {
         Animacion.Animacion.mover_izquierda(0, -200, 1, 1, jP_popupConfiguracion);
     }
-    
-    private void MostrarJPopupVentas(){
-        if(jP_popupConfiguracion.getX()>=0){
+
+    private void MostrarJPopupVentas() {
+        if (jP_popupConfiguracion.getX() >= 0) {
             OcultarJPopupConfiguracion();
         }
-        Animacion.Animacion.mover_derecha(-200, 0, 1, 1,jP_popupVentas);
-        
+        Animacion.Animacion.mover_derecha(-200, 0, 1, 1, jP_popupVentas);
+
     }
-    
-    private void OcultarJPopupVentas(){
+
+    private void OcultarJPopupVentas() {
         Animacion.Animacion.mover_izquierda(0, -200, 1, 1, jP_popupVentas);
     }
 }

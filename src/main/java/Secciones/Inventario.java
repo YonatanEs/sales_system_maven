@@ -42,6 +42,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1112,8 +1113,8 @@ public class Inventario {
         if (val) {
             try {
                 //conexion a la api
-                DtoAddStock addstock = new DtoAddStock(productoSelected.getId(), fechaLote, BigDecimal.valueOf(stock),
-                        BigDecimal.valueOf(precio_compra), motivo);
+                DtoAddStock addstock = new DtoAddStock(productoSelected.getId(), LocalDateTime.now(),
+                        BigDecimal.valueOf(stock), BigDecimal.valueOf(precio_compra), motivo);
                 String json = gson.toJson(addstock);
 
                 RequestBody body = RequestBody.create(json, JSON);
@@ -1232,7 +1233,8 @@ public class Inventario {
         if (val) {
             try {
                 //conexion a la api
-                DtoRemoveStock removeStock = new DtoRemoveStock(productoSelected.getId(), fechaLote, BigDecimal.valueOf(stock), motivo);
+                DtoRemoveStock removeStock = new DtoRemoveStock(productoSelected.getId(),
+                        LocalDateTime.now(), BigDecimal.valueOf(stock), motivo);
                 String json = gson.toJson(removeStock);
 
                 RequestBody body = RequestBody.create(json, JSON);

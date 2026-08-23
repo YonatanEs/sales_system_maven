@@ -19,7 +19,15 @@ public class VentanaImpresionWord extends JDialog {
     private JPanel panelContenedorHoja;
     private final String rutaArchivoPdf;
 
-    public VentanaImpresionWord(Frame parent, String rutaPdf, String nroCierre, String nombreEmpresa, ImageIcon icono) {
+    // Nuevas variables para Control de Páginas y Zoom
+    private int paginaActual = 0;
+    private int totalPaginas = 1;
+    private BufferedImage imagenPaginaActual;
+    private double zoomManual = -1.0; // -1.0 significa "Auto-Ajustar a la ventana"
+    private JScrollPane scrollVistaPdf;
+    private JLabel lblInfoPagina;
+
+    public VentanaImpresionWord(Frame parent, String rutaPdf, String nombreReporte, String nombreEmpresa, ImageIcon icono) {
         super(parent, "Vista Previa de Impresión - " + nombreEmpresa, true);
         this.rutaArchivoPdf = rutaPdf;
 
@@ -31,6 +39,7 @@ public class VentanaImpresionWord extends JDialog {
             // Cargar el documento usando la sintaxis correcta de PDFBox 2.x
             documentoPdf = PDDocument.load(new File(rutaPdf));
             renderizador = new PDFRenderer(documentoPdf);
+            totalPaginas = documentoPdf.getNumberOfPages(); // Averiguar el total de páginas
         } catch (Exception e) {
             System.err.println("Error al inicializar PDFBox: " + e.getMessage());
         }
@@ -47,7 +56,6 @@ public class VentanaImpresionWord extends JDialog {
         JLabel lblLogo = new JLabel("Sistema de Ventas");
         lblLogo.setFont(new Font("Segoe UI", Font.BOLD, 16));
         lblLogo.setForeground(Color.WHITE);
-
         barraLateral.add(lblLogo);
 
         JLabel lblCopias = new JLabel("Copias:");
@@ -76,7 +84,7 @@ public class VentanaImpresionWord extends JDialog {
         cbImpresoras.setPreferredSize(new Dimension(240, 35));
         barraLateral.add(cbImpresoras);
 
-        JButton btnImprimir = new JButton("️ IMPRIMIR AHORA");
+        JButton btnImprimir = new JButton("IMPRIMIR AHORA");
         btnImprimir.setFont(new Font("Segoe UI", Font.BOLD, 15));
         Tools.adaptarIconoJButton(btnImprimir, new ImageIcon(getClass().getResource("/Images/imprimir_icon.png")));
         btnImprimir.setForeground(Color.WHITE);
@@ -90,7 +98,7 @@ public class VentanaImpresionWord extends JDialog {
         btnGuardarPDF.setFont(new Font("Segoe UI", Font.BOLD, 15));
         Tools.adaptarIconoJButton(btnGuardarPDF, new ImageIcon(getClass().getResource("/Images/pdf_icon.png")));
         btnGuardarPDF.setForeground(Color.WHITE);
-        btnGuardarPDF.setBackground(new Color(40, 167, 69)); // Verde para diferenciarlo del azul de imprimir
+        btnGuardarPDF.setBackground(new Color(40, 167, 69)); // Verde
         btnGuardarPDF.setPreferredSize(new Dimension(240, 52));
         btnGuardarPDF.setFocusPainted(false);
         barraLateral.add(btnGuardarPDF);
@@ -98,64 +106,135 @@ public class VentanaImpresionWord extends JDialog {
         add(barraLateral, BorderLayout.WEST);
 
         // -----------------------------------------------------------------
-        // 2. VISOR DERECHO: Pintar la página en el lienzo gris
+        // 2. VISOR DERECHO: Barra de herramientas + Lienzo de la hoja
         // -----------------------------------------------------------------
+        JPanel panelDerecho = new JPanel(new BorderLayout());
+
+        // --- A. BARRA DE HERRAMIENTAS (Paginación y Zoom) ---
+        JPanel barraHerramientas = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+        barraHerramientas.setBackground(new Color(240, 240, 240));
+
+        JButton btnAnterior = new JButton("<< Anterior");
+        lblInfoPagina = new JLabel("Página 1 de 1");
+        lblInfoPagina.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        JButton btnSiguiente = new JButton("Siguiente >>");
+
+        JButton btnZoomOut = new JButton("- Zoom");
+        JButton btnAjustar = new JButton("Auto Ajustar");
+        JButton btnZoomIn = new JButton("+ Zoom");
+
+        // Acciones de Paginación
+        btnAnterior.addActionListener(e -> {
+            if (paginaActual > 0) {
+                paginaActual--;
+                cargarPaginaActual();
+            }
+        });
+        btnSiguiente.addActionListener(e -> {
+            if (paginaActual < totalPaginas - 1) {
+                paginaActual++;
+                cargarPaginaActual();
+            }
+        });
+
+        // Acciones de Zoom
+        btnZoomIn.addActionListener(e -> {
+            if (zoomManual < 0) {
+                zoomManual = calcularZoomAutomatico(); // Partimos del tamaño real que el usuario está viendo
+            }
+            zoomManual += 0.2;
+            panelContenedorHoja.repaint();
+        });
+
+        btnZoomOut.addActionListener(e -> {
+            if (zoomManual < 0) {
+                zoomManual = calcularZoomAutomatico(); // Partimos del tamaño real que el usuario está viendo
+            }
+            zoomManual -= 0.2;
+            if (zoomManual < 0.2) {
+                zoomManual = 0.2; // Límite mínimo para que no desaparezca
+            }
+            panelContenedorHoja.repaint();
+        });
+
+        btnAjustar.addActionListener(e -> {
+            zoomManual = -1.0;
+            panelContenedorHoja.repaint();
+        });
+
+        barraHerramientas.add(btnAnterior);
+        barraHerramientas.add(lblInfoPagina);
+        barraHerramientas.add(btnSiguiente);
+        barraHerramientas.add(new JLabel("   |   ")); // Separador visual
+        barraHerramientas.add(btnZoomOut);
+        barraHerramientas.add(btnAjustar);
+        barraHerramientas.add(btnZoomIn);
+
+        panelDerecho.add(barraHerramientas, BorderLayout.NORTH);
+
+        // --- B. LIENZO DEL PDF ---
         panelContenedorHoja = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                if (renderizador == null) {
+                if (imagenPaginaActual == null) {
                     return;
                 }
 
                 Graphics2D g2d = (Graphics2D) g.create();
-                // Filtros de suavizado para que las letras no se vean pixeladas
-                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
-                try {
-                    // Renderizar la primera página (índice 0) con buena resolución (150 DPI)
-                    BufferedImage bImage = renderizador.renderImageWithDPI(0, 150);
+                double factorZoomFinal = zoomManual;
 
-                    // Cálculo matemático para el auto-zoom dinámico
-                    double anchoContenedor = getWidth();
-                    double altoContenedor = getHeight();
-                    double escalaX = (anchoContenedor - 60) / bImage.getWidth();
-                    double escalaY = (altoContenedor - 60) / bImage.getHeight();
-                    double factorZoom = Math.min(escalaX, escalaY);
-
-                    if (factorZoom > 1.0) {
-                        factorZoom = 1.0;
-                    }
-
-                    // Centrar el reporte horizontal y verticalmente
-                    int x = (int) ((anchoContenedor - (bImage.getWidth() * factorZoom)) / 2);
-                    int y = (int) ((altoContenedor - (bImage.getHeight() * factorZoom)) / 2);
-
-                    // Efecto visual: Dibujar la sombra de la hoja
-                    g2d.setColor(new Color(80, 80, 80));
-                    g2d.fillRect(x + 5, y + 5, (int) (bImage.getWidth() * factorZoom), (int) (bImage.getHeight() * factorZoom));
-
-                    // Estampar la hoja del reporte real en el lienzo
-                    g2d.drawImage(bImage, x, y, (int) (bImage.getWidth() * factorZoom), (int) (bImage.getHeight() * factorZoom), null);
-
-                } catch (Exception ex) {
-                    System.err.println("Error rendering PDF page: " + ex.getMessage());
+                // Si es -1, calculamos el auto-ajuste
+                if (zoomManual < 0) {
+                    factorZoomFinal = calcularZoomAutomatico();
                 }
+
+                int anchoDibujo = (int) (imagenPaginaActual.getWidth() * factorZoomFinal);
+                int altoDibujo = (int) (imagenPaginaActual.getHeight() * factorZoomFinal);
+
+                // Actualizar ScrollPane dinámicamente
+                int anchoPanel = Math.max(anchoDibujo + 40, scrollVistaPdf.getViewport().getWidth());
+                int altoPanel = Math.max(altoDibujo + 40, scrollVistaPdf.getViewport().getHeight());
+
+                Dimension curSize = getPreferredSize();
+                if (curSize.width != anchoPanel || curSize.height != altoPanel) {
+                    setPreferredSize(new Dimension(anchoPanel, altoPanel));
+                    revalidate();
+                }
+
+                // Centrado
+                int x = (anchoPanel - anchoDibujo) / 2;
+                int y = (altoPanel - altoDibujo) / 2;
+
+                // Sombra de la hoja
+                g2d.setColor(new Color(80, 80, 80));
+                g2d.fillRect(x + 5, y + 5, anchoDibujo, altoDibujo);
+
+                // Estampar la hoja
+                g2d.drawImage(imagenPaginaActual, x, y, anchoDibujo, altoDibujo, null);
                 g2d.dispose();
             }
         };
 
-        panelContenedorHoja.setBackground(new Color(127, 127, 127)); // Gris de fondo estilo Office
-        add(panelContenedorHoja, BorderLayout.CENTER);
+        panelContenedorHoja.setBackground(new Color(127, 127, 127));
+
+        // ScrollPane para habilitar desplazamiento con zoom
+        scrollVistaPdf = new JScrollPane(panelContenedorHoja);
+        scrollVistaPdf.setBorder(null);
+        scrollVistaPdf.getVerticalScrollBar().setUnitIncrement(16);
+
+        panelDerecho.add(scrollVistaPdf, BorderLayout.CENTER);
+        add(panelDerecho, BorderLayout.CENTER);
 
         // -----------------------------------------------------------------
-        // ACCIÓN DEL BOTÓN IMPRIMIR (Solución al PrinterAbortException)
+        // 3. ACCIONES DE BOTONES ORIGINALES
         // -----------------------------------------------------------------
         btnImprimir.addActionListener(e -> {
             try {
                 PrinterJob job = PrinterJob.getPrinterJob();
-                job.setJobName("Cierre de Caja " + nroCierre);
+                job.setJobName("Reporte_" + nombreReporte.replaceAll("\\s+", "_"));
 
                 if (cbImpresoras.getSelectedItem() != null) {
                     String impresora = cbImpresoras.getSelectedItem().toString();
@@ -170,21 +249,12 @@ public class VentanaImpresionWord extends JDialog {
                 job.setCopies((int) txtCopias.getValue());
                 job.setPageable(new PDFPageable(documentoPdf));
 
-                // STEP 1: Ocultamos la ventana de inmediato para que el usuario sienta que el sistema es rápido
                 setVisible(false);
 
-                // STEP 2: Ejecutamos la impresión y la limpieza en un hilo separado
-                // Así evitamos congelar la interfaz y le damos tiempo al spooler de Windows de jalar el archivo
                 new Thread(() -> {
                     try {
-                        // Mandamos la orden al hardware (se queda esperando hasta que Windows absorba el PDF)
                         job.print();
-
-                        // STEP 3: Una vez que job.print() termina con éxito, cerramos la ventana de forma segura
-                        java.awt.EventQueue.invokeLater(() -> {
-                            dispose();
-                        });
-
+                        java.awt.EventQueue.invokeLater(() -> dispose());
                     } catch (Exception ex) {
                         System.err.println("Error durante la transferencia al spooler: " + ex.getMessage());
                         java.awt.EventQueue.invokeLater(() -> {
@@ -198,9 +268,43 @@ public class VentanaImpresionWord extends JDialog {
             }
         });
 
-        btnGuardarPDF.addActionListener(e -> {
-            guardarPdfExistente(nroCierre);
-        });
+        btnGuardarPDF.addActionListener(e -> guardarPdfExistente(nombreReporte));
+
+        // Cargar primera página al terminar de construir la interfaz
+        cargarPaginaActual();
+    }
+
+    // -----------------------------------------------------------------
+    // MÉTODO NUEVO: CARGAR PÁGINA EN MEMORIA (Optimización)
+    // -----------------------------------------------------------------
+    private void cargarPaginaActual() {
+        if (renderizador != null) {
+            try {
+                // Renderiza la hoja a buena resolución y guárdala en RAM
+                imagenPaginaActual = renderizador.renderImageWithDPI(paginaActual, 180);
+                if (lblInfoPagina != null) {
+                    lblInfoPagina.setText("Página " + (paginaActual + 1) + " de " + totalPaginas);
+                }
+                // Obligar al panel a repintarse con la nueva hoja
+                if (panelContenedorHoja != null) {
+                    panelContenedorHoja.repaint();
+                }
+            } catch (Exception e) {
+                System.err.println("Error al renderizar página: " + e.getMessage());
+            }
+        }
+    }
+
+    private double calcularZoomAutomatico() {
+        if (imagenPaginaActual == null || scrollVistaPdf == null) {
+            return 1.0;
+        }
+
+        double escalaX = (scrollVistaPdf.getViewport().getWidth() - 60) / (double) imagenPaginaActual.getWidth();
+        double escalaY = (scrollVistaPdf.getViewport().getHeight() - 60) / (double) imagenPaginaActual.getHeight();
+        double factor = Math.min(escalaX, escalaY);
+
+        return factor > 1.0 ? 1.0 : factor;
     }
 
     // -----------------------------------------------------------------
@@ -209,13 +313,11 @@ public class VentanaImpresionWord extends JDialog {
     @Override
     public void dispose() {
         try {
-            // STEP 3: Cerrar el lector de Apache PDFBox para quitarle el candado de Windows
             if (documentoPdf != null) {
                 documentoPdf.close();
                 System.out.println("Memoria de PDFBox liberada.");
             }
 
-            // STEP 4: Ir al disco duro y fulminar el archivo .pdf temporal de la carpeta Temp
             if (rutaArchivoPdf != null) {
                 File archivoTemporal = new File(rutaArchivoPdf);
                 if (archivoTemporal.exists()) {
@@ -230,38 +332,44 @@ public class VentanaImpresionWord extends JDialog {
         } catch (Exception e) {
             System.err.println("Error crítico durante el proceso de limpieza: " + e.getMessage());
         }
-
-        // STEP 5: Destruir oficialmente el JDialog de la pantalla
         super.dispose();
     }
 
-    private void guardarPdfExistente(String nroCierre) {
-        FileDialog fileDialog = new FileDialog(this, "Guardar Cierre de Caja", FileDialog.SAVE);
-        fileDialog.setFile("Cierre_Caja_" + nroCierre + ".pdf");
+    private void guardarPdfExistente(String nombreReporte) {
+        FileDialog fileDialog = new FileDialog(this, "Guardar " + nombreReporte, FileDialog.SAVE);
+        String nombreSugerido = nombreReporte.replaceAll("[\\\\/:*?\"<>|]", "_");
+        fileDialog.setFile(nombreSugerido + ".pdf");
         fileDialog.setVisible(true);
 
         String dir = fileDialog.getDirectory();
         String file = fileDialog.getFile();
 
         if (dir != null && file != null) {
-            File destino = new File(dir + (file.endsWith(".pdf") ? file : file + ".pdf"));
-            File origen = new File(rutaArchivoPdf); // Tu ruta del archivo temporal actual
+            String nombreFinal = file.toLowerCase().endsWith(".pdf") ? file : file + ".pdf";
+            File destino = new File(dir, nombreFinal);
+            File origen = new File(rutaArchivoPdf);
 
             try {
-                // Utilizamos java.nio.file.Files para una copia rápida y segura
+                if (origen.getCanonicalPath().equals(destino.getCanonicalPath())) {
+                    JOptionPane.showMessageDialog(this, "No puedes sobrescribir el archivo temporal.", "Error", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
                 java.nio.file.Files.copy(origen.toPath(), destino.toPath(),
                         java.nio.file.StandardCopyOption.REPLACE_EXISTING);
 
-                JOptionPane.showMessageDialog(this, "PDF guardado exitosamente.");
+                JOptionPane.showMessageDialog(this, "PDF guardado exitosamente en:\n" + destino.getAbsolutePath());
 
-                // Abrir con el visor nativo
-                java.awt.Desktop.getDesktop().open(destino);
+                if (java.awt.Desktop.isDesktopSupported()) {
+                    java.awt.Desktop.getDesktop().open(destino);
+                }
 
-                // Opcional: Cerramos la vista previa
                 this.dispose();
 
+            } catch (java.io.IOException ex) {
+                JOptionPane.showMessageDialog(this, "Error de acceso al disco: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Error al guardar el archivo: " + ex.getMessage());
+                JOptionPane.showMessageDialog(this, "Error inesperado: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

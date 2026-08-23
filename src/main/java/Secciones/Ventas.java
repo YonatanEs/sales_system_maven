@@ -16,6 +16,8 @@ public class Ventas {
     public UtilPanels panel;
     
     public Sub_nuevaventa nv;
+    public sub_historialventa hv;
+    public sub_creditosventas cv;
     
     public static Gson gson = Converters.registerAll(new GsonBuilder()).create();
     public static OkHttpClient client = new OkHttpClient();
@@ -26,6 +28,8 @@ public class Ventas {
         this.panel=panel;
         
         nv = new Sub_nuevaventa(this);
+        hv = new sub_historialventa(this);
+        cv = new sub_creditosventas(this);
         
         Listeners();
     }
@@ -38,12 +42,6 @@ public class Ventas {
                 home.jTabbedPane1.setSelectedComponent(home.jP_nuevaventas);
                 nv.initNuevaVenta();
                 nv.sugerenciasBuscadorInventario();
-            }
-        });
-        home.jL_historialventas_menuItem.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e){
-                home.ocultar_menu();
             }
         });
         home.jL_gestioncredito_menuItem.addMouseListener(new MouseAdapter() {

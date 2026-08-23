@@ -1,16 +1,16 @@
 package Dto;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class DtoRemoveStock {
 
     private int idProducto;
-    private LocalDate fechaSalida;
+    private LocalDateTime fechaSalida;
     private BigDecimal stock;
     private String concepto;
 
-    public DtoRemoveStock(int idProducto, LocalDate fechaSalida, BigDecimal stock, String concepto) {
+    public DtoRemoveStock(int idProducto, LocalDateTime fechaSalida, BigDecimal stock, String concepto) {
         this.idProducto = idProducto;
         this.fechaSalida = fechaSalida;
         this.stock = stock;
@@ -25,11 +25,11 @@ public class DtoRemoveStock {
         this.idProducto = idProducto;
     }
 
-    public LocalDate getFechaSalida() {
+    public LocalDateTime getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(LocalDate fechaSalida) {
+    public void setFechaSalida(LocalDateTime fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 

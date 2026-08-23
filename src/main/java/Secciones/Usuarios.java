@@ -91,8 +91,8 @@ public class Usuarios {
         menuTabla = new MenuEditarYEstado(home.tableUsuarios, true,
                 (id) -> editarUsuario((int) id),
                 (id) -> ActoinactivarUsuario((int) id));
- 
-    } 
+
+    }
 
     private void Listeners() {
         //funcionalidad del boton de registrar o actualizar del panel de usuarios
@@ -162,11 +162,8 @@ public class Usuarios {
 
         //buscador de tabla cliente
         Tools.buscadorTablaValidate(home.txt_buscadorp_usuario, "Buscar usuario..", (consulta) -> {
-            Cargando.doSomething(new X() {
-                @Override
-                public void execute() {
-                    tabledates(consulta);
-                }
+            Cargando.doSomething(() -> {
+                tabledates(consulta);
             });
         });
 

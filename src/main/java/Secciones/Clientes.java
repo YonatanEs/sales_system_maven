@@ -1,6 +1,7 @@
 package Secciones;
 
 import Clases.Cargando;
+import Clases.ListaClientesRep;
 import Clases.MenuEditarYEstado;
 import Clases.Tools;
 import Clases.Txt_buscador;
@@ -32,6 +33,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -59,13 +62,14 @@ public class Clientes {
     private JDialog d_registrar;
     private boolean registrando;
 
-    private Cliente_ob clienteSelected = null;
-    
+    public Cliente_ob clienteSelected = null;
+
     private Txt_buscador txt_buscador_clientes;
     private TextAutoCompleter autoCompleterClientes;
-    
+
     private List listVariables;
-    private MenuEditarYEstado menuTabla;
+    private Icon iconActivar = new ImageIcon(Tools.class.getResource("/Images/activar.png"));
+    private Icon iconInactivar = new ImageIcon(Tools.class.getResource("/Images/eliminar.png"));
 
     public Clientes(Home home, UtilPanels panel) {
         this.home = home;
@@ -84,12 +88,60 @@ public class Clientes {
         Listeners();
 
         txt_buscador_clientes = new Txt_buscador("Buscar cliente..", home.txt_buscador_cliente);
-        
+
         tabledates("");
     }
 
     /* --------  encargados de darle funcionalidad a los objetos con un listener */
     private void Listeners() {
+        home.tableClientes.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                handlePopup(e);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                handlePopup(e);
+            }
+
+            public void handlePopup(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    int row = home.tableClientes.rowAtPoint(e.getPoint());
+                    if (row >= 0 && row < home.tableClientes.getRowCount()) {
+
+                        home.tableClientes.setRowSelectionInterval(row, row);
+                        int id_cliente = Integer.parseInt(home.tableClientes.getValueAt(row, 0).toString());
+
+                        clienteSelected = clienteSelected(id_cliente);
+
+                        if (clienteSelected.getEstado().equals("Activo")) {
+                            home.item_estado_cli.setIcon(iconInactivar);
+                            home.item_estado_cli.setText("Inactivar");
+                        } else {
+                            home.item_estado_cli.setIcon(iconActivar);
+                            home.item_estado_cli.setText("Activar");
+                        }
+
+                        home.jPopupClientes.show(e.getComponent(), e.getX(), e.getY());
+                    }
+                }
+            }
+        });
+        
+        home.item_verfacturas_cli.addActionListener(e->{
+            home.ventas.hv.winHistorialCliente(clienteSelected.getNit(), clienteSelected.getNombre());
+        });
+        
+        home.item_editar_cli.addActionListener(e-> {
+            editarCliente();
+        });
+        
+        home.item_estado_cli.addActionListener(e->{
+            ActoinactivarCliente();
+        });
+        
 
         home.btn_registrarcliente.addMouseListener(new MouseAdapter() {
             @Override
@@ -133,17 +185,14 @@ public class Clientes {
         });
 
         //buscador de tabla clientes
-        Tools.buscadorTablaValidate(home.txt_buscador_cliente,"Buscar cliente..", (consulta) -> {
-            Cargando.doSomething(new X() {
-                @Override
-                public void execute() {
-                    tabledates(consulta);
-                }
+        Tools.buscadorTablaValidate(home.txt_buscador_cliente, "Buscar cliente..", (consulta) -> {
+            Cargando.doSomething(() -> {
+                tabledates(consulta);
             });
         });
-        
+
         //fracmento de codigo que define en la tabla de usuario el color de letra en celda estado
-        home.tableClientes.getColumnModel().getColumn(Tools.indexColumnEstado(home.tableClientes)).setCellRenderer(new DefaultTableCellRenderer() {
+       /* home.tableClientes.getColumnModel().getColumn(Tools.indexColumnEstado(home.tableClientes)).setCellRenderer(new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 Component cell = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -158,19 +207,17 @@ public class Clientes {
 
                 return cell;
             }
-        });
+        });*/
 
         autoCompleterClientes = new TextAutoCompleter(home.txt_buscador_cliente);
-        
+
         sugerenciasBuscadorClientes();
     }
 
     /*------Metodos para controlar objetos visuales y no visuales en la interfaz grafica */
     //abre la ventana para poder modificar la info de un cliente seleccionado
-    private void editarCliente(int id) {
-
-        clienteSelected = clienteSelected(id);
-
+    private void editarCliente() {
+        
         d_registrar = new JDialog();
         d_registrar.getContentPane().add(panel.jP_reg_cliente);
         d_registrar.pack();
@@ -207,14 +254,10 @@ public class Clientes {
 
     //diseño de la tabla clientes
     private void customTable() {
-        home.tableClientes.getTableHeader().setReorderingAllowed(false);
+        /*home.tableClientes.getTableHeader().setReorderingAllowed(false);
         home.tableClientes.setRowHeight(25);
-        Tools.headers(home.tableClientes);
-
-        menuTabla = new MenuEditarYEstado(home.tableClientes, false,
-                (id) -> editarCliente((int) id),
-                (id) -> ActoinactivarCliente((int) id));
-
+        Tools.headers();*/
+        Tools.diseñotabla1(home.tableClientes);
     }
 
     /*---------Validacion de datos y Conexiones a la api*/
@@ -266,7 +309,8 @@ public class Clientes {
                                 cliente.getNit(),
                                 cliente.getTelefono(),
                                 cliente.getDireccion(),
-                                cliente.getEstado()
+                                cliente.getEstado(),
+                                cliente.getCredito()
                             });
                         }
 
@@ -477,8 +521,7 @@ public class Clientes {
     }
 
     //activa o inactiva el estado del cliente
-    public void ActoinactivarCliente(int id) {
-        clienteSelected = clienteSelected(id);
+    public void ActoinactivarCliente() {
         try {
             //conexion a api
             if (clienteSelected.getId() == 0) {
@@ -573,9 +616,9 @@ public class Clientes {
         }
         return null;
     }
-    
+
     //llena las sugerencias del buscador de clientes
-    private void sugerenciasBuscadorClientes(){
+    private void sugerenciasBuscadorClientes() {
         try {
             //conexion a api
             Request request = new Request.Builder()
@@ -611,6 +654,45 @@ public class Clientes {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error " + e);
         }
+    }
+
+    public void ListarClientes(ListaClientesRep listener) {
+
+        ValorRecuest valorRecuest = new ValorRecuest("");
+        String jsonBody = gson.toJson(valorRecuest);
+        RequestBody body = RequestBody.create(jsonBody, JSON);
+
+        Request request = new Request.Builder()
+                .url(General.properties.getUrl() + "/api/clientes/ListaClientes")
+                .addHeader("Authorization", "Bearer " + userAuth.getToken().trim())
+                .post(body)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException ioe) {
+                listener.onError(ioe.getMessage());
+                UtilMessage.messageError("Error en la conexion " + ioe);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String json = response.body().string();
+                int code = response.code();
+
+                if (response.isSuccessful()) {
+                    Type listType = new TypeToken<List<Cliente_ob>>() {
+                    }.getType();
+                    List<Cliente_ob> clientes = gson.fromJson(json, listType);
+                    listener.onSuccess(clientes);
+                } else {
+                    String error = General.Error.parseJsonError(json);
+                    listener.onError(error);
+                    UtilMessage.messageWarning("Error " + response.code() + ": " + error);
+                }
+            }
+        });
+
     }
 
 }

@@ -100,11 +100,8 @@ public class Configuracion {
         });
 
         panel.btn_actualizar_infoEmpresa.addActionListener((e) -> {
-            Cargando.doSomething(new X() {
-                @Override
-                public void execute() {
-                    actualizarDatosEmpresa();
-                }
+            Cargando.doSomething(() -> {
+                actualizarDatosEmpresa();
             });
         });
 
@@ -184,9 +181,9 @@ public class Configuracion {
                 return;
             }
 
-            int resp = JOptionPane.showConfirmDialog(null, "¿Actualizar contraseña?","Confirmar", JOptionPane.YES_NO_OPTION);
-            
-            if (val && resp==JOptionPane.YES_OPTION) {
+            int resp = JOptionPane.showConfirmDialog(null, "¿Actualizar contraseña?", "Confirmar", JOptionPane.YES_NO_OPTION);
+
+            if (val && resp == JOptionPane.YES_OPTION) {
                 Dto_cambiarcontraseña contraseña = new Dto_cambiarcontraseña(userAuth.getUsuario().getId(),
                         new String(passActual), new String(passNuevo));
                 String jsonBody = gson.toJson(contraseña);
@@ -282,7 +279,8 @@ public class Configuracion {
             public void onResponse(Call call, Response response) throws IOException {
                 try (response) {
                     if (!response.isSuccessful()) {
-                        listener.onError("Error en el servidor al obtener datos de la empresa.");
+                        listener.onError("Error en el servidor al obtener datos de la empresa. Code: "
+                                + response.code() + " Mensaje: " + response.message());
                         return;
                     }
 
@@ -295,7 +293,7 @@ public class Configuracion {
                                 dto.getDireccion(), dto.getSlogan(), iconoAddLogo
                         );
 
-                        existsLogo=false;
+                        existsLogo = false;
                         listener.onSuccess(empresaLogoDefault);
                         return;
                     }
@@ -313,9 +311,9 @@ public class Configuracion {
                                     dto.getNombre(), dto.getNit(), dto.getTelefono(),
                                     dto.getDireccion(), dto.getSlogan(), iconoAddLogo
                             );
-                            existsLogo=false;
+                            existsLogo = false;
                             listener.onSuccess(empresaConErrorLogo);
-                            
+
                         }
 
                         @Override
@@ -331,8 +329,8 @@ public class Configuracion {
                                         dto.getNombre(), dto.getNit(), dto.getTelefono(),
                                         dto.getDireccion(), dto.getSlogan(), iconoOriginal
                                 );
-                                
-                                existsLogo=true;
+
+                                existsLogo = true;
                                 listener.onSuccess(empresaCompleta);
                             }
                         }
@@ -376,10 +374,10 @@ public class Configuracion {
             JOptionPane.showMessageDialog(null, "¡Debes añadir tu logo!");
             return;
         }
-        
+
         int resp = JOptionPane.showConfirmDialog(null, "¿Actualizar datos de la empresa?", "Confirmar", JOptionPane.YES_NO_OPTION);
 
-        if (val && resp==JOptionPane.YES_OPTION) {
+        if (val && resp == JOptionPane.YES_OPTION) {
             Dto_datosEmpresa empresa = new Dto_datosEmpresa(nombre, nit, telefono, direccion, slogan, "");
             String jsonBody = gson.toJson(empresa);
 

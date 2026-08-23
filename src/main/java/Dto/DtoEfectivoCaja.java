@@ -15,7 +15,7 @@ public class DtoEfectivoCaja {
         this.importe = importe;
         this.concepto = concepto;
     }
-
+    
     public int getIdTurno() {
         return idTurno;
     }
@@ -47,5 +47,5 @@ public class DtoEfectivoCaja {
     public void setConcepto(String concepto) {
         this.concepto = concepto;
     }
-
+    
 }
