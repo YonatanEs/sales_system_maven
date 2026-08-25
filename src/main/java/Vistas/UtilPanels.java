@@ -540,6 +540,12 @@ public final class UtilPanels extends javax.swing.JFrame {
         jPopupAbonos = new javax.swing.JPopupMenu();
         jM_verAbono_abono = new javax.swing.JMenuItem();
         jM_verDeposito_abono = new javax.swing.JMenuItem();
+        jP_historialventas1 = new javax.swing.JPanel();
+        jL_titulo_historialventa1 = new javax.swing.JLabel();
+        jLabel127 = new javax.swing.JLabel();
+        jLabel139 = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
 
         cargando.setBackground(new java.awt.Color(255, 255, 255));
         cargando.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -4779,6 +4785,55 @@ public final class UtilPanels extends javax.swing.JFrame {
         jM_verDeposito_abono.setText("ver Deposito");
         jPopupAbonos.add(jM_verDeposito_abono);
 
+        jP_historialventas1.setBackground(new java.awt.Color(250, 250, 250));
+
+        jL_titulo_historialventa1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jL_titulo_historialventa1.setText("Registrar Devolucion");
+
+        jLabel127.setText("Recibo No.44 - Cliente con apellido - Q. 100");
+
+        jLabel139.setText("Fecha: 12/50/2025 12:55 PM - Método: Efectivo - Activa");
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Id producto", "Código", "Cantidad vendida", "Precio", "Title 5"
+            }
+        ));
+        jScrollPane11.setViewportView(jTable3);
+
+        javax.swing.GroupLayout jP_historialventas1Layout = new javax.swing.GroupLayout(jP_historialventas1);
+        jP_historialventas1.setLayout(jP_historialventas1Layout);
+        jP_historialventas1Layout.setHorizontalGroup(
+            jP_historialventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_historialventas1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jP_historialventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jL_titulo_historialventa1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel127, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel139, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        jP_historialventas1Layout.setVerticalGroup(
+            jP_historialventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_historialventas1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jL_titulo_historialventa1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel127, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel139, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(135, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -5094,6 +5149,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_titulo_caja2;
     public javax.swing.JLabel jL_titulo_caja3;
     public javax.swing.JLabel jL_titulo_historialventa;
+    public javax.swing.JLabel jL_titulo_historialventa1;
     public javax.swing.JLabel jL_titulo_pcliente;
     public javax.swing.JLabel jL_titulo_pcliente1;
     public javax.swing.JLabel jL_titulo_pcliente10;
@@ -5155,6 +5211,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel124;
     private javax.swing.JLabel jLabel125;
     private javax.swing.JLabel jLabel126;
+    private javax.swing.JLabel jLabel127;
     private javax.swing.JLabel jLabel128;
     private javax.swing.JLabel jLabel129;
     private javax.swing.JLabel jLabel13;
@@ -5167,6 +5224,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel136;
     private javax.swing.JLabel jLabel137;
     private javax.swing.JLabel jLabel138;
+    private javax.swing.JLabel jLabel139;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -5294,6 +5352,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JPanel jP_historial_movimientosStock;
     public javax.swing.JPanel jP_historial_movimientos_turno;
     public javax.swing.JPanel jP_historialventas;
+    public javax.swing.JPanel jP_historialventas1;
     public javax.swing.JPanel jP_hoja_reporteCierre;
     public javax.swing.JPanel jP_infoproducto_nuevaventa;
     public javax.swing.JPanel jP_ingresoInventario;
@@ -5345,6 +5404,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JSpinner jS_stock_inicial_rsi;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -5359,6 +5419,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     public volatile javax.swing.JTable tabla_categoria_inv;
     public volatile javax.swing.JTable tabla_medidas_inv;
     public volatile javax.swing.JTable tabla_proveedor_inv;

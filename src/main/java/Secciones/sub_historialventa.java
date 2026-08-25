@@ -1,3 +1,5 @@
+
+
 package Secciones;
 
 import Clases.Cargando;
@@ -69,6 +71,7 @@ public class sub_historialventa {
 
     private Txt_buscador buscadorhistorialventa;
     private Txt_buscador buscadorfecha;
+    private Txt_buscador buscadorRecibo;
     
     private JDialog jD_comprobanteDeposito;
 
@@ -87,6 +90,7 @@ public class sub_historialventa {
                 v.panel.txt_buscadornit_historialventa);
         buscadorfecha = new Txt_buscador("Buscar fecha",
                 v.panel.txt_fechafactura_historialventas);
+        buscadorRecibo = new Txt_buscador("Buscar por No. Recibo ", v.panel.txt_buscadornorecibo_historialventa);
 
         Listener();
     }
@@ -219,7 +223,7 @@ public class sub_historialventa {
                     filtro.setFecha(fecha);
                     buscadorfecha.setTextoManual(fechaview);
                     v.panel.txt_fechafactura_historialventas.requestFocus();
-
+                    
                     tabledates(filtro);
                 }
             }
@@ -238,7 +242,7 @@ public class sub_historialventa {
 
                         v.panel.jD_fechabusqueda_historialventas.setDate(null);
 
-                        filtro.setContextoBusqueda(DtoFiltroHistorialVentas.ContextoBusqueda.buscadorfecha);
+                        filtro.setContextoBusqueda(DtoFiltroHistorialVentas.ContextoBusqueda.buscadornit);
                         filtro.setBusqueda("");
                         filtro.setPage(pagina_actual);
                         tabledates(filtro);
@@ -293,7 +297,7 @@ public class sub_historialventa {
         }else if(seleccion.equalsIgnoreCase("No. Recibo")){
             target = "buscadornorecibo";
         }else{
-            
+            target = "buscadorfecha";
         }
         
         CardLayout cl = (CardLayout) (v.panel.jP_buscadorhistorial.getLayout());
@@ -306,7 +310,7 @@ public class sub_historialventa {
         //La fecha actual: LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
         pagina_actual = 0;
         v.panel.cbx_buscadorhistorial.setSelectedIndex(0);
-        v.panel.cbx_buscadorhistorial.addItem("");
+        //v.panel.cbx_buscadorhistorial.addItem("");
         
         filtro = new DtoFiltroHistorialVentas(DtoFiltroHistorialVentas.ContextoOrigen.GENERAL,
                 DtoFiltroHistorialVentas.ContextoBusqueda.buscadornit, "", "",
@@ -323,9 +327,9 @@ public class sub_historialventa {
 
         tabledates(filtro);
         d_historial.setVisible(true);
-        SwingUtilities.invokeLater(() -> {
+        /*SwingUtilities.invokeLater(() -> {
             v.panel.jD_fechabusqueda_historialventas.getDateEditor().getUiComponent().requestFocusInWindow();
-        });
+        });*/
     }
 
     public void winHistorialTurno(int idTurno) {
