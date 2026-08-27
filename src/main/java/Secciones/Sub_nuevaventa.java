@@ -70,7 +70,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.jfree.data.jdbc.JDBCCategoryDataset;
 
-public class Sub_nuevaventa {
+public class sub_nuevaventa {
 
     private Ventas v;
 
@@ -114,7 +114,7 @@ public class Sub_nuevaventa {
     //variables para la opcion de ventas a credito
      private String plazoDePago = "";
     
-    public Sub_nuevaventa(Ventas ventas) {
+    public sub_nuevaventa(Ventas ventas) {
         this.v = ventas;
 
         Tools.focusWhite_comp(Arrays.asList(v.panel.txt_nit_finalizarventa, v.panel.txt_nombre_finalizarventa, v.panel.txt_noDeposito_finalizarventa));

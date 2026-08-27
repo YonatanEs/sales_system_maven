@@ -15,9 +15,10 @@ public class Ventas {
     public Home home;
     public UtilPanels panel;
     
-    public Sub_nuevaventa nv;
+    public sub_nuevaventa nv;
     public sub_historialventa hv;
-    public sub_creditosventas cv;
+    public sub_creditosventa cv;
+    public sub_devolucionesventa dv;
     
     public static Gson gson = Converters.registerAll(new GsonBuilder()).create();
     public static OkHttpClient client = new OkHttpClient();
@@ -27,9 +28,10 @@ public class Ventas {
         this.home=home;
         this.panel=panel;
         
-        nv = new Sub_nuevaventa(this);
+        nv = new sub_nuevaventa(this);
         hv = new sub_historialventa(this);
-        cv = new sub_creditosventas(this);
+        cv = new sub_creditosventa(this);
+        dv = new sub_devolucionesventa(this);
         
         Listeners();
     }

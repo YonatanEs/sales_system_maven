@@ -1,5 +1,3 @@
-
-
 package Secciones;
 
 import Clases.Cargando;
@@ -38,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -66,13 +65,13 @@ public class sub_historialventa {
 
     private DtoFiltroHistorialVentas filtro;
 
-    private int idReciboSelected = 0;
+    public int idReciboSelected = 0;
     private String metodoPagoHV;
 
     private Txt_buscador buscadorhistorialventa;
     private Txt_buscador buscadorfecha;
     private Txt_buscador buscadorRecibo;
-    
+
     private JDialog jD_comprobanteDeposito;
 
     public sub_historialventa(Ventas v) {
@@ -117,6 +116,23 @@ public class sub_historialventa {
                         idReciboSelected = Integer.parseInt(v.panel.tableHistorialventas.getValueAt(row, 0).toString());
 
                         metodoPagoHV = v.panel.tableHistorialventas.getValueAt(row, 5).toString();
+                        String estado = v.panel.tableHistorialventas.getValueAt(row, 6).toString();
+
+                        String fecha = v.panel.tableHistorialventas.getValueAt(row, 1).toString();
+                        LocalDate fechaLimite = LocalDateTime.parse(fecha,
+                                DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")).toLocalDate();
+
+                        if (estado.equalsIgnoreCase("Activa") || estado.equalsIgnoreCase("Parcialmente_Devuelta")) {
+                            v.panel.jM_registrardevolucion.setVisible(dentroDePlazo(fechaLimite, 5));
+                        } else {
+                            v.panel.jM_registrardevolucion.setVisible(false);
+                        }
+
+                        if (estado.equalsIgnoreCase("Activa")) {
+                            v.panel.jM_anularrecibo.setVisible(dentroDePlazo(fechaLimite, 1));
+                        } else {
+                            v.panel.jM_anularrecibo.setVisible(false);
+                        }
 
                         if (metodoPagoHV.equalsIgnoreCase("Deposito") || metodoPagoHV.equalsIgnoreCase("Depósito")) {
                             v.panel.jM_verComprobanteDeposito.setVisible(true);
@@ -137,10 +153,10 @@ public class sub_historialventa {
 
         });
 
-        v.panel.jM_verComprobanteDeposito.addActionListener(e->{
+        v.panel.jM_verComprobanteDeposito.addActionListener(e -> {
             WinComprobanteDeposito();
         });
-        
+
         v.home.btn_historialventas.addActionListener(e -> {
             winHistorialGeneral();
         });
@@ -206,7 +222,7 @@ public class sub_historialventa {
                 }
             }
         });
-        
+
         //el datachooser le pasa la fecha al txt
         v.panel.jD_fechabusqueda_historialventas.addPropertyChangeListener("date", new PropertyChangeListener() {
             @Override
@@ -223,7 +239,7 @@ public class sub_historialventa {
                     filtro.setFecha(fecha);
                     buscadorfecha.setTextoManual(fechaview);
                     v.panel.txt_fechafactura_historialventas.requestFocus();
-                    
+
                     tabledates(filtro);
                 }
             }
@@ -278,7 +294,7 @@ public class sub_historialventa {
                 }
             }
         });
-        
+
         v.panel.cbx_buscadorhistorial.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -286,32 +302,30 @@ public class sub_historialventa {
             }
         });
     }
-    
-    
+
     private void buscadorHistorialVentas() {
         String seleccion = v.panel.cbx_buscadorhistorial.getSelectedItem().toString();
 
         String target = "buscadorfecha";
-        if(seleccion.equalsIgnoreCase("NIT/Cliente")){
+        if (seleccion.equalsIgnoreCase("NIT/Cliente")) {
             target = "buscadornit";
-        }else if(seleccion.equalsIgnoreCase("No. Recibo")){
+        } else if (seleccion.equalsIgnoreCase("No. Recibo")) {
             target = "buscadornorecibo";
-        }else{
+        } else {
             target = "buscadorfecha";
         }
-        
+
         CardLayout cl = (CardLayout) (v.panel.jP_buscadorhistorial.getLayout());
         cl.show(v.panel.jP_buscadorhistorial, target);
 
-
     }
-    
+
     public void winHistorialGeneral() {
         //La fecha actual: LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
         pagina_actual = 0;
         v.panel.cbx_buscadorhistorial.setSelectedIndex(0);
         //v.panel.cbx_buscadorhistorial.addItem("");
-        
+
         filtro = new DtoFiltroHistorialVentas(DtoFiltroHistorialVentas.ContextoOrigen.GENERAL,
                 DtoFiltroHistorialVentas.ContextoBusqueda.buscadornit, "", "",
                 "",
@@ -337,7 +351,7 @@ public class sub_historialventa {
         pagina_actual = 0;
 
         v.panel.cbx_buscadorhistorial.setSelectedIndex(0);
-        
+
         filtro = new DtoFiltroHistorialVentas(DtoFiltroHistorialVentas.ContextoOrigen.TURNO,
                 DtoFiltroHistorialVentas.ContextoBusqueda.buscadornit, "", String.valueOf(idTurno),
                 "",
@@ -360,7 +374,7 @@ public class sub_historialventa {
         pagina_actual = 0;
 
         v.panel.cbx_buscadorhistorial.setSelectedIndex(0);
-        
+
         filtro = new DtoFiltroHistorialVentas(DtoFiltroHistorialVentas.ContextoOrigen.CLIENTE,
                 DtoFiltroHistorialVentas.ContextoBusqueda.buscadornit, "", nit,
                 "",
@@ -477,7 +491,7 @@ public class sub_historialventa {
                         // Mostrar en tu ventana Swing
                         SwingUtilities.invokeLater(() -> {
                             Tools.adaptarIconoJLabel(v.panel.jL_img_vcd, comprobante);
-                            jD_comprobanteDeposito.setTitle("Comprobante de depósito - "+noDeposito);
+                            jD_comprobanteDeposito.setTitle("Comprobante de depósito - " + noDeposito);
                             jD_comprobanteDeposito.setVisible(true);
                         });
                     }
@@ -489,4 +503,7 @@ public class sub_historialventa {
         }
     }
 
+    private boolean dentroDePlazo(LocalDate fecha, int limiteDias) {
+        return ChronoUnit.DAYS.between(fecha, LocalDate.now()) <= limiteDias;
+    }
 }

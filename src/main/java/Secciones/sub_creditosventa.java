@@ -55,7 +55,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.ByteString;
 
-public class sub_creditosventas {
+public class sub_creditosventa {
 
     private Ventas v;
 
@@ -84,7 +84,7 @@ public class sub_creditosventas {
     private Txt_buscador buscadoAbonos;
     KeyEvent enterEvent;
 
-    public sub_creditosventas(Ventas ventas) {
+    public sub_creditosventa(Ventas ventas) {
         this.v = ventas;
 
         d_creditoclientes = Tools.newWindow(v.panel.jP_creditoClientes);

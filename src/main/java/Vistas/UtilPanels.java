@@ -470,6 +470,8 @@ public final class UtilPanels extends javax.swing.JFrame {
         jPopupHistorialVenta = new javax.swing.JPopupMenu();
         jM_verRecibo = new javax.swing.JMenuItem();
         jM_verComprobanteDeposito = new javax.swing.JMenuItem();
+        jM_registrardevolucion = new javax.swing.JMenuItem();
+        jM_anularrecibo = new javax.swing.JMenuItem();
         jP_detalledeposito_finalizarventa = new javax.swing.JPanel();
         txt_noDeposito_finalizarventa = new javax.swing.JTextField();
         jL_efectivo_finalizarventa1 = new javax.swing.JLabel();
@@ -540,12 +542,37 @@ public final class UtilPanels extends javax.swing.JFrame {
         jPopupAbonos = new javax.swing.JPopupMenu();
         jM_verAbono_abono = new javax.swing.JMenuItem();
         jM_verDeposito_abono = new javax.swing.JMenuItem();
-        jP_historialventas1 = new javax.swing.JPanel();
+        jP_registrardevolucion = new javax.swing.JPanel();
         jL_titulo_historialventa1 = new javax.swing.JLabel();
-        jLabel127 = new javax.swing.JLabel();
-        jLabel139 = new javax.swing.JLabel();
+        jL_detallesrecibo1_devoluciones = new javax.swing.JLabel();
+        jL_detallesrecibo2_devoluciones = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tableDevoluciones_devoluciones = new javax.swing.JTable();
+        btn_registrarDevolucion_devoluciones = new javax.swing.JButton();
+        btn_historialdevoluciones = new javax.swing.JButton();
+        jPopupDevoluciones = new javax.swing.JPopupMenu();
+        jM_devolverProducto = new javax.swing.JMenuItem();
+        jM_devolverProductos = new javax.swing.JMenuItem();
+        jM_reiniciarDevolucion = new javax.swing.JMenuItem();
+        jP_devolucionSimple = new javax.swing.JPanel();
+        jLabel127 = new javax.swing.JLabel();
+        jL_descripcion_devolucionsimple = new javax.swing.JLabel();
+        jLabel139 = new javax.swing.JLabel();
+        btn_continuar_devolucionsimple = new javax.swing.JButton();
+        txt_cant_devolucionsimple = new javax.swing.JTextField();
+        jP_resumenDevolucion = new javax.swing.JPanel();
+        jLabel140 = new javax.swing.JLabel();
+        jLabel141 = new javax.swing.JLabel();
+        jL_totalAdevolver_resumenDevolucion = new javax.swing.JLabel();
+        jLabel143 = new javax.swing.JLabel();
+        jL_metodoDevolucion_resumenDevolucion = new javax.swing.JLabel();
+        jLabel145 = new javax.swing.JLabel();
+        jLabel146 = new javax.swing.JLabel();
+        jL_totalactualRecibo_resumenDevolucion = new javax.swing.JLabel();
+        jL_metodoPago_resumendevolucion = new javax.swing.JLabel();
+        jLabel149 = new javax.swing.JLabel();
+        txt_motivoDevolucion_resumenDevolucion = new javax.swing.JTextField();
+        btn_confirmarDevolucion_resumenDevolucion = new javax.swing.JButton();
 
         cargando.setBackground(new java.awt.Color(255, 255, 255));
         cargando.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -3966,12 +3993,7 @@ public final class UtilPanels extends javax.swing.JFrame {
         if (tableHistorialventas.getColumnModel().getColumnCount() > 0) {
             tableHistorialventas.getColumnModel().getColumn(0).setPreferredWidth(80);
             tableHistorialventas.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tableHistorialventas.getColumnModel().getColumn(2).setHeaderValue("NIT");
             tableHistorialventas.getColumnModel().getColumn(3).setPreferredWidth(200);
-            tableHistorialventas.getColumnModel().getColumn(3).setHeaderValue("Cliente");
-            tableHistorialventas.getColumnModel().getColumn(4).setHeaderValue("Total");
-            tableHistorialventas.getColumnModel().getColumn(5).setHeaderValue("<html>Método de pago</html>");
-            tableHistorialventas.getColumnModel().getColumn(6).setHeaderValue("Estado");
         }
 
         jL_pags_historialventas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -4171,6 +4193,14 @@ public final class UtilPanels extends javax.swing.JFrame {
         jM_verComprobanteDeposito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/deposito_icon.png"))); // NOI18N
         jM_verComprobanteDeposito.setText("Ver comprobante de Deposito");
         jPopupHistorialVenta.add(jM_verComprobanteDeposito);
+
+        jM_registrardevolucion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/devolucion_icon.png"))); // NOI18N
+        jM_registrardevolucion.setText("Registrar Devolución");
+        jPopupHistorialVenta.add(jM_registrardevolucion);
+
+        jM_anularrecibo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eliminar.png"))); // NOI18N
+        jM_anularrecibo.setText("Anular Recibo");
+        jPopupHistorialVenta.add(jM_anularrecibo);
 
         jP_detalledeposito_finalizarventa.setBackground(new java.awt.Color(250, 250, 250));
         jP_detalledeposito_finalizarventa.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles del depósito", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
@@ -4785,53 +4815,246 @@ public final class UtilPanels extends javax.swing.JFrame {
         jM_verDeposito_abono.setText("ver Deposito");
         jPopupAbonos.add(jM_verDeposito_abono);
 
-        jP_historialventas1.setBackground(new java.awt.Color(250, 250, 250));
+        jP_registrardevolucion.setBackground(new java.awt.Color(250, 250, 250));
 
         jL_titulo_historialventa1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jL_titulo_historialventa1.setText("Registrar Devolucion");
 
-        jLabel127.setText("Recibo No.44 - Cliente con apellido - Q. 100");
+        jL_detallesrecibo1_devoluciones.setText("Recibo No.44 - Cliente con apellido - Q. 100");
 
-        jLabel139.setText("Fecha: 12/50/2025 12:55 PM - Método: Efectivo - Activa");
+        jL_detallesrecibo2_devoluciones.setText("Fecha: 12/50/2025 12:55 PM - Método: Efectivo - Activa");
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tableDevoluciones_devoluciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Id producto", "Código", "Cantidad vendida", "Precio", "Title 5"
+                "Id producto", "Código", "Descripción", "Cantidad vendida", "Precio", "Cantidad a devolver"
             }
-        ));
-        jScrollPane11.setViewportView(jTable3);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        javax.swing.GroupLayout jP_historialventas1Layout = new javax.swing.GroupLayout(jP_historialventas1);
-        jP_historialventas1.setLayout(jP_historialventas1Layout);
-        jP_historialventas1Layout.setHorizontalGroup(
-            jP_historialventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_historialventas1Layout.createSequentialGroup()
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane11.setViewportView(tableDevoluciones_devoluciones);
+        if (tableDevoluciones_devoluciones.getColumnModel().getColumnCount() > 0) {
+            tableDevoluciones_devoluciones.getColumnModel().getColumn(0).setMinWidth(0);
+            tableDevoluciones_devoluciones.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tableDevoluciones_devoluciones.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
+
+        btn_registrarDevolucion_devoluciones.setText("Registrar Devolución");
+
+        btn_historialdevoluciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/history_icon.png"))); // NOI18N
+        btn_historialdevoluciones.setToolTipText("historial de ventas");
+
+        javax.swing.GroupLayout jP_registrardevolucionLayout = new javax.swing.GroupLayout(jP_registrardevolucion);
+        jP_registrardevolucion.setLayout(jP_registrardevolucionLayout);
+        jP_registrardevolucionLayout.setHorizontalGroup(
+            jP_registrardevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_registrardevolucionLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jP_historialventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jL_titulo_historialventa1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel127, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel139, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(jP_registrardevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jP_registrardevolucionLayout.createSequentialGroup()
+                        .addGroup(jP_registrardevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jL_detallesrecibo1_devoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_registrardevolucionLayout.createSequentialGroup()
+                                .addComponent(jL_titulo_historialventa1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(287, 287, 287)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_historialdevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_registrardevolucionLayout.createSequentialGroup()
+                        .addComponent(jL_detallesrecibo2_devoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_registrarDevolucion_devoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
-        jP_historialventas1Layout.setVerticalGroup(
-            jP_historialventas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_historialventas1Layout.createSequentialGroup()
-                .addContainerGap()
+        jP_registrardevolucionLayout.setVerticalGroup(
+            jP_registrardevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_registrardevolucionLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jL_titulo_historialventa1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel127, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel139, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jP_registrardevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jP_registrardevolucionLayout.createSequentialGroup()
+                        .addComponent(jL_detallesrecibo1_devoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(jL_detallesrecibo2_devoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17))
+                    .addGroup(jP_registrardevolucionLayout.createSequentialGroup()
+                        .addComponent(btn_historialdevoluciones)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_registrarDevolucion_devoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
+        );
+
+        jM_devolverProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/devolucion_icon.png"))); // NOI18N
+        jM_devolverProducto.setText("Devolver este producto");
+        jPopupDevoluciones.add(jM_devolverProducto);
+
+        jM_devolverProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/devolucionall_icon.png"))); // NOI18N
+        jM_devolverProductos.setText("Devolver todos los productos");
+        jPopupDevoluciones.add(jM_devolverProductos);
+
+        jM_reiniciarDevolucion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reiniciar_icon.png"))); // NOI18N
+        jM_reiniciarDevolucion.setText("Reiniciar valores");
+        jPopupDevoluciones.add(jM_reiniciarDevolucion);
+
+        jP_devolucionSimple.setBackground(new java.awt.Color(250, 250, 250));
+
+        jLabel127.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel127.setText("Descripcion:");
+
+        jL_descripcion_devolucionsimple.setText("Producto 1");
+
+        jLabel139.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel139.setText("Cantidad a devolver:");
+
+        btn_continuar_devolucionsimple.setText("Continuar");
+
+        javax.swing.GroupLayout jP_devolucionSimpleLayout = new javax.swing.GroupLayout(jP_devolucionSimple);
+        jP_devolucionSimple.setLayout(jP_devolucionSimpleLayout);
+        jP_devolucionSimpleLayout.setHorizontalGroup(
+            jP_devolucionSimpleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_devolucionSimpleLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jP_devolucionSimpleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jP_devolucionSimpleLayout.createSequentialGroup()
+                        .addComponent(jLabel127)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jL_descripcion_devolucionsimple, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_devolucionSimpleLayout.createSequentialGroup()
+                        .addComponent(jLabel139)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_cant_devolucionsimple)))
+                .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_devolucionSimpleLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_continuar_devolucionsimple, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(93, 93, 93))
+        );
+        jP_devolucionSimpleLayout.setVerticalGroup(
+            jP_devolucionSimpleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_devolucionSimpleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jP_devolucionSimpleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel127, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_descripcion_devolucionsimple, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jP_devolucionSimpleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel139, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                    .addComponent(txt_cant_devolucionsimple))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_continuar_devolucionsimple, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jP_resumenDevolucion.setBackground(new java.awt.Color(250, 250, 250));
+
+        jLabel140.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel140.setText("Resumen de Devolucion");
+
+        jLabel141.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel141.setText("Total a devolver:");
+
+        jL_totalAdevolver_resumenDevolucion.setText("Q 10000.00");
+
+        jLabel143.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel143.setText("Método de devolucion:");
+
+        jL_metodoDevolucion_resumenDevolucion.setText("En Efectivo - Q 2,000.00    |  Saldo de crédito: Q 8000");
+
+        jLabel145.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel145.setText("Total actual del recibo:");
+
+        jLabel146.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel146.setText("Método de pago del Recibo:");
+
+        jL_totalactualRecibo_resumenDevolucion.setText("Q 15,000.00");
+
+        jL_metodoPago_resumendevolucion.setText("Crédito");
+
+        jLabel149.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel149.setText("Motivo de la devolucion:");
+
+        txt_motivoDevolucion_resumenDevolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_motivoDevolucion_resumenDevolucionActionPerformed(evt);
+            }
+        });
+
+        btn_confirmarDevolucion_resumenDevolucion.setText("Confirmar Devolución");
+
+        javax.swing.GroupLayout jP_resumenDevolucionLayout = new javax.swing.GroupLayout(jP_resumenDevolucion);
+        jP_resumenDevolucion.setLayout(jP_resumenDevolucionLayout);
+        jP_resumenDevolucionLayout.setHorizontalGroup(
+            jP_resumenDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_resumenDevolucionLayout.createSequentialGroup()
+                .addGroup(jP_resumenDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jP_resumenDevolucionLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addGroup(jP_resumenDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel149)
+                            .addGroup(jP_resumenDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jP_resumenDevolucionLayout.createSequentialGroup()
+                                    .addComponent(jLabel146)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jL_metodoPago_resumendevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel143)
+                                .addComponent(jLabel140, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_resumenDevolucionLayout.createSequentialGroup()
+                                    .addComponent(jLabel141)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jL_totalAdevolver_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jL_metodoDevolucion_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jP_resumenDevolucionLayout.createSequentialGroup()
+                                    .addComponent(jLabel145)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jL_totalactualRecibo_resumenDevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(jP_resumenDevolucionLayout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(btn_confirmarDevolucion_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jP_resumenDevolucionLayout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(txt_motivoDevolucion_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+        jP_resumenDevolucionLayout.setVerticalGroup(
+            jP_resumenDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_resumenDevolucionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel140, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jP_resumenDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel145, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_totalactualRecibo_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jP_resumenDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel146, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_metodoPago_resumendevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jP_resumenDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel141, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_totalAdevolver_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel143, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jL_metodoDevolucion_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel149, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_motivoDevolucion_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_confirmarDevolucion_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -4959,6 +5182,10 @@ public final class UtilPanels extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_buscadornorecibo_historialventaActionPerformed
 
+    private void txt_motivoDevolucion_resumenDevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_motivoDevolucion_resumenDevolucionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_motivoDevolucion_resumenDevolucionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5016,19 +5243,23 @@ public final class UtilPanels extends javax.swing.JFrame {
     public volatile javax.swing.JButton btn_cancelarProv_inv;
     public javax.swing.JButton btn_cerrarturnoCC_turno;
     public javax.swing.JButton btn_confirmarAbono_credito;
+    public javax.swing.JButton btn_confirmarDevolucion_resumenDevolucion;
     public javax.swing.JButton btn_confirmarventa_finalizarventa;
     public javax.swing.JButton btn_continuarCE_turno;
     public javax.swing.JButton btn_continuarEfectivo_turno;
+    public javax.swing.JButton btn_continuar_devolucionsimple;
     public javax.swing.JButton btn_continuar_rsi;
     public volatile javax.swing.JButton btn_guardarCat_inv;
     public volatile javax.swing.JButton btn_guardarMed_inv_;
     public volatile javax.swing.JButton btn_guardarProv_inv;
     public javax.swing.JButton btn_guardar_caja;
     public javax.swing.JButton btn_guardar_rp_inv;
+    public javax.swing.JButton btn_historialdevoluciones;
     public javax.swing.JButton btn_imprimirpdf_reporteCierre;
     public javax.swing.JButton btn_nuevocliente_p_cliente;
     public javax.swing.JButton btn_nuevousuario_p_usuario;
     public javax.swing.JButton btn_omitir_rsi;
+    public javax.swing.JButton btn_registrarDevolucion_devoluciones;
     public javax.swing.JButton btn_registrar_p_cliente;
     public javax.swing.JButton btn_registrar_p_usuario;
     public javax.swing.JButton btn_remover_removeStock;
@@ -5081,9 +5312,12 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_depositosventas_turno;
     public javax.swing.JLabel jL_depositoventa_reporteCierre;
     public javax.swing.JLabel jL_descripcion_addstock;
+    public javax.swing.JLabel jL_descripcion_devolucionsimple;
     public javax.swing.JLabel jL_descripcion_nuevaventa;
     public javax.swing.JLabel jL_descripcion_removeStock;
     public javax.swing.JLabel jL_descripcionproducto_descuento;
+    public javax.swing.JLabel jL_detallesrecibo1_devoluciones;
+    public javax.swing.JLabel jL_detallesrecibo2_devoluciones;
     public javax.swing.JLabel jL_deudatotal_credito;
     private javax.swing.JLabel jL_editarinfopro;
     public javax.swing.JLabel jL_efectivoCC_turno;
@@ -5110,6 +5344,8 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_medida_addstock;
     public javax.swing.JLabel jL_medida_nuevaventa;
     public javax.swing.JLabel jL_medida_removeStock;
+    public javax.swing.JLabel jL_metodoDevolucion_resumenDevolucion;
+    public javax.swing.JLabel jL_metodoPago_resumendevolucion;
     public javax.swing.JLabel jL_montoTotal_abonar;
     public javax.swing.JLabel jL_namepr;
     public javax.swing.JLabel jL_nit_credito;
@@ -5174,7 +5410,9 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_titulo_pusuarios;
     public javax.swing.JLabel jL_titulo_rp_inv;
     public javax.swing.JLabel jL_titulo_rp_inv1;
+    public javax.swing.JLabel jL_totalAdevolver_resumenDevolucion;
     public javax.swing.JLabel jL_totalBilletes_turno;
+    public javax.swing.JLabel jL_totalactualRecibo_resumenDevolucion;
     public javax.swing.JLabel jL_totalapagar_finalizarventa;
     public javax.swing.JLabel jL_totalefectivo_turno;
     public javax.swing.JLabel jL_totalmonedas_turno;
@@ -5226,6 +5464,12 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel138;
     private javax.swing.JLabel jLabel139;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel140;
+    private javax.swing.JLabel jLabel141;
+    private javax.swing.JLabel jLabel143;
+    private javax.swing.JLabel jLabel145;
+    private javax.swing.JLabel jLabel146;
+    private javax.swing.JLabel jLabel149;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -5320,6 +5564,11 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     public javax.swing.JMenuItem jM_abonar_creditos;
+    public javax.swing.JMenuItem jM_anularrecibo;
+    public javax.swing.JMenuItem jM_devolverProducto;
+    public javax.swing.JMenuItem jM_devolverProductos;
+    public javax.swing.JMenuItem jM_registrardevolucion;
+    public javax.swing.JMenuItem jM_reiniciarDevolucion;
     public javax.swing.JMenuItem jM_verAbono_abono;
     public javax.swing.JMenuItem jM_verComprobanteDeposito;
     public javax.swing.JMenuItem jM_verDeposito_abono;
@@ -5346,13 +5595,13 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JPanel jP_detalledeposito_finalizarventa;
     public javax.swing.JPanel jP_detallesDeposito_credito;
     public javax.swing.JPanel jP_detallespago_finalizarventa;
+    public javax.swing.JPanel jP_devolucionSimple;
     public javax.swing.JPanel jP_editarinforEmpresa;
     public javax.swing.JPanel jP_efectivo_turno;
     public javax.swing.JPanel jP_finalizarVenta_nuevaventa;
     private javax.swing.JPanel jP_historial_movimientosStock;
     public javax.swing.JPanel jP_historial_movimientos_turno;
     public javax.swing.JPanel jP_historialventas;
-    public javax.swing.JPanel jP_historialventas1;
     public javax.swing.JPanel jP_hoja_reporteCierre;
     public javax.swing.JPanel jP_infoproducto_nuevaventa;
     public javax.swing.JPanel jP_ingresoInventario;
@@ -5366,7 +5615,9 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JPanel jP_reg_proveedor_inv;
     public javax.swing.JPanel jP_reg_stockinicial;
     public javax.swing.JPanel jP_reg_usuario;
+    public javax.swing.JPanel jP_registrardevolucion;
     public javax.swing.JPanel jP_reporte_cierre_de_turno;
+    public javax.swing.JPanel jP_resumenDevolucion;
     public javax.swing.JPanel jP_saldoInicial_turno;
     public javax.swing.JPanel jP_salidaInventario;
     private javax.swing.JPanel jP_salidas;
@@ -5398,6 +5649,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JPanel jPdetallespro;
     public javax.swing.JPopupMenu jPopupAbonos;
     public javax.swing.JPopupMenu jPopupCreditos;
+    public javax.swing.JPopupMenu jPopupDevoluciones;
     public javax.swing.JPopupMenu jPopupHistorialVenta;
     public javax.swing.JPanel jPregistrarproducto;
     public javax.swing.JPanel jProduct;
@@ -5419,11 +5671,11 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     public volatile javax.swing.JTable tabla_categoria_inv;
     public volatile javax.swing.JTable tabla_medidas_inv;
     public volatile javax.swing.JTable tabla_proveedor_inv;
     public javax.swing.JTable tableCredito;
+    public javax.swing.JTable tableDevoluciones_devoluciones;
     public javax.swing.JTable tableHistorialabono;
     public javax.swing.JTable tableHistorialventas;
     public javax.swing.JTable tableLotepro;
@@ -5449,6 +5701,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JTextField txt_buscadornit_historialventa;
     public javax.swing.JTextField txt_buscadornorecibo_historialventa;
     public javax.swing.JTextField txt_cambio_finalizarventa;
+    public javax.swing.JTextField txt_cant_devolucionsimple;
     public javax.swing.JTextField txt_categoríapro;
     public javax.swing.JTextField txt_codigo_rp_inv;
     public javax.swing.JTextField txt_codigopro;
@@ -5463,6 +5716,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JTextField txt_fechafactura_historialventas;
     public javax.swing.JTextField txt_importeEfectivo_turno;
     public javax.swing.JTextField txt_monto_abonar;
+    public javax.swing.JTextField txt_motivoDevolucion_resumenDevolucion;
     public javax.swing.JTextField txt_nit_finalizarventa;
     public javax.swing.JTextField txt_nit_infoEmpresa;
     public javax.swing.JTextField txt_nit_p_cliente;
