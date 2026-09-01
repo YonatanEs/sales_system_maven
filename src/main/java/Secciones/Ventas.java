@@ -33,33 +33,6 @@ public class Ventas {
         cv = new sub_creditosventa(this);
         dv = new sub_devolucionesventa(this);
         
-        Listeners();
     }
-    
-    private void Listeners(){
-        home.jL_nuevaventa_menuItem.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e){
-                home.ocultar_menu();
-                home.jTabbedPane1.setSelectedComponent(home.jP_nuevaventas);
-                nv.initNuevaVenta();
-                nv.sugerenciasBuscadorInventario();
-            }
-        });
-        home.jL_gestioncredito_menuItem.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e){
-                home.ocultar_menu();
-            }
-        });
-        home.jL_gestiondevoluciones_menuItem.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e){
-                home.ocultar_menu();
-            }
-        });
-    }
-
-    
     
 }

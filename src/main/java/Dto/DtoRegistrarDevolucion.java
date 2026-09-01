@@ -10,7 +10,7 @@ public class DtoRegistrarDevolucion {
     private String motivo;
     private List<ItemProductosDevoluciones> productosDevueltos;
 
-    public DtoRegistrarDevolucion(Long idVenta, Long idVendedor, Long idTurno, String motivo, List<ItemProductosDevoluciones> productosDevueltos) {
+    public DtoRegistrarDevolucion(Long idVenta, Long idVendedor, Long idTurno, String motivo,List<ItemProductosDevoluciones> productosDevueltos) {
         this.idVenta = idVenta;
         this.idVendedor = idVendedor;
         this.idTurno = idTurno;
@@ -60,5 +60,5 @@ public class DtoRegistrarDevolucion {
     public List<ItemProductosDevoluciones> getProductosDevueltos() {
         return productosDevueltos;
     }
-    
+
 }

@@ -1,6 +1,6 @@
 package Dto;
 
-public class RequestMessage {
+public class DtoResponse {
     
     private boolean success;
     private String message;
@@ -21,7 +21,7 @@ public class RequestMessage {
         this.message = message;
     }
 
-    public RequestMessage(boolean success, String message) {
+    public DtoResponse(boolean success, String message) {
         this.success = success;
         this.message = message;
     }

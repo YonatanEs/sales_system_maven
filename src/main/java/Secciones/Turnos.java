@@ -11,7 +11,7 @@ import Dto.DtoResponseOb;
 import Dto.DtoUnirATurno;
 import Dto.Dto_cajaSelected_abierta;
 import Dto.Dto_turnoUserAuth;
-import Dto.RequestMessage;
+import Dto.DtoResponse;
 import Dto.RespuestaPaginada;
 import Dto.ValorRecuest;
 import Dto.ValorRecuestAndId;
@@ -594,7 +594,7 @@ public class Turnos {
                     });
                 } else {
                     if (code == 400) {
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         UtilMessage.messageWarning(requestMessage.getMessage());
                     } else {
                         String error = General.Error.parseJsonError(json);
@@ -671,7 +671,7 @@ public class Turnos {
                         });
                     } else {
                         if (code == 400) {
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             UtilMessage.messageWarning(requestMessage.getMessage());
                         } else {
                             String error = General.Error.parseJsonError(json);
@@ -721,7 +721,7 @@ public class Turnos {
 
                     if (response.isSuccessful()) {
 
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         if (requestMessage.isSuccess()) {
                             SwingUtilities.invokeLater(() -> {
                                 ValidarTurnoUserAuth();
@@ -736,7 +736,7 @@ public class Turnos {
                         }
                     } else {
                         if (code == 400) {
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             UtilMessage.messageWarning(requestMessage.getMessage());
                         } else {
                             String error = General.Error.parseJsonError(json);
@@ -775,7 +775,7 @@ public class Turnos {
                 int code = response.code();
 
                 if (response.isSuccessful()) {
-                    RequestMessage dto = gson.fromJson(json, RequestMessage.class);
+                    DtoResponse dto = gson.fromJson(json, DtoResponse.class);
                     SwingUtilities.invokeLater(() -> {
                         d_selectedCaja.dispose();
                         ValidarTurnoUserAuth();
@@ -786,7 +786,7 @@ public class Turnos {
                     });
                 } else {
                     if (code == 400) {
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         UtilMessage.messageWarning(requestMessage.getMessage());
                     } else {
                         String error = General.Error.parseJsonError(json);
@@ -896,7 +896,7 @@ public class Turnos {
                     });
                 } else {
                     if (code == 400) {
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         UtilMessage.messageWarning(requestMessage.getMessage());
                     } else {
                         String error = General.Error.parseJsonError(json);
@@ -945,7 +945,7 @@ public class Turnos {
                     int code = response.code();
 
                     if (response.isSuccessful()) {
-                        RequestMessage dto = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse dto = gson.fromJson(json, DtoResponse.class);
                         SwingUtilities.invokeLater(() -> {
                             d_efectivo.dispose();
                             ValidarTurnoUserAuth();
@@ -956,7 +956,7 @@ public class Turnos {
                         });
                     } else {
                         if (code == 400) {
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             UtilMessage.messageWarning(requestMessage.getMessage());
                         } else {
                             String error = General.Error.parseJsonError(json);
@@ -1008,7 +1008,7 @@ public class Turnos {
                     int code = response.code();
 
                     if (response.isSuccessful()) {
-                        RequestMessage dto = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse dto = gson.fromJson(json, DtoResponse.class);
                         SwingUtilities.invokeLater(() -> {
                             d_efectivo.dispose();
                             ValidarTurnoUserAuth();
@@ -1019,7 +1019,7 @@ public class Turnos {
                         });
                     } else {
                         if (code == 400) {
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             UtilMessage.messageWarning(requestMessage.getMessage());
                         } else {
                             String error = General.Error.parseJsonError(json);
@@ -1137,7 +1137,10 @@ public class Turnos {
         panel.jL_ingresos_reporteCierre.setText("Q. " + turno.getIngresos().toPlainString());
         panel.jL_salidas_reporteCierre.setText("Q. " + turno.getSalidas().toPlainString());
         panel.jL_ventas_reporteCierre.setText("Q. " + turno.getVentas().toPlainString());
+        
+        /*Pendiente de corrección*/
         panel.jL_cobrocredito_reporteCierre.setText("Q. " + turno.getCobroCredito().toPlainString());
+        
         panel.jL_depositoventa_reporteCierre.setText("Q. " + turno.getVentaDepositos().toPlainString());
         panel.jL_saldofaltante_reporteCierre.setText("Q. " + turno.getSaldoFaltante().toPlainString());
         panel.jL_saldosobrante_reporteCierre.setText("Q. " + turno.getSaldoFaltante().toPlainString());

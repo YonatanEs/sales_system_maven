@@ -10,14 +10,16 @@ public class ItemProductosDevoluciones {
     private BigDecimal cantidad;
     private BigDecimal precio;
     private BigDecimal cantidadadevolver;
+    private DetallesVenta detallesVenta;
 
-    public ItemProductosDevoluciones(Long idProducto, String codigo, String descripcion, BigDecimal cantidad, BigDecimal precio, BigDecimal cantidadadevolver) {
+    public ItemProductosDevoluciones(Long idProducto, String codigo, String descripcion, BigDecimal cantidad, BigDecimal precio, BigDecimal cantidadadevolver, DetallesVenta detallesVenta) {
         this.idProducto = idProducto;
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
         this.precio = precio;
         this.cantidadadevolver = cantidadadevolver;
+        this.detallesVenta = detallesVenta;
     }
 
     public ItemProductosDevoluciones() {
@@ -69,6 +71,14 @@ public class ItemProductosDevoluciones {
 
     public void setCantidadadevolver(BigDecimal cantidadadevolver) {
         this.cantidadadevolver = cantidadadevolver;
+    }
+
+    public DetallesVenta getDetallesVenta() {
+        return detallesVenta;
+    }
+
+    public void setDetallesVenta(DetallesVenta detallesVenta) {
+        this.detallesVenta = detallesVenta;
     }
     
 }

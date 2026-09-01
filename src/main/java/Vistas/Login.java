@@ -11,7 +11,7 @@ import Clases.Conexion;
 import Clases.X;
 import Dto.DtoAuthResponse;
 import Dto.LoginRequest;
-import Dto.RequestMessage;
+import Dto.DtoResponse;
 import General.UtilMessage;
 import General.userAuth;
 import Objects.Logged_user;
@@ -394,7 +394,7 @@ public class Login extends javax.swing.JFrame {
                     } else {
                         if (code == 400) {
                             Gson gson = new Gson();
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             UtilMessage.messageWarning(requestMessage.getMessage());
                         } else {
                             String error = General.Error.parseJsonError(json);

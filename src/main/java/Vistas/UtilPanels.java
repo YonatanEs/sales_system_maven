@@ -4971,6 +4971,7 @@ public final class UtilPanels extends javax.swing.JFrame {
         jLabel143.setText("Método de devolucion:");
 
         jL_metodoDevolucion_resumenDevolucion.setText("En Efectivo - Q 2,000.00    |  Saldo de crédito: Q 8000");
+        jL_metodoDevolucion_resumenDevolucion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel145.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel145.setText("Total actual del recibo:");
@@ -5047,8 +5048,8 @@ public final class UtilPanels extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel143, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jL_metodoDevolucion_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addComponent(jL_metodoDevolucion_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel149, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txt_motivoDevolucion_resumenDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

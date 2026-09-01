@@ -6,7 +6,7 @@ import Clases.Tools;
 import Clases.X;
 import Dto.Dto_cambiarcontraseña;
 import Dto.Dto_datosEmpresa;
-import Dto.RequestMessage;
+import Dto.DtoResponse;
 import General.UtilMessage;
 import General.userAuth;
 import Objects.DatosEmpresaOb;
@@ -207,14 +207,14 @@ public class Configuracion {
                         int code = response.code();
 
                         if (response.isSuccessful()) {
-                            RequestMessage dto = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse dto = gson.fromJson(json, DtoResponse.class);
                             SwingUtilities.invokeLater(() -> {
                                 d_cambiarcontraseña.dispose();
                                 UtilMessage.messageAprobation(dto.getMessage());
                             });
                         } else {
                             if (code == 400) {
-                                RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                                DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                                 UtilMessage.messageWarning(requestMessage.getMessage());
                             } else {
                                 String error = General.Error.parseJsonError(json);
@@ -424,14 +424,14 @@ public class Configuracion {
                     int code = response.code();
 
                     if (response.isSuccessful()) {
-                        RequestMessage dto = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse dto = gson.fromJson(json, DtoResponse.class);
                         SwingUtilities.invokeLater(() -> {
                             InfoEmpresa();
                             UtilMessage.messageAprobation(dto.getMessage());
                         });
                     } else {
                         if (code == 400) {
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             UtilMessage.messageWarning(requestMessage.getMessage());
                         } else {
                             String error = General.Error.parseJsonError(json);

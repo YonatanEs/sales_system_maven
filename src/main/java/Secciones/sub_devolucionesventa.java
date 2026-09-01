@@ -3,10 +3,13 @@ package Secciones;
 import Clases.Cargando;
 import Clases.Tools;
 import Dto.DtoId;
+import Dto.DtoRegistrarDevolucion;
 import Dto.DtoResponseOb;
 import Dto.DtoResumenDevolucion;
 import Dto.Dto_infoDevoluciones;
 import Dto.ItemProductosDevoluciones;
+import Dto.DtoResponse;
+import Dto.DtoResponseDevolucion;
 import General.UtilMessage;
 import General.userAuth;
 import com.google.gson.reflect.TypeToken;
@@ -131,66 +134,155 @@ public class sub_devolucionesventa {
         });
 
         v.panel.btn_registrarDevolucion_devoluciones.addActionListener(e -> {
-            Cargando.doAsync((onFinish) -> {
-                WinResumenDevolucion(onFinish);
-            });
+            WinResumenDevolucion();
+
+        });
+        
+        v.panel.btn_confirmarDevolucion_resumenDevolucion.addActionListener(e -> {
+            RegistrarDevolucion();
         });
     }
 
-    private void WinResumenDevolucion(Runnable onFinish) {
-        try {
+    private void RegistrarDevolucion() {
+        String motivo = v.panel.txt_motivoDevolucion_resumenDevolucion.getText();
 
-            String jsonBody = v.gson.toJson(ventaSelectedDev);
-            RequestBody body = RequestBody.create(jsonBody, v.JSON);
-
-            Request request = new Request.Builder()
-                    .url(General.properties.getUrl() + "/api/devoluciones/resumenDevolucion")
-                    .addHeader("Authorization", "Bearer " + userAuth.getToken().trim())
-                    .post(body)
-                    .build();
-
-            v.client.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException ioe) {
-                    UtilMessage.messageError("Error en la conexion " + ioe);
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    String json = response.body().string();
-                    if (response.isSuccessful()) {
-                        // Caso éxito → parsear el JSON a tu DTO genérico
-                        DtoResumenDevolucion resumen = v.gson.fromJson(json, DtoResumenDevolucion.class);
-
-                        SwingUtilities.invokeLater(() -> {
-                            v.panel.jL_totalactualRecibo_resumenDevolucion.setText(
-                                    resumen.getTotalActualRecibo());
-
-                            v.panel.jL_metodoPago_resumendevolucion.setText(
-                                    resumen.getMetodoPago());
-
-                            v.panel.jL_totalAdevolver_resumenDevolucion.setText(
-                                    resumen.getTotalDevolver());
-
-                            v.panel.jL_metodoDevolucion_resumenDevolucion.setText(
-                                    resumen.getMetodoDevolucion());
-                            d_resumentDevolucion.setVisible(true);
-                        });
-                        onFinish.run();
-                    } else {
-                        // Intentar parsear igual, porque el backend puede mandar un DtoResponseOb con success=false
-                        General.UtilMessage.messageError(General.Error.parseJsonError(json));
-                        onFinish.run();
-                    }
-                }
-            });
-
-        } catch (Exception e) {
-            General.UtilMessage.messageError(e.getMessage());
-            onFinish.run();
+        if (motivo.trim().isEmpty()) {
+            General.UtilMessage.message("¡Es necesario el motivo de la devolución!");
+            return;
         }
-        //onFinish.run();
 
+        BigDecimal cantDevolver = ventaSelectedDev.getListaProductos()
+                .stream()
+                .map(ItemProductosDevoluciones::getCantidadadevolver)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        if (cantDevolver.compareTo(BigDecimal.ZERO) <= 0) {
+            General.UtilMessage.message("La cantidad de productos a devolver debe ser mayor a 0");
+            return;
+        }
+
+        Cargando.doAsync((onFinish) -> {
+            try {
+                DtoRegistrarDevolucion registrarDevolucion = new DtoRegistrarDevolucion(
+                        ventaSelectedDev.getIdVenta(),
+                        Long.valueOf(userAuth.getUsuario().getId()),
+                        Long.valueOf(userAuth.getIdTurnoActivo()),
+                        motivo,
+                        ventaSelectedDev.getListaProductos());
+                
+                String jsonBody = v.gson.toJson(registrarDevolucion);
+                RequestBody body = RequestBody.create(jsonBody, v.JSON);
+
+                Request request = new Request.Builder()
+                        .url(General.properties.getUrl() + "/api/devoluciones/registrarDevolucion")
+                        .addHeader("Authorization", "Bearer " + userAuth.getToken().trim())
+                        .post(body)
+                        .build();
+
+                v.client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException ioe) {
+                        UtilMessage.messageError("Error en la conexion " + ioe);
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String json = response.body().string();
+                        if (response.isSuccessful()) {
+                            // Caso éxito → parsear el JSON a tu DTO genérico
+                            DtoResponseDevolucion dtoResponse = v.gson.fromJson(json, DtoResponseDevolucion.class);
+                            
+                            if(dtoResponse.isDevolucionTotal()){
+                                d_resumentDevolucion.dispose();
+                                d_devoluciones.dispose();
+                            }else{
+                                d_resumentDevolucion.dispose();
+                                d_devolucionSimple.dispose();
+                                WinDevoluciones();
+                            }
+                            
+                            v.hv.tabledates(v.hv.filtro);
+                            
+                            General.UtilMessage.messageAprobation(dtoResponse.getMessage());
+                            onFinish.run();
+                        } else {
+                            // Intentar parsear igual, porque el backend puede mandar un DtoResponseOb con success=false
+                            General.UtilMessage.messageError(General.Error.parseJsonError(json));
+                            onFinish.run();
+                        }
+                    }
+                });
+
+            } catch (Exception e) {
+                General.UtilMessage.messageError(e.getMessage());
+                onFinish.run();
+            }
+        });
+    }
+
+    private void WinResumenDevolucion() {
+        BigDecimal cantDevolver = ventaSelectedDev.getListaProductos()
+                .stream()
+                .map(ItemProductosDevoluciones::getCantidadadevolver)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        if (cantDevolver.compareTo(BigDecimal.ZERO) <= 0) {
+            General.UtilMessage.message("La cantidad de productos a devolver debe ser mayor a 0");
+            return;
+        }
+        Cargando.doAsync((onFinish) -> {
+            try {
+
+                String jsonBody = v.gson.toJson(ventaSelectedDev);
+                RequestBody body = RequestBody.create(jsonBody, v.JSON);
+
+                Request request = new Request.Builder()
+                        .url(General.properties.getUrl() + "/api/devoluciones/resumenDevolucion")
+                        .addHeader("Authorization", "Bearer " + userAuth.getToken().trim())
+                        .post(body)
+                        .build();
+
+                v.client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException ioe) {
+                        UtilMessage.messageError("Error en la conexion " + ioe);
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String json = response.body().string();
+                        if (response.isSuccessful()) {
+                            // Caso éxito → parsear el JSON a tu DTO genérico
+                            DtoResumenDevolucion resumen = v.gson.fromJson(json, DtoResumenDevolucion.class);
+
+                            SwingUtilities.invokeLater(() -> {
+                                v.panel.jL_totalactualRecibo_resumenDevolucion.setText(
+                                        resumen.getTotalActualRecibo());
+
+                                v.panel.jL_metodoPago_resumendevolucion.setText(
+                                        resumen.getMetodoPago());
+
+                                v.panel.jL_totalAdevolver_resumenDevolucion.setText(
+                                        resumen.getTotalDevolver());
+
+                                v.panel.jL_metodoDevolucion_resumenDevolucion.setText(
+                                        "<html>" + resumen.getMetodoDevolucion() + "</html>");
+                                d_resumentDevolucion.setVisible(true);
+                            });
+                            onFinish.run();
+                        } else {
+                            // Intentar parsear igual, porque el backend puede mandar un DtoResponseOb con success=false
+                            General.UtilMessage.messageError(General.Error.parseJsonError(json));
+                            onFinish.run();
+                        }
+                    }
+                });
+
+            } catch (Exception e) {
+                General.UtilMessage.messageError(e.getMessage());
+                onFinish.run();
+            }
+        });
     }
 
     private void WinDevoluciones() {

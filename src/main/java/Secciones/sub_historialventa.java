@@ -63,7 +63,7 @@ public class sub_historialventa {
     private static OkHttpClient client = new OkHttpClient();
     private static MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
-    private DtoFiltroHistorialVentas filtro;
+    public DtoFiltroHistorialVentas filtro;
 
     public int idReciboSelected = 0;
     private String metodoPagoHV;
@@ -154,7 +154,9 @@ public class sub_historialventa {
         });
 
         v.panel.jM_verComprobanteDeposito.addActionListener(e -> {
-            WinComprobanteDeposito();
+            Cargando.doAsync((onFinish) -> {
+                WinComprobanteDeposito(onFinish);
+            });
         });
 
         v.home.btn_historialventas.addActionListener(e -> {
@@ -456,7 +458,7 @@ public class sub_historialventa {
         }
     }
 
-    private void WinComprobanteDeposito() {
+    private void WinComprobanteDeposito(Runnable onFinish) {
         try {
             DtoIdVenta idventa = new DtoIdVenta(idReciboSelected);
 
@@ -472,7 +474,9 @@ public class sub_historialventa {
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException ioe) {
+                    
                     General.UtilMessage.messageError("Error al obtener datos: " + ioe.getMessage());
+                    onFinish.run();
                 }
 
                 @Override
@@ -481,6 +485,7 @@ public class sub_historialventa {
                         if (!rspns.isSuccessful() || rspns.body() == null) {
                             General.UtilMessage.messageError("Error al obtener comprobante. Code: "
                                     + rspns.code() + " Mensaje: " + rspns.message());
+                            onFinish.run();
                             return;
                         }
                         // Convertir respuesta en bytes → imagen
@@ -494,12 +499,17 @@ public class sub_historialventa {
                             jD_comprobanteDeposito.setTitle("Comprobante de depósito - " + noDeposito);
                             jD_comprobanteDeposito.setVisible(true);
                         });
+                        onFinish.run();
+                    }catch(Exception e){
+                        onFinish.run();
+                        General.UtilMessage.messageError(e.getMessage());
                     }
                 }
             });
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "");
+            onFinish.run();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 

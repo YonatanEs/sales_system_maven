@@ -48,11 +48,10 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         setTitle("Ventas");
         setLocationRelativeTo(null);
-        jPanel1.setComponentZOrder(jP_popupVentas, 0);
-        jPanel1.setComponentZOrder(jP_popupConfiguracion, 1);
-        jPanel1.setComponentZOrder(jP_menuprincipal, 2);
-        jPanel1.setComponentZOrder(jP_sombreado, 3);
-        jPanel1.setComponentZOrder(jPanel3, 4);
+        jPanel1.setComponentZOrder(jP_popupConfiguracion, 0);
+        jPanel1.setComponentZOrder(jP_menuprincipal, 1);
+        jPanel1.setComponentZOrder(jP_sombreado, 2);
+        jPanel1.setComponentZOrder(jPanel3, 3);
         jPanel1.repaint();
 
         Tools.anim_icon_button(btn_menu, () -> this.menu);
@@ -121,10 +120,6 @@ public class Home extends javax.swing.JFrame {
         item_editar_cli = new javax.swing.JMenuItem();
         item_estado_cli = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        jP_popupVentas = new javax.swing.JPanel();
-        jL_nuevaventa_menuItem = new javax.swing.JLabel();
-        jL_gestioncredito_menuItem = new javax.swing.JLabel();
-        jL_gestiondevoluciones_menuItem = new javax.swing.JLabel();
         jP_popupConfiguracion = new javax.swing.JPanel();
         jL_cambiarcontrase_menuItem = new javax.swing.JLabel();
         jL_editarinfoempresa_menuItem = new javax.swing.JLabel();
@@ -362,56 +357,6 @@ public class Home extends javax.swing.JFrame {
         setIconImage(getIconImage());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jP_popupVentas.setBackground(new java.awt.Color(43, 55, 72));
-        jP_popupVentas.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), null));
-        jP_popupVentas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jP_popupVentasMouseClicked(evt);
-            }
-        });
-
-        jL_nuevaventa_menuItem.setBackground(new java.awt.Color(43, 55, 72));
-        jL_nuevaventa_menuItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jL_nuevaventa_menuItem.setForeground(new java.awt.Color(255, 255, 255));
-        jL_nuevaventa_menuItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jL_nuevaventa_menuItem.setText("Nueva venta");
-        jL_nuevaventa_menuItem.setOpaque(true);
-
-        jL_gestioncredito_menuItem.setBackground(new java.awt.Color(43, 55, 72));
-        jL_gestioncredito_menuItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jL_gestioncredito_menuItem.setForeground(new java.awt.Color(255, 255, 255));
-        jL_gestioncredito_menuItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jL_gestioncredito_menuItem.setText("Gestión de crédito");
-        jL_gestioncredito_menuItem.setOpaque(true);
-
-        jL_gestiondevoluciones_menuItem.setBackground(new java.awt.Color(43, 55, 72));
-        jL_gestiondevoluciones_menuItem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jL_gestiondevoluciones_menuItem.setForeground(new java.awt.Color(255, 255, 255));
-        jL_gestiondevoluciones_menuItem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jL_gestiondevoluciones_menuItem.setText("Gestión de devoluciones");
-        jL_gestiondevoluciones_menuItem.setOpaque(true);
-
-        javax.swing.GroupLayout jP_popupVentasLayout = new javax.swing.GroupLayout(jP_popupVentas);
-        jP_popupVentas.setLayout(jP_popupVentasLayout);
-        jP_popupVentasLayout.setHorizontalGroup(
-            jP_popupVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jL_nuevaventa_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jL_gestioncredito_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jL_gestiondevoluciones_menuItem, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-        );
-        jP_popupVentasLayout.setVerticalGroup(
-            jP_popupVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_popupVentasLayout.createSequentialGroup()
-                .addComponent(jL_nuevaventa_menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jL_gestioncredito_menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jL_gestiondevoluciones_menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jP_popupVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(-200, 68, 200, 162));
 
         jP_popupConfiguracion.setBackground(new java.awt.Color(43, 55, 72));
         jP_popupConfiguracion.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 204, 204), null));
@@ -1676,7 +1621,7 @@ public class Home extends javax.swing.JFrame {
         jTabbedPane1.setSelectedComponent(jP_inventario);
 
         Cargando.doSomething(() -> {
-                inventario.tabledates("", 0);
+            inventario.tabledates("", 0);
         });
 
     }//GEN-LAST:event_jL_inventariosMouseClicked
@@ -1693,11 +1638,10 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jL_cerrarsesionMouseClicked
 
     private void jL_ventasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jL_ventasMouseClicked
-        if (jP_popupVentas.getX() < 0) {
-            MostrarJPopupVentas();
-        } else {
-            OcultarJPopupVentas();
-        }
+        ocultar_menu();
+        jTabbedPane1.setSelectedComponent(jP_nuevaventas);
+        ventas.nv.initNuevaVenta();
+        ventas.nv.sugerenciasBuscadorInventario();
     }//GEN-LAST:event_jL_ventasMouseClicked
 
     private void jM_eliminar_nuevaventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jM_eliminar_nuevaventaActionPerformed
@@ -1755,10 +1699,10 @@ public class Home extends javax.swing.JFrame {
     private void jL_turnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jL_turnoMouseClicked
         ocultar_menu();
         jTabbedPane1.setSelectedComponent(jP_turno);
-        Cargando.doSomething(()->{
-                turnos.ValidarTurnoUserAuth();
-                turnos.llenarInfoTurno();
-                turnos.tabledates("", 0);
+        Cargando.doSomething(() -> {
+            turnos.ValidarTurnoUserAuth();
+            turnos.llenarInfoTurno();
+            turnos.tabledates("", 0);
         });
     }//GEN-LAST:event_jL_turnoMouseClicked
 
@@ -1785,10 +1729,6 @@ public class Home extends javax.swing.JFrame {
     private void txt_buscador_historialventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscador_historialventaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_buscador_historialventaActionPerformed
-
-    private void jP_popupVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jP_popupVentasMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jP_popupVentasMouseClicked
 
     private void item_verfacturas_cliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_verfacturas_cliActionPerformed
         // TODO add your handling code here:
@@ -1882,11 +1822,8 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JLabel jL_depositrar_turno;
     public javax.swing.JLabel jL_editarinfoempresa_menuItem;
     public javax.swing.JLabel jL_error_nuevaventa;
-    public javax.swing.JLabel jL_gestioncredito_menuItem;
-    public javax.swing.JLabel jL_gestiondevoluciones_menuItem;
     public javax.swing.JLabel jL_info_nuevaventa;
     private javax.swing.JLabel jL_inventarios;
-    public javax.swing.JLabel jL_nuevaventa_menuItem;
     public javax.swing.JLabel jL_retirar_turno;
     public javax.swing.JLabel jL_saldoactual_turno;
     public javax.swing.JLabel jL_t_abiertopor_turno;
@@ -1938,7 +1875,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jP_menuprincipal;
     public javax.swing.JPanel jP_nuevaventas;
     public javax.swing.JPanel jP_popupConfiguracion;
-    public javax.swing.JPanel jP_popupVentas;
     private javax.swing.JPanel jP_sombreado;
     public javax.swing.JPanel jP_turno;
     private javax.swing.JPanel jP_usuarios;
@@ -2021,10 +1957,6 @@ public class Home extends javax.swing.JFrame {
         Tools.btns(jL_cambiarcontrase_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
         Tools.btns(jL_editarinfoempresa_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
 
-        Tools.btns(jL_nuevaventa_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
-        Tools.btns(jL_gestioncredito_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
-        Tools.btns(jL_gestiondevoluciones_menuItem, new Color(43, 55, 72), new Color(63, 75, 92), new Color(83, 95, 112));
-
         jL_cerrarsesion.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -2090,9 +2022,6 @@ public class Home extends javax.swing.JFrame {
             jP_popupConfiguracion.setBounds(jP_popupConfiguracion.getX(), jL_configuracion.getY() + jL_configuracion.getHeight(),
                     jP_popupConfiguracion.getWidth(), jL_cambiarcontrase_menuItem.getHeight());
         }
-        if (jP_popupVentas.getX() >= 0) {
-            OcultarJPopupVentas();
-        }
         Animacion.Animacion.mover_derecha(-200, 0, 1, 1, jP_popupConfiguracion);
     }
 
@@ -2100,15 +2029,4 @@ public class Home extends javax.swing.JFrame {
         Animacion.Animacion.mover_izquierda(0, -200, 1, 1, jP_popupConfiguracion);
     }
 
-    private void MostrarJPopupVentas() {
-        if (jP_popupConfiguracion.getX() >= 0) {
-            OcultarJPopupConfiguracion();
-        }
-        Animacion.Animacion.mover_derecha(-200, 0, 1, 1, jP_popupVentas);
-
-    }
-
-    private void OcultarJPopupVentas() {
-        Animacion.Animacion.mover_izquierda(0, -200, 1, 1, jP_popupVentas);
-    }
 }

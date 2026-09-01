@@ -8919,8 +8919,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel143" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jL_metodoDevolucion_resumenDevolucion" min="-2" pref="24" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="jL_metodoDevolucion_resumenDevolucion" min="-2" pref="51" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel149" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txt_motivoDevolucion_resumenDevolucion" min="-2" max="-2" attributes="0"/>
@@ -8967,6 +8967,7 @@
         <Component class="javax.swing.JLabel" name="jL_metodoDevolucion_resumenDevolucion">
           <Properties>
             <Property name="text" type="java.lang.String" value="En Efectivo - Q 2,000.00    |  Saldo de cr&#xe9;dito: Q 8000"/>
+            <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

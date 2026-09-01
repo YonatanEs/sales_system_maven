@@ -8,7 +8,7 @@ import Clases.X;
 import Dto.DtoAddStock;
 import Dto.DtoRemoveStock;
 import Dto.DtoResponseOb;
-import Dto.RequestMessage;
+import Dto.DtoResponse;
 import Dto.RespuestaPaginada;
 import Dto.ValorRequestPag;
 import General.UtilMessage;
@@ -944,7 +944,7 @@ public class Inventario {
 
                             if (response.isSuccessful()) {
 
-                                RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                                DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                                 if (requestMessage.isSuccess()) {
                                     SwingUtilities.invokeLater(() -> {
                                         tabledates(txt_buscador_producto.getTextoReal(), pagina_actual);
@@ -956,7 +956,7 @@ public class Inventario {
                                 }
                             } else {
                                 if (code == 400) {
-                                    RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                                    DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                                     UtilMessage.messageWarning(requestMessage.getMessage());
                                 } else {
                                     UtilMessage.messageWarning("Error " + response.code());
@@ -1332,7 +1332,7 @@ public class Inventario {
                     });
                 } else {
                     if (code == 400) {
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         UtilMessage.messageWarning(requestMessage.getMessage());
                     } else {
                         String error = General.Error.parseJsonError(json);
@@ -1385,7 +1385,7 @@ public class Inventario {
                     });
                 } else {
                     if (code == 400) {
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         UtilMessage.messageWarning(requestMessage.getMessage());
                     } else {
                         String error = General.Error.parseJsonError(json);
@@ -1472,7 +1472,7 @@ public class Inventario {
 
                     if (response.isSuccessful()) {
 
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         if (requestMessage.isSuccess()) {
                             SwingUtilities.invokeLater(() -> {
 
@@ -1490,7 +1490,7 @@ public class Inventario {
                         }
                     } else {
                         if (code == 400) {
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             UtilMessage.messageWarning(requestMessage.getMessage());
                         } else {
                             String error = General.Error.parseJsonError(json);
@@ -1545,7 +1545,7 @@ public class Inventario {
 
                         if (response.isSuccessful()) {
 
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             if (requestMessage.isSuccess()) {
                                 SwingUtilities.invokeLater(() -> {
 
@@ -1564,7 +1564,7 @@ public class Inventario {
                             }
                         } else {
                             if (code == 400) {
-                                RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                                DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                                 UtilMessage.messageWarning(requestMessage.getMessage());
                             } else {
                                 String error = General.Error.parseJsonError(json);
@@ -1618,7 +1618,7 @@ public class Inventario {
                     });
                 } else {
                     if (code == 400) {
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         UtilMessage.messageWarning(requestMessage.getMessage());
                     } else {
                         String error = General.Error.parseJsonError(json);
@@ -1671,7 +1671,7 @@ public class Inventario {
                     });
                 } else {
                     if (code == 400) {
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         UtilMessage.messageWarning(requestMessage.getMessage());
                     } else {
                         String error = General.Error.parseJsonError(json);
@@ -1758,7 +1758,7 @@ public class Inventario {
 
                     if (response.isSuccessful()) {
 
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         if (requestMessage.isSuccess()) {
                             SwingUtilities.invokeLater(() -> {
 
@@ -1776,7 +1776,7 @@ public class Inventario {
                         }
                     } else {
                         if (code == 400) {
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             UtilMessage.messageWarning(requestMessage.getMessage());
                         } else {
                             String error = General.Error.parseJsonError(json);
@@ -1831,7 +1831,7 @@ public class Inventario {
 
                         if (response.isSuccessful()) {
 
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             if (requestMessage.isSuccess()) {
                                 SwingUtilities.invokeLater(() -> {
 
@@ -1850,7 +1850,7 @@ public class Inventario {
                             }
                         } else {
                             if (code == 400) {
-                                RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                                DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                                 UtilMessage.messageWarning(requestMessage.getMessage());
                             } else {
                                 String error = General.Error.parseJsonError(json);
@@ -1904,7 +1904,7 @@ public class Inventario {
                     });
                 } else {
                     if (code == 400) {
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         UtilMessage.messageWarning(requestMessage.getMessage());
                     } else {
                         String error = General.Error.parseJsonError(json);
@@ -1958,7 +1958,7 @@ public class Inventario {
                     });
                 } else {
                     if (code == 400) {
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         UtilMessage.messageWarning(requestMessage.getMessage());
                     } else {
                         String error = General.Error.parseJsonError(json);
@@ -2052,7 +2052,7 @@ public class Inventario {
 
                     if (response.isSuccessful()) {
 
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         if (requestMessage.isSuccess()) {
                             SwingUtilities.invokeLater(() -> {
 
@@ -2072,7 +2072,7 @@ public class Inventario {
                         }
                     } else {
                         if (code == 400) {
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             UtilMessage.messageWarning(requestMessage.getMessage());
                         } else {
                             String error = General.Error.parseJsonError(json);
@@ -2132,7 +2132,7 @@ public class Inventario {
 
                         if (response.isSuccessful()) {
 
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             if (requestMessage.isSuccess()) {
                                 SwingUtilities.invokeLater(() -> {
 
@@ -2153,7 +2153,7 @@ public class Inventario {
                             }
                         } else {
                             if (code == 400) {
-                                RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                                DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                                 UtilMessage.messageWarning(requestMessage.getMessage());
                             } else {
                                 String error = General.Error.parseJsonError(json);

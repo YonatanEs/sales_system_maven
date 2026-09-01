@@ -3,7 +3,7 @@ package Secciones;
 import Clases.MenuEditarYEstado;
 import Clases.Tools;
 import Clases.Txt_buscador;
-import Dto.RequestMessage;
+import Dto.DtoResponse;
 import Dto.ValorRecuest;
 import General.UtilMessage;
 import General.userAuth;
@@ -240,7 +240,7 @@ public class Cajas {
 
                     if (response.isSuccessful()) {
 
-                        RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                        DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                         if (requestMessage.isSuccess()) {
                             SwingUtilities.invokeLater(() -> {
 
@@ -256,7 +256,7 @@ public class Cajas {
                         }
                     } else {
                         if (code == 400) {
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             UtilMessage.messageWarning(requestMessage.getMessage());
                         } else {
                             String error = General.Error.parseJsonError(json);
@@ -308,7 +308,7 @@ public class Cajas {
 
                         if (response.isSuccessful()) {
 
-                            RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                            DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                             if (requestMessage.isSuccess()) {
                                 SwingUtilities.invokeLater(() -> {
 
@@ -323,7 +323,7 @@ public class Cajas {
                             }
                         } else {
                             if (code == 400) {
-                                RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                                DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                                 UtilMessage.messageWarning(requestMessage.getMessage());
                             } else {
                                 String error = General.Error.parseJsonError(json);
@@ -377,7 +377,7 @@ public class Cajas {
 
                             if (response.isSuccessful()) {
 
-                                RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                                DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                                 if (requestMessage.isSuccess()) {
                                     SwingUtilities.invokeLater(() -> {
                                         tabledates("");
@@ -389,7 +389,7 @@ public class Cajas {
                                 }
                             } else {
                                 if (code == 400) {
-                                    RequestMessage requestMessage = gson.fromJson(json, RequestMessage.class);
+                                    DtoResponse requestMessage = gson.fromJson(json, DtoResponse.class);
                                     UtilMessage.messageWarning(requestMessage.getMessage());
                                 } else {
                                     UtilMessage.messageWarning("Error " + response.code());
