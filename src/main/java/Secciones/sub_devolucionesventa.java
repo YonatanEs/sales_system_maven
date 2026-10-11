@@ -2,14 +2,18 @@ package Secciones;
 
 import Clases.Cargando;
 import Clases.Tools;
+import Dto.DtoDetallesDevolucion;
+import Dto.DtoDevolucion;
+import Dto.DtoFiltroHistorialVentas;
+import Dto.DtoHistorialVentas;
 import Dto.DtoId;
 import Dto.DtoRegistrarDevolucion;
 import Dto.DtoResponseOb;
 import Dto.DtoResumenDevolucion;
 import Dto.Dto_infoDevoluciones;
 import Dto.ItemProductosDevoluciones;
-import Dto.DtoResponse;
 import Dto.DtoResponseDevolucion;
+import Dto.RespuestaPaginada;
 import General.UtilMessage;
 import General.userAuth;
 import com.google.gson.reflect.TypeToken;
@@ -21,8 +25,12 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import okhttp3.Call;
@@ -38,8 +46,10 @@ public class sub_devolucionesventa {
     private JDialog d_devoluciones;
     private JDialog d_devolucionSimple;
     private JDialog d_resumentDevolucion;
+    private JDialog d_detallesDevolucion;
 
     private Long idDetalleSelected = 0L;
+    private Long idDevolucionSelected = 0L;
 
     private Dto_infoDevoluciones ventaSelectedDev;
 
@@ -49,12 +59,14 @@ public class sub_devolucionesventa {
         this.v = v;
 
         Tools.diseñotabla1(v.panel.tableDevoluciones_devoluciones);
+        Tools.diseñotabla1(v.panel.tableDetallesDevolucion);
 
         Tools.txt_cantidad(v.panel.txt_cant_devolucionsimple);
 
         d_devoluciones = Tools.newWindow(v.panel.jP_registrardevolucion);
         d_devolucionSimple = Tools.newWindow(v.panel.jP_devolucionSimple);
         d_resumentDevolucion = Tools.newWindow(v.panel.jP_resumenDevolucion);
+        d_detallesDevolucion = Tools.newWindow(v.panel.jP_detallesDevolucion);
 
         Listeners();
     }
@@ -90,6 +102,39 @@ public class sub_devolucionesventa {
                 }
             }
         });
+
+        v.panel.tableHistorialdevoluciones.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                handlePopup(e);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                handlePopup(e);
+            }
+
+            public void handlePopup(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    int row = v.panel.tableHistorialdevoluciones.rowAtPoint(e.getPoint());
+                    if (row >= 0 && row < v.panel.tableHistorialdevoluciones.getRowCount()) {
+
+                        v.panel.tableHistorialdevoluciones.setRowSelectionInterval(row, row);
+                        idDevolucionSelected = Long.valueOf(v.panel.tableHistorialdevoluciones.getValueAt(row, 0).toString());
+
+                        v.panel.jPopupHistorialdevoluciones.show(e.getComponent(), e.getX(), e.getY());
+                    }
+                }
+            }
+        });
+
+        v.panel.jM_verDetallesDevoluciones.addActionListener(e -> {
+            Cargando.doAsync((onFinish) -> {
+                WinDetallesDevolucion(idDevolucionSelected, onFinish);
+            });
+        });
+
         v.panel.jM_registrardevolucion.addActionListener(e -> {
             WinDevoluciones();
         });
@@ -137,7 +182,7 @@ public class sub_devolucionesventa {
             WinResumenDevolucion();
 
         });
-        
+
         v.panel.btn_confirmarDevolucion_resumenDevolucion.addActionListener(e -> {
             RegistrarDevolucion();
         });
@@ -169,7 +214,7 @@ public class sub_devolucionesventa {
                         Long.valueOf(userAuth.getIdTurnoActivo()),
                         motivo,
                         ventaSelectedDev.getListaProductos());
-                
+
                 String jsonBody = v.gson.toJson(registrarDevolucion);
                 RequestBody body = RequestBody.create(jsonBody, v.JSON);
 
@@ -191,18 +236,18 @@ public class sub_devolucionesventa {
                         if (response.isSuccessful()) {
                             // Caso éxito → parsear el JSON a tu DTO genérico
                             DtoResponseDevolucion dtoResponse = v.gson.fromJson(json, DtoResponseDevolucion.class);
-                            
-                            if(dtoResponse.isDevolucionTotal()){
+
+                            if (dtoResponse.isDevolucionTotal()) {
                                 d_resumentDevolucion.dispose();
                                 d_devoluciones.dispose();
-                            }else{
+                            } else {
                                 d_resumentDevolucion.dispose();
                                 d_devolucionSimple.dispose();
                                 WinDevoluciones();
                             }
-                            
+
                             v.hv.tabledates(v.hv.filtro);
-                            
+
                             General.UtilMessage.messageAprobation(dtoResponse.getMessage());
                             onFinish.run();
                         } else {
@@ -330,12 +375,6 @@ public class sub_devolucionesventa {
                             v.panel.jL_detallesrecibo2_devoluciones.setText(
                                     ventaSelectedDev.getDetalleRecibo2());
 
-                            if (ventaSelectedDev.getEstado().equalsIgnoreCase("Activa")) {
-                                v.panel.btn_historialdevoluciones.setVisible(false);
-                            } else {
-                                v.panel.btn_historialdevoluciones.setVisible(true);
-                            }
-
                             ActualizarDatosTabla();
 
                         });
@@ -422,4 +461,70 @@ public class sub_devolucionesventa {
         ActualizarDatosTabla();
     }
 
+    private void WinDetallesDevolucion(Long idRecibo, Runnable onFinish) {
+        try {
+            DtoId dtoId = new DtoId(idRecibo);
+
+            String jsonBody = v.gson.toJson(dtoId);
+            RequestBody body = RequestBody.create(jsonBody, v.JSON);
+
+            Request request = new Request.Builder()
+                    .url(General.properties.getUrl() + "/api/devoluciones/devolucionDetalles")
+                    .addHeader("Authorization", "Bearer " + userAuth.getToken().trim())
+                    .post(body)
+                    .build();
+
+            v.client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException ioe) {
+                    UtilMessage.messageError("Error en la conexion " + ioe);
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String json = response.body().string();
+                    if (response.isSuccessful()) {
+                        // Caso éxito → parsear el JSON a tu DTO genérico
+
+                        DtoDevolucion rs = v.gson.fromJson(json, DtoDevolucion.class);
+
+                        SwingUtilities.invokeLater(() -> {
+                            v.panel.jL_titulo_detallesDevolucion.setText("Detalle de devolucion No." + rs.getIdDevolucion());
+                            v.panel.jL_noRecibo_detallesDevolucion.setText(String.valueOf(rs.getIdVenta()));
+
+                            v.panel.jL_fecha_detallesdevolucion.setText(rs.getFecha());
+                            v.panel.jL_cliente_detallesDevolucion.setText(rs.getCliente());
+                            v.panel.jL_nit_detallesdevolucion.setText(rs.getNit());
+                            v.panel.jL_motivo_detallesDevolucion.setText(rs.getMotivo());
+
+                            v.panel.jL_totalDetallesDevolucion.setText("Total devuelto Q "
+                                    + rs.getTotalDevolver().setScale(2, RoundingMode.HALF_UP).toPlainString());
+
+                            DefaultTableModel modelo = (DefaultTableModel) v.panel.tableDetallesDevolucion.getModel();
+
+                            modelo.setRowCount(0);
+                            for (DtoDetallesDevolucion dd : rs.getDetallesDevolucion()) {
+                                modelo.addRow(new Object[]{
+                                    dd.getCodigo(),
+                                    dd.getDescripcion(),
+                                    dd.getPrecio(),
+                                    dd.getCantidad(),
+                                    dd.getSubtotal()
+                                });
+                            }
+                            d_detallesDevolucion.setVisible(true);
+                        });
+                        onFinish.run();
+                    } else {
+                        General.UtilMessage.messageError(General.Error.parseJsonError(json));
+                        onFinish.run();
+                    }
+                }
+            });
+
+        } catch (Exception e) {
+            General.UtilMessage.messageError(e.getMessage());
+            onFinish.run();
+        }
+    }
 }

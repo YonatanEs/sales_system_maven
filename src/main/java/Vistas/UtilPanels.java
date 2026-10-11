@@ -1,7 +1,5 @@
 package Vistas;
 
-import Clases.Cargando;
-import Clases.X;
 import Objects.Cajas_ob;
 import Objects.Categoria_ob;
 import Objects.Medida_ob;
@@ -33,8 +31,6 @@ public final class UtilPanels extends javax.swing.JFrame {
         cbx_categoria_rp_inv.addItem(new Categoria_ob(0, "Seleccione una opcion"));
         cbx_medida_rp_inv.addItem(new Medida_ob(0, "Seleccine una opcion", ""));
         cbx_proveedor_rp_inv.addItem(new Proveedor_ob(0, "Seleccione una opcion"));
-
-        
 
     }
 
@@ -447,16 +443,6 @@ public final class UtilPanels extends javax.swing.JFrame {
         jL_preciofinal_descuento = new javax.swing.JLabel();
         jL_preciooriginal_descuento = new javax.swing.JLabel();
         btn_aplicardescuento_descuento = new javax.swing.JButton();
-        jP_historialventas = new javax.swing.JPanel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        tableHistorialventas = new javax.swing.JTable();
-        jPanel19 = new javax.swing.JPanel();
-        jL_pags_historialventas = new javax.swing.JLabel();
-        btn_anteriorpag_historialventas = new javax.swing.JLabel();
-        btn_sigpag_historialventas = new javax.swing.JLabel();
-        jL_titulo_historialventa = new javax.swing.JLabel();
-        jP_buscadorhistorial = new javax.swing.JPanel();
-        cbx_buscadorhistorial = new javax.swing.JComboBox<>();
         jP_buscadorhistorial_nit = new javax.swing.JPanel();
         txt_buscadornit_historialventa = new javax.swing.JTextField();
         jLabel122 = new javax.swing.JLabel();
@@ -472,6 +458,7 @@ public final class UtilPanels extends javax.swing.JFrame {
         jM_verComprobanteDeposito = new javax.swing.JMenuItem();
         jM_registrardevolucion = new javax.swing.JMenuItem();
         jM_anularrecibo = new javax.swing.JMenuItem();
+        jM_verDevoluciones = new javax.swing.JMenuItem();
         jP_detalledeposito_finalizarventa = new javax.swing.JPanel();
         txt_noDeposito_finalizarventa = new javax.swing.JTextField();
         jL_efectivo_finalizarventa1 = new javax.swing.JLabel();
@@ -549,7 +536,6 @@ public final class UtilPanels extends javax.swing.JFrame {
         jScrollPane11 = new javax.swing.JScrollPane();
         tableDevoluciones_devoluciones = new javax.swing.JTable();
         btn_registrarDevolucion_devoluciones = new javax.swing.JButton();
-        btn_historialdevoluciones = new javax.swing.JButton();
         jPopupDevoluciones = new javax.swing.JPopupMenu();
         jM_devolverProducto = new javax.swing.JMenuItem();
         jM_devolverProductos = new javax.swing.JMenuItem();
@@ -573,6 +559,55 @@ public final class UtilPanels extends javax.swing.JFrame {
         jLabel149 = new javax.swing.JLabel();
         txt_motivoDevolucion_resumenDevolucion = new javax.swing.JTextField();
         btn_confirmarDevolucion_resumenDevolucion = new javax.swing.JButton();
+        jP_historialVentasContent = new javax.swing.JPanel();
+        jTabbedPane_HistorialVentas = new javax.swing.JTabbedPane();
+        jP_historialventas = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tableHistorialventas = new javax.swing.JTable();
+        jPanel19 = new javax.swing.JPanel();
+        jL_pags_historialventas = new javax.swing.JLabel();
+        btn_anteriorpag_historialventas = new javax.swing.JLabel();
+        btn_sigpag_historialventas = new javax.swing.JLabel();
+        jL_titulo_historialventa = new javax.swing.JLabel();
+        cbx_buscadorhistorial = new javax.swing.JComboBox<>();
+        jP_buscadorhistorial = new javax.swing.JPanel();
+        jP_historialDevoluciones = new javax.swing.JPanel();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        tableHistorialdevoluciones = new javax.swing.JTable();
+        jPanel24 = new javax.swing.JPanel();
+        jL_pags_historialdevoluciones = new javax.swing.JLabel();
+        btn_anteriorpag_historialdevoluciones = new javax.swing.JLabel();
+        btn_sigpag_historialdevoluciones = new javax.swing.JLabel();
+        jL_titulo_historialdevoluciones = new javax.swing.JLabel();
+        jP_buscadordevoluciones = new javax.swing.JPanel();
+        cbx_buscadordevoluciones = new javax.swing.JComboBox<>();
+        jP_buscadordevoluciones_nit = new javax.swing.JPanel();
+        txt_buscadornit_historialdevolucion = new javax.swing.JTextField();
+        jLabel142 = new javax.swing.JLabel();
+        jP_buscadordevoluciones_norecibo = new javax.swing.JPanel();
+        txt_buscadornorecibo_historialdevoluciones = new javax.swing.JTextField();
+        jLabel144 = new javax.swing.JLabel();
+        jP_buscadordevoluciones_fecha = new javax.swing.JPanel();
+        jD_fechabusqueda_historialdevoluciones = new com.toedter.calendar.JDateChooser();
+        txt_fechafactura_historialdevoluciones = new javax.swing.JTextField();
+        jLabel147 = new javax.swing.JLabel();
+        jP_detallesDevolucion = new javax.swing.JPanel();
+        jL_titulo_detallesDevolucion = new javax.swing.JLabel();
+        jL_noRecibo_detallesDevolucion = new javax.swing.JLabel();
+        jL_fecha_detallesdevolucion = new javax.swing.JLabel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        tableDetallesDevolucion = new javax.swing.JTable();
+        jLabel148 = new javax.swing.JLabel();
+        jLabel150 = new javax.swing.JLabel();
+        jLabel151 = new javax.swing.JLabel();
+        jL_cliente_detallesDevolucion = new javax.swing.JLabel();
+        jL_nit_detallesdevolucion = new javax.swing.JLabel();
+        jLabel152 = new javax.swing.JLabel();
+        jLabel153 = new javax.swing.JLabel();
+        jL_motivo_detallesDevolucion = new javax.swing.JLabel();
+        jL_totalDetallesDevolucion = new javax.swing.JLabel();
+        jPopupHistorialdevoluciones = new javax.swing.JPopupMenu();
+        jM_verDetallesDevoluciones = new javax.swing.JMenuItem();
 
         cargando.setBackground(new java.awt.Color(255, 255, 255));
         cargando.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -3971,110 +4006,6 @@ public final class UtilPanels extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        jP_historialventas.setBackground(new java.awt.Color(250, 250, 250));
-
-        tableHistorialventas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Recibo No.", "Fecha", "NIT", "Cliente", "Total", "<html>Método de pago</html>", "Estado"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane8.setViewportView(tableHistorialventas);
-        if (tableHistorialventas.getColumnModel().getColumnCount() > 0) {
-            tableHistorialventas.getColumnModel().getColumn(0).setPreferredWidth(80);
-            tableHistorialventas.getColumnModel().getColumn(1).setPreferredWidth(150);
-            tableHistorialventas.getColumnModel().getColumn(3).setPreferredWidth(200);
-        }
-
-        jL_pags_historialventas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jL_pags_historialventas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jL_pags_historialventas.setText("1 de 35");
-
-        btn_anteriorpag_historialventas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_anteriorpag_historialventas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_anteriorpag_historialventas.setText("Anterior");
-
-        btn_sigpag_historialventas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_sigpag_historialventas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_sigpag_historialventas.setText("Siguiente");
-
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(btn_anteriorpag_historialventas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(118, 118, 118)
-                .addComponent(jL_pags_historialventas, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(btn_sigpag_historialventas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
-                    .addComponent(btn_anteriorpag_historialventas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jL_pags_historialventas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_sigpag_historialventas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(9, 9, Short.MAX_VALUE))
-        );
-
-        jL_titulo_historialventa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jL_titulo_historialventa.setText("Historial de ventas");
-
-        jP_buscadorhistorial.setBackground(new java.awt.Color(255, 255, 255));
-        jP_buscadorhistorial.setPreferredSize(new java.awt.Dimension(316, 35));
-        jP_buscadorhistorial.setLayout(new java.awt.CardLayout());
-
-        cbx_buscadorhistorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIT/Cliente", "No. Recibo", "Fecha" }));
-
-        javax.swing.GroupLayout jP_historialventasLayout = new javax.swing.GroupLayout(jP_historialventas);
-        jP_historialventas.setLayout(jP_historialventasLayout);
-        jP_historialventasLayout.setHorizontalGroup(
-            jP_historialventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jP_historialventasLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jP_historialventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jP_historialventasLayout.createSequentialGroup()
-                        .addComponent(jL_titulo_historialventa, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(cbx_buscadorhistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jP_buscadorhistorial, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        jP_historialventasLayout.setVerticalGroup(
-            jP_historialventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_historialventasLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(jP_historialventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jP_buscadorhistorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jP_historialventasLayout.createSequentialGroup()
-                        .addGroup(jP_historialventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jL_titulo_historialventa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbx_buscadorhistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15))
-        );
-
         jP_buscadorhistorial_nit.setBackground(new java.awt.Color(255, 255, 255));
         jP_buscadorhistorial_nit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         jP_buscadorhistorial_nit.setPreferredSize(new java.awt.Dimension(316, 35));
@@ -4108,8 +4039,6 @@ public final class UtilPanels extends javax.swing.JFrame {
             .addComponent(jLabel122, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jP_buscadorhistorial.add(jP_buscadorhistorial_nit, "buscadornit");
-
         jP_buscadorhistorial_norecibo.setBackground(new java.awt.Color(255, 255, 255));
         jP_buscadorhistorial_norecibo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         jP_buscadorhistorial_norecibo.setPreferredSize(new java.awt.Dimension(316, 35));
@@ -4142,8 +4071,6 @@ public final class UtilPanels extends javax.swing.JFrame {
             .addComponent(txt_buscadornorecibo_historialventa, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
             .addComponent(jLabel126, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        jP_buscadorhistorial.add(jP_buscadorhistorial_norecibo, "buscadornorecibo");
 
         jP_buscadorhistorial_fecha.setBackground(new java.awt.Color(255, 255, 255));
         jP_buscadorhistorial_fecha.setPreferredSize(new java.awt.Dimension(316, 35));
@@ -4184,8 +4111,6 @@ public final class UtilPanels extends javax.swing.JFrame {
             .addComponent(jLabel74, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jP_buscadorhistorial.add(jP_buscadorhistorial_fecha, "buscadorfecha");
-
         jM_verRecibo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/recibo_icon.png"))); // NOI18N
         jM_verRecibo.setText("ver Recibo");
         jPopupHistorialVenta.add(jM_verRecibo);
@@ -4196,11 +4121,20 @@ public final class UtilPanels extends javax.swing.JFrame {
 
         jM_registrardevolucion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/devolucion_icon.png"))); // NOI18N
         jM_registrardevolucion.setText("Registrar Devolución");
+        jM_registrardevolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jM_registrardevolucionActionPerformed(evt);
+            }
+        });
         jPopupHistorialVenta.add(jM_registrardevolucion);
 
         jM_anularrecibo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/eliminar.png"))); // NOI18N
         jM_anularrecibo.setText("Anular Recibo");
         jPopupHistorialVenta.add(jM_anularrecibo);
+
+        jM_verDevoluciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reiniciar_icon.png"))); // NOI18N
+        jM_verDevoluciones.setText("Ver devoluciones");
+        jPopupHistorialVenta.add(jM_verDevoluciones);
 
         jP_detalledeposito_finalizarventa.setBackground(new java.awt.Color(250, 250, 250));
         jP_detalledeposito_finalizarventa.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles del depósito", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
@@ -4845,12 +4779,10 @@ public final class UtilPanels extends javax.swing.JFrame {
             tableDevoluciones_devoluciones.getColumnModel().getColumn(0).setMinWidth(0);
             tableDevoluciones_devoluciones.getColumnModel().getColumn(0).setPreferredWidth(0);
             tableDevoluciones_devoluciones.getColumnModel().getColumn(0).setMaxWidth(0);
+            tableDevoluciones_devoluciones.getColumnModel().getColumn(0).setHeaderValue("Id producto");
         }
 
         btn_registrarDevolucion_devoluciones.setText("Registrar Devolución");
-
-        btn_historialdevoluciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/history_icon.png"))); // NOI18N
-        btn_historialdevoluciones.setToolTipText("historial de ventas");
 
         javax.swing.GroupLayout jP_registrardevolucionLayout = new javax.swing.GroupLayout(jP_registrardevolucion);
         jP_registrardevolucion.setLayout(jP_registrardevolucionLayout);
@@ -4865,8 +4797,6 @@ public final class UtilPanels extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_registrardevolucionLayout.createSequentialGroup()
                                 .addComponent(jL_titulo_historialventa1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(287, 287, 287)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_historialdevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_registrardevolucionLayout.createSequentialGroup()
                         .addComponent(jL_detallesrecibo2_devoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4887,9 +4817,8 @@ public final class UtilPanels extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addComponent(jL_detallesrecibo2_devoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17))
-                    .addGroup(jP_registrardevolucionLayout.createSequentialGroup()
-                        .addComponent(btn_historialdevoluciones)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_registrardevolucionLayout.createSequentialGroup()
+                        .addGap(0, 45, Short.MAX_VALUE)
                         .addComponent(btn_registrarDevolucion_devoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4904,7 +4833,7 @@ public final class UtilPanels extends javax.swing.JFrame {
         jM_devolverProductos.setText("Devolver todos los productos");
         jPopupDevoluciones.add(jM_devolverProductos);
 
-        jM_reiniciarDevolucion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reiniciar_icon.png"))); // NOI18N
+        jM_reiniciarDevolucion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/history2_icon.png"))); // NOI18N
         jM_reiniciarDevolucion.setText("Reiniciar valores");
         jPopupDevoluciones.add(jM_reiniciarDevolucion);
 
@@ -5058,6 +4987,465 @@ public final class UtilPanels extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        jP_historialventas.setBackground(new java.awt.Color(250, 250, 250));
+
+        tableHistorialventas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Recibo No.", "Fecha", "NIT", "Cliente", "Total", "<html>Método de pago</html>", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(tableHistorialventas);
+        if (tableHistorialventas.getColumnModel().getColumnCount() > 0) {
+            tableHistorialventas.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tableHistorialventas.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tableHistorialventas.getColumnModel().getColumn(3).setPreferredWidth(200);
+        }
+
+        jL_pags_historialventas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jL_pags_historialventas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jL_pags_historialventas.setText("1 de 35");
+
+        btn_anteriorpag_historialventas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_anteriorpag_historialventas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_anteriorpag_historialventas.setText("Anterior");
+
+        btn_sigpag_historialventas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_sigpag_historialventas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_sigpag_historialventas.setText("Siguiente");
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(btn_anteriorpag_historialventas, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(118, 118, 118)
+                .addComponent(jL_pags_historialventas, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(btn_sigpag_historialventas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(btn_anteriorpag_historialventas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jL_pags_historialventas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_sigpag_historialventas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(9, 9, Short.MAX_VALUE))
+        );
+
+        jL_titulo_historialventa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jL_titulo_historialventa.setText("Historial de ventas");
+
+        cbx_buscadorhistorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIT/Cliente", "No. Recibo", "Fecha" }));
+
+        jP_buscadorhistorial.setBackground(new java.awt.Color(255, 255, 255));
+        jP_buscadorhistorial.setPreferredSize(new java.awt.Dimension(316, 35));
+        jP_buscadorhistorial.setLayout(new java.awt.CardLayout());
+
+        javax.swing.GroupLayout jP_historialventasLayout = new javax.swing.GroupLayout(jP_historialventas);
+        jP_historialventas.setLayout(jP_historialventasLayout);
+        jP_historialventasLayout.setHorizontalGroup(
+            jP_historialventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_historialventasLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jP_historialventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jP_historialventasLayout.createSequentialGroup()
+                        .addComponent(jL_titulo_historialventa, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(cbx_buscadorhistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jP_buscadorhistorial, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jP_historialventasLayout.setVerticalGroup(
+            jP_historialventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_historialventasLayout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(jP_historialventasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jL_titulo_historialventa, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbx_buscadorhistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jP_buscadorhistorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        jTabbedPane_HistorialVentas.addTab("Ventas", jP_historialventas);
+
+        jP_historialDevoluciones.setBackground(new java.awt.Color(250, 250, 250));
+
+        tableHistorialdevoluciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "idDevolucion", "Recibo No.", "Fecha", "NIT", "Cliente", "Total Devuelto", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane12.setViewportView(tableHistorialdevoluciones);
+        if (tableHistorialdevoluciones.getColumnModel().getColumnCount() > 0) {
+            tableHistorialdevoluciones.getColumnModel().getColumn(0).setMinWidth(0);
+            tableHistorialdevoluciones.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tableHistorialdevoluciones.getColumnModel().getColumn(0).setMaxWidth(0);
+            tableHistorialdevoluciones.getColumnModel().getColumn(1).setPreferredWidth(80);
+            tableHistorialdevoluciones.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tableHistorialdevoluciones.getColumnModel().getColumn(4).setPreferredWidth(200);
+        }
+
+        jL_pags_historialdevoluciones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jL_pags_historialdevoluciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jL_pags_historialdevoluciones.setText("1 de 35");
+
+        btn_anteriorpag_historialdevoluciones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_anteriorpag_historialdevoluciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_anteriorpag_historialdevoluciones.setText("Anterior");
+
+        btn_sigpag_historialdevoluciones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_sigpag_historialdevoluciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_sigpag_historialdevoluciones.setText("Siguiente");
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(btn_anteriorpag_historialdevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(118, 118, 118)
+                .addComponent(jL_pags_historialdevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(btn_sigpag_historialdevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(btn_anteriorpag_historialdevoluciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jL_pags_historialdevoluciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_sigpag_historialdevoluciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(9, 9, Short.MAX_VALUE))
+        );
+
+        jL_titulo_historialdevoluciones.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jL_titulo_historialdevoluciones.setText("Historial de devoluciones");
+
+        jP_buscadordevoluciones.setBackground(new java.awt.Color(255, 255, 255));
+        jP_buscadordevoluciones.setPreferredSize(new java.awt.Dimension(316, 35));
+        jP_buscadordevoluciones.setLayout(new java.awt.CardLayout());
+
+        cbx_buscadordevoluciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIT/Cliente", "No. Recibo", "Fecha" }));
+
+        javax.swing.GroupLayout jP_historialDevolucionesLayout = new javax.swing.GroupLayout(jP_historialDevoluciones);
+        jP_historialDevoluciones.setLayout(jP_historialDevolucionesLayout);
+        jP_historialDevolucionesLayout.setHorizontalGroup(
+            jP_historialDevolucionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_historialDevolucionesLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jP_historialDevolucionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jP_historialDevolucionesLayout.createSequentialGroup()
+                        .addComponent(jL_titulo_historialdevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(cbx_buscadordevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jP_buscadordevoluciones, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        jP_historialDevolucionesLayout.setVerticalGroup(
+            jP_historialDevolucionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_historialDevolucionesLayout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addGroup(jP_historialDevolucionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jP_buscadordevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jP_historialDevolucionesLayout.createSequentialGroup()
+                        .addGroup(jP_historialDevolucionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jL_titulo_historialdevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbx_buscadordevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15))
+        );
+
+        jTabbedPane_HistorialVentas.addTab("Devoluciones", jP_historialDevoluciones);
+
+        javax.swing.GroupLayout jP_historialVentasContentLayout = new javax.swing.GroupLayout(jP_historialVentasContent);
+        jP_historialVentasContent.setLayout(jP_historialVentasContentLayout);
+        jP_historialVentasContentLayout.setHorizontalGroup(
+            jP_historialVentasContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 841, Short.MAX_VALUE)
+            .addGroup(jP_historialVentasContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jP_historialVentasContentLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane_HistorialVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jP_historialVentasContentLayout.setVerticalGroup(
+            jP_historialVentasContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 598, Short.MAX_VALUE)
+            .addGroup(jP_historialVentasContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jP_historialVentasContentLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane_HistorialVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jP_buscadordevoluciones_nit.setBackground(new java.awt.Color(255, 255, 255));
+        jP_buscadordevoluciones_nit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        jP_buscadordevoluciones_nit.setPreferredSize(new java.awt.Dimension(316, 35));
+
+        txt_buscadornit_historialdevolucion.setBorder(null);
+        txt_buscadornit_historialdevolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_buscadornit_historialdevolucionActionPerformed(evt);
+            }
+        });
+
+        jLabel142.setBackground(new java.awt.Color(0, 153, 255));
+        jLabel142.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel142.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/magnifyingglass_87552_1.png"))); // NOI18N
+        jLabel142.setAlignmentX(0.5F);
+
+        javax.swing.GroupLayout jP_buscadordevoluciones_nitLayout = new javax.swing.GroupLayout(jP_buscadordevoluciones_nit);
+        jP_buscadordevoluciones_nit.setLayout(jP_buscadordevoluciones_nitLayout);
+        jP_buscadordevoluciones_nitLayout.setHorizontalGroup(
+            jP_buscadordevoluciones_nitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_buscadordevoluciones_nitLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel142, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_buscadornit_historialdevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jP_buscadordevoluciones_nitLayout.setVerticalGroup(
+            jP_buscadordevoluciones_nitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txt_buscadornit_historialdevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+            .addComponent(jLabel142, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jP_buscadordevoluciones_norecibo.setBackground(new java.awt.Color(255, 255, 255));
+        jP_buscadordevoluciones_norecibo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        jP_buscadordevoluciones_norecibo.setPreferredSize(new java.awt.Dimension(316, 35));
+
+        txt_buscadornorecibo_historialdevoluciones.setBorder(null);
+        txt_buscadornorecibo_historialdevoluciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_buscadornorecibo_historialdevolucionesActionPerformed(evt);
+            }
+        });
+
+        jLabel144.setBackground(new java.awt.Color(0, 153, 255));
+        jLabel144.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel144.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/magnifyingglass_87552_1.png"))); // NOI18N
+        jLabel144.setAlignmentX(0.5F);
+
+        javax.swing.GroupLayout jP_buscadordevoluciones_noreciboLayout = new javax.swing.GroupLayout(jP_buscadordevoluciones_norecibo);
+        jP_buscadordevoluciones_norecibo.setLayout(jP_buscadordevoluciones_noreciboLayout);
+        jP_buscadordevoluciones_noreciboLayout.setHorizontalGroup(
+            jP_buscadordevoluciones_noreciboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_buscadordevoluciones_noreciboLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel144, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_buscadornorecibo_historialdevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jP_buscadordevoluciones_noreciboLayout.setVerticalGroup(
+            jP_buscadordevoluciones_noreciboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txt_buscadornorecibo_historialdevoluciones, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+            .addComponent(jLabel144, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jP_buscadordevoluciones_fecha.setBackground(new java.awt.Color(255, 255, 255));
+        jP_buscadordevoluciones_fecha.setPreferredSize(new java.awt.Dimension(316, 35));
+
+        jD_fechabusqueda_historialdevoluciones.setBackground(new java.awt.Color(250, 250, 250));
+        jD_fechabusqueda_historialdevoluciones.setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/Images/calendar-icon_34471.png")).getImage().getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH)));
+        jD_fechabusqueda_historialdevoluciones.setPreferredSize(new java.awt.Dimension(82, 35));
+        JTextField editorDevoluciones = (JTextField) jD_fechabusqueda_historialdevoluciones.getDateEditor().getUiComponent();
+
+        editorDevoluciones.setVisible(false);
+
+        txt_fechafactura_historialdevoluciones.setEditable(false);
+        txt_fechafactura_historialdevoluciones.setBackground(new java.awt.Color(255, 255, 255));
+        txt_fechafactura_historialdevoluciones.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel147.setBackground(new java.awt.Color(0, 153, 255));
+        jLabel147.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel147.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/magnifyingglass_87552_1.png"))); // NOI18N
+        jLabel147.setAlignmentX(0.5F);
+
+        javax.swing.GroupLayout jP_buscadordevoluciones_fechaLayout = new javax.swing.GroupLayout(jP_buscadordevoluciones_fecha);
+        jP_buscadordevoluciones_fecha.setLayout(jP_buscadordevoluciones_fechaLayout);
+        jP_buscadordevoluciones_fechaLayout.setHorizontalGroup(
+            jP_buscadordevoluciones_fechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_buscadordevoluciones_fechaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel147, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_fechafactura_historialdevoluciones, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jD_fechabusqueda_historialdevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jP_buscadordevoluciones_fechaLayout.setVerticalGroup(
+            jP_buscadordevoluciones_fechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txt_fechafactura_historialdevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jD_fechabusqueda_historialdevoluciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLabel147, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jP_detallesDevolucion.setBackground(new java.awt.Color(250, 250, 250));
+
+        jL_titulo_detallesDevolucion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jL_titulo_detallesDevolucion.setText("Detalle de devolucion No.");
+
+        jL_noRecibo_detallesDevolucion.setText("44");
+
+        tableDetallesDevolucion.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Descripción", "Precio", "Cantidad devuelta", "Subtotal"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableDetallesDevolucion.setRowSelectionAllowed(false);
+        tableDetallesDevolucion.getTableHeader().setReorderingAllowed(false);
+        jScrollPane13.setViewportView(tableDetallesDevolucion);
+
+        jLabel148.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel148.setText("Recibio No.");
+
+        jLabel150.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel150.setText("Fecha:");
+
+        jLabel151.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel151.setText("Cliente:");
+
+        jLabel152.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel152.setText("NIT:");
+
+        jLabel153.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel153.setText("Motivo:");
+
+        jL_totalDetallesDevolucion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jL_totalDetallesDevolucion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jL_totalDetallesDevolucion.setText("Total devuelto  Q 0.00");
+
+        javax.swing.GroupLayout jP_detallesDevolucionLayout = new javax.swing.GroupLayout(jP_detallesDevolucion);
+        jP_detallesDevolucion.setLayout(jP_detallesDevolucionLayout);
+        jP_detallesDevolucionLayout.setHorizontalGroup(
+            jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_detallesDevolucionLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_titulo_detallesDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jP_detallesDevolucionLayout.createSequentialGroup()
+                            .addComponent(jLabel153, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jL_motivo_detallesDevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jP_detallesDevolucionLayout.createSequentialGroup()
+                            .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel148)
+                                .addComponent(jLabel150, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jL_fecha_detallesdevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jL_noRecibo_detallesDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel152, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel151, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jL_nit_detallesdevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jL_cliente_detallesDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(23, 23, 23))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_detallesDevolucionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jL_totalDetallesDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+        );
+        jP_detallesDevolucionLayout.setVerticalGroup(
+            jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jP_detallesDevolucionLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jL_titulo_detallesDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jP_detallesDevolucionLayout.createSequentialGroup()
+                        .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel148, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jL_noRecibo_detallesDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel150, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                            .addComponent(jL_fecha_detallesdevolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jP_detallesDevolucionLayout.createSequentialGroup()
+                        .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel151, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jL_cliente_detallesDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel152, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jL_nit_detallesdevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jP_detallesDevolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel153, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jL_motivo_detallesDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jL_totalDetallesDevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+        );
+
+        jM_verDetallesDevoluciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/devolucion_icon.png"))); // NOI18N
+        jM_verDetallesDevoluciones.setText("Ver detalles de la devolucion");
+        jPopupHistorialdevoluciones.add(jM_verDetallesDevoluciones);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -5187,6 +5575,18 @@ public final class UtilPanels extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_motivoDevolucion_resumenDevolucionActionPerformed
 
+    private void txt_buscadornit_historialdevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscadornit_historialdevolucionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscadornit_historialdevolucionActionPerformed
+
+    private void txt_buscadornorecibo_historialdevolucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscadornorecibo_historialdevolucionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscadornorecibo_historialdevolucionesActionPerformed
+
+    private void jM_registrardevolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jM_registrardevolucionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jM_registrardevolucionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5233,6 +5633,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JButton btn_addproveedor_inv;
     public javax.swing.JLabel btn_anteriorpag_credito;
     public javax.swing.JLabel btn_anteriorpag_historialabono;
+    public javax.swing.JLabel btn_anteriorpag_historialdevoluciones;
     public javax.swing.JLabel btn_anteriorpag_historialventas;
     public javax.swing.JButton btn_aplicardescuento_descuento;
     public javax.swing.JButton btn_añadir_addstock;
@@ -5255,7 +5656,6 @@ public final class UtilPanels extends javax.swing.JFrame {
     public volatile javax.swing.JButton btn_guardarProv_inv;
     public javax.swing.JButton btn_guardar_caja;
     public javax.swing.JButton btn_guardar_rp_inv;
-    public javax.swing.JButton btn_historialdevoluciones;
     public javax.swing.JButton btn_imprimirpdf_reporteCierre;
     public javax.swing.JButton btn_nuevocliente_p_cliente;
     public javax.swing.JButton btn_nuevousuario_p_usuario;
@@ -5266,12 +5666,14 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JButton btn_remover_removeStock;
     public javax.swing.JLabel btn_sigpag_credito;
     public javax.swing.JLabel btn_sigpag_historialabono;
+    public javax.swing.JLabel btn_sigpag_historialdevoluciones;
     public javax.swing.JLabel btn_sigpag_historialventas;
     public javax.swing.JButton btn_siguienteAC_turno;
     public javax.swing.JButton btn_siguienteSC_turno;
     public javax.swing.JSpinner cant;
     public javax.swing.JPanel cargando;
     public javax.swing.JCheckBox cb_modificar_contraseña;
+    public javax.swing.JComboBox<String> cbx_buscadordevoluciones;
     public javax.swing.JComboBox<String> cbx_buscadorhistorial;
     public javax.swing.JComboBox<String> cbx_buscadorhistorialabono;
     public javax.swing.JComboBox<Categoria_ob> cbx_categoria_rp_inv;
@@ -5290,6 +5692,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JButton jButton2;
     public com.toedter.calendar.JDateChooser jD_fechaIngreso_addStock;
     public com.toedter.calendar.JDateChooser jD_fechaSalida_removeStock;
+    public com.toedter.calendar.JDateChooser jD_fechabusqueda_historialdevoluciones;
     public com.toedter.calendar.JDateChooser jD_fechabusqueda_historialventas;
     public com.toedter.calendar.JDateChooser jD_plazoDePago_finalizarventa;
     public com.toedter.calendar.JDateChooser jD_selectFechaMT_turno;
@@ -5305,6 +5708,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_catpro;
     public javax.swing.JLabel jL_cliente_abonar;
     public javax.swing.JLabel jL_cliente_credito;
+    public javax.swing.JLabel jL_cliente_detallesDevolucion;
     public javax.swing.JLabel jL_cobrocredito_reporteCierre;
     public javax.swing.JLabel jL_cobrocreditosCC_turno;
     public javax.swing.JLabel jL_codepr;
@@ -5331,6 +5735,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_estado_reporteCierre;
     public javax.swing.JLabel jL_estadopro;
     public javax.swing.JLabel jL_fechaMT_turno;
+    public javax.swing.JLabel jL_fecha_detallesdevolucion;
     public javax.swing.JLabel jL_fechaapertura_reporteCierre;
     public javax.swing.JLabel jL_fechacierre_reporteCierre;
     public javax.swing.JLabel jL_fotopr;
@@ -5348,14 +5753,18 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_metodoDevolucion_resumenDevolucion;
     public javax.swing.JLabel jL_metodoPago_resumendevolucion;
     public javax.swing.JLabel jL_montoTotal_abonar;
+    public javax.swing.JLabel jL_motivo_detallesDevolucion;
     public javax.swing.JLabel jL_namepr;
     public javax.swing.JLabel jL_nit_credito;
+    public javax.swing.JLabel jL_nit_detallesdevolucion;
     public javax.swing.JLabel jL_noCierre_reporteCierre;
     public javax.swing.JLabel jL_noRecibo_abonar;
+    public javax.swing.JLabel jL_noRecibo_detallesDevolucion;
     public javax.swing.JLabel jL_nombrecajaSI_turno;
     public javax.swing.JLabel jL_nombrepro;
     public javax.swing.JLabel jL_pags_credito;
     public javax.swing.JLabel jL_pags_historialabono;
+    public javax.swing.JLabel jL_pags_historialdevoluciones;
     public javax.swing.JLabel jL_pags_historialventas;
     public javax.swing.JLabel jL_precio_nuevaventa;
     public javax.swing.JLabel jL_preciofinal_descuento;
@@ -5385,6 +5794,8 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_titulo_caja1;
     public javax.swing.JLabel jL_titulo_caja2;
     public javax.swing.JLabel jL_titulo_caja3;
+    public javax.swing.JLabel jL_titulo_detallesDevolucion;
+    public javax.swing.JLabel jL_titulo_historialdevoluciones;
     public javax.swing.JLabel jL_titulo_historialventa;
     public javax.swing.JLabel jL_titulo_historialventa1;
     public javax.swing.JLabel jL_titulo_pcliente;
@@ -5413,6 +5824,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JLabel jL_titulo_rp_inv1;
     public javax.swing.JLabel jL_totalAdevolver_resumenDevolucion;
     public javax.swing.JLabel jL_totalBilletes_turno;
+    public javax.swing.JLabel jL_totalDetallesDevolucion;
     public javax.swing.JLabel jL_totalactualRecibo_resumenDevolucion;
     public javax.swing.JLabel jL_totalapagar_finalizarventa;
     public javax.swing.JLabel jL_totalefectivo_turno;
@@ -5467,11 +5879,19 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel140;
     private javax.swing.JLabel jLabel141;
+    private javax.swing.JLabel jLabel142;
     private javax.swing.JLabel jLabel143;
+    private javax.swing.JLabel jLabel144;
     private javax.swing.JLabel jLabel145;
     private javax.swing.JLabel jLabel146;
+    private javax.swing.JLabel jLabel147;
+    private javax.swing.JLabel jLabel148;
     private javax.swing.JLabel jLabel149;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel150;
+    private javax.swing.JLabel jLabel151;
+    private javax.swing.JLabel jLabel152;
+    private javax.swing.JLabel jLabel153;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -5573,6 +5993,8 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JMenuItem jM_verAbono_abono;
     public javax.swing.JMenuItem jM_verComprobanteDeposito;
     public javax.swing.JMenuItem jM_verDeposito_abono;
+    public javax.swing.JMenuItem jM_verDetallesDevoluciones;
+    public javax.swing.JMenuItem jM_verDevoluciones;
     public javax.swing.JMenuItem jM_verRecibo;
     public javax.swing.JMenuItem jM_verabonos_creditos;
     public javax.swing.JMenuItem jM_vercomprobante_creditos;
@@ -5580,6 +6002,10 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JPanel jP_addLote;
     public javax.swing.JPanel jP_arqueoCaja_turno;
     private javax.swing.JPanel jP_buscadorcliente2;
+    public javax.swing.JPanel jP_buscadordevoluciones;
+    public javax.swing.JPanel jP_buscadordevoluciones_fecha;
+    public javax.swing.JPanel jP_buscadordevoluciones_nit;
+    public javax.swing.JPanel jP_buscadordevoluciones_norecibo;
     public javax.swing.JPanel jP_buscadorhistorial;
     public javax.swing.JPanel jP_buscadorhistorial1;
     public javax.swing.JPanel jP_buscadorhistorial_fecha;
@@ -5595,11 +6021,14 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JPanel jP_detallecredito_finalizarventa;
     public javax.swing.JPanel jP_detalledeposito_finalizarventa;
     public javax.swing.JPanel jP_detallesDeposito_credito;
+    public javax.swing.JPanel jP_detallesDevolucion;
     public javax.swing.JPanel jP_detallespago_finalizarventa;
     public javax.swing.JPanel jP_devolucionSimple;
     public javax.swing.JPanel jP_editarinforEmpresa;
     public javax.swing.JPanel jP_efectivo_turno;
     public javax.swing.JPanel jP_finalizarVenta_nuevaventa;
+    private javax.swing.JPanel jP_historialDevoluciones;
+    public javax.swing.JPanel jP_historialVentasContent;
     private javax.swing.JPanel jP_historial_movimientosStock;
     public javax.swing.JPanel jP_historial_movimientos_turno;
     public javax.swing.JPanel jP_historialventas;
@@ -5640,6 +6069,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -5652,12 +6082,15 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JPopupMenu jPopupCreditos;
     public javax.swing.JPopupMenu jPopupDevoluciones;
     public javax.swing.JPopupMenu jPopupHistorialVenta;
+    public javax.swing.JPopupMenu jPopupHistorialdevoluciones;
     public javax.swing.JPanel jPregistrarproducto;
     public javax.swing.JPanel jProduct;
     public javax.swing.JSpinner jS_stock_inicial_rsi;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -5670,14 +6103,17 @@ public final class UtilPanels extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     public javax.swing.JTabbedPane jT_winCredito;
     private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTabbedPane jTabbedPane_HistorialVentas;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     public volatile javax.swing.JTable tabla_categoria_inv;
     public volatile javax.swing.JTable tabla_medidas_inv;
     public volatile javax.swing.JTable tabla_proveedor_inv;
     public javax.swing.JTable tableCredito;
+    public javax.swing.JTable tableDetallesDevolucion;
     public javax.swing.JTable tableDevoluciones_devoluciones;
     public javax.swing.JTable tableHistorialabono;
+    public javax.swing.JTable tableHistorialdevoluciones;
     public javax.swing.JTable tableHistorialventas;
     public javax.swing.JTable tableLotepro;
     public javax.swing.JTable tableMoviemtosTurno;
@@ -5699,7 +6135,9 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JTextField txt_addstock_nuevaventa;
     public javax.swing.JTextField txt_buscador_historialabono;
     public javax.swing.JTextField txt_buscadorfechaMT_turno;
+    public javax.swing.JTextField txt_buscadornit_historialdevolucion;
     public javax.swing.JTextField txt_buscadornit_historialventa;
+    public javax.swing.JTextField txt_buscadornorecibo_historialdevoluciones;
     public javax.swing.JTextField txt_buscadornorecibo_historialventa;
     public javax.swing.JTextField txt_cambio_finalizarventa;
     public javax.swing.JTextField txt_cant_devolucionsimple;
@@ -5714,6 +6152,7 @@ public final class UtilPanels extends javax.swing.JFrame {
     public javax.swing.JTextField txt_direccion_p_cliente;
     public javax.swing.JTextField txt_efectivoAC_turno;
     public javax.swing.JTextField txt_efectivo_finalizarventa;
+    public javax.swing.JTextField txt_fechafactura_historialdevoluciones;
     public javax.swing.JTextField txt_fechafactura_historialventas;
     public javax.swing.JTextField txt_importeEfectivo_turno;
     public javax.swing.JTextField txt_monto_abonar;
