@@ -68,9 +68,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import org.jfree.data.jdbc.JDBCCategoryDataset;
 
-public class sub_nuevaventa {
+public class sub_nuevaventa { 
 
     private Ventas v;
 
